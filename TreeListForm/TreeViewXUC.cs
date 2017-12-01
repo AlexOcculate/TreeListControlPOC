@@ -22,10 +22,12 @@ namespace TreeListForm
             AddColumnEditor();
             //InitializeComponent();
             this.treeList1.SaveLayoutToXml(@"D:\TEMP\SQLite\treeList.xml", DevExpress.Utils.OptionsLayoutBase.FullLayout);
-            this.treeList1.Print();
+            //this.treeList1.Print();
         }
         //
-        public DevExpress.XtraTreeList.TreeList treeList1;
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TreeViewXUC));
+        private DevExpress.Utils.ImageCollection imageCollection1;
+        private DevExpress.XtraTreeList.TreeList treeList1;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colParentId;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colId;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colName;
@@ -37,9 +39,14 @@ namespace TreeListForm
             {
                 return;
             }
-            this.treeList1.DataSource = ds;
-            this.treeList1.RefreshDataSource();
-            this.treeList1.Print();
+            this.treeList1.BeginUpdate();
+            {
+                this.treeList1.ClearNodes();
+                this.treeList1.DataSource = ds;
+                //this.treeList1.RefreshDataSource();
+            }
+            this.treeList1.EndUpdate();
+//            this.treeList1.Print();
         }
         //
         public void Print(PrintingSystem ps)
@@ -65,121 +72,147 @@ namespace TreeListForm
         private void PreInitializeComponent()
         {
             this.Name = "XtraUserControl1";
-            this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             {
-                ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
-                {
-                    this.treeList1.ShowLoadingPanel();
-                    {
-                        this.treeList1.Name = "treeList1";
-                        this.treeList1.Caption = "Data Stores Tree";
-                        this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
-                        //this.treeList1.FixedLineWidth = 2;
-                        //this.treeList1.Location = new System.Drawing.Point(0, 0);
-                        //this.treeList1.PreviewLineCount = 2;
-                        //this.treeList1.Size = new System.Drawing.Size(632, 278);
-                        this.treeList1.TabIndex = 0;
-                        //this.treeList1.ActiveFilterEnabled = true;
-                        //
-                        #region --- General TreeList Configuration ---
-                        //this.treeList1.LookAndFeel.UseDefaultLookAndFeel = false;
-                        //this.treeList1.LookAndFeel.SkinName = "iMaginary";
-                        //
-                        this.treeList1.OptionsBehavior.AllowExpandOnDblClick = false;
-                        this.treeList1.OptionsBehavior.AllowIndeterminateCheckState = true;
-                        this.treeList1.OptionsBehavior.AllowPixelScrolling = DevExpress.Utils.DefaultBoolean.Default;
-                        this.treeList1.OptionsBehavior.AllowRecursiveNodeChecking = true;
-                        this.treeList1.OptionsBehavior.EnableFiltering = true;
-                        this.treeList1.OptionsBehavior.ReadOnly = false;
-                        this.treeList1.OptionsBehavior.ShowToolTips = true;
-                        //
-                        this.treeList1.OptionsCustomization.AllowFilter = true;
-                        this.treeList1.OptionsCustomization.AllowQuickHideColumns = true;
-                        this.treeList1.OptionsCustomization.AllowSort = true;
-                        this.treeList1.OptionsCustomization.CustomizationFormSearchBoxVisible = true;
-                        this.treeList1.OptionsCustomization.CustomizationFormSnapMode = DevExpress.Utils.Controls.SnapMode.OwnerControl;
-                        this.treeList1.OptionsCustomization.ShowBandsInCustomizationForm = true;
-                        //
-                        this.treeList1.OptionsFind.AllowFindPanel = true;
-                        this.treeList1.OptionsFind.AllowIncrementalSearch = true;
-                        this.treeList1.OptionsFind.AlwaysVisible = true;
-                        this.treeList1.OptionsFind.ClearFindOnClose = false;
-                        this.treeList1.OptionsFind.ExpandNodesOnIncrementalSearch = true;
-                        this.treeList1.OptionsFind.FindMode = DevExpress.XtraTreeList.FindMode.Default;
-                        //this.treeList1.OptionsFind.FindNullPrompt = "---ALEX---";
-                        this.treeList1.OptionsFind.HighlightFindResults = true;
-                        this.treeList1.OptionsFind.ShowClearButton = true;
-                        this.treeList1.OptionsFind.ShowCloseButton = true;
-                        this.treeList1.OptionsFind.ShowFindButton = true;
-                        // ---------- AUTO FILTER...
-                        this.treeList1.OptionsFilter.AllowAutoFilterConditionChange = DevExpress.Utils.DefaultBoolean.True;
-                        this.treeList1.OptionsFilter.AllowColumnMRUFilterList = true;
-                        this.treeList1.OptionsFilter.AllowFilterEditor = true;
-                        this.treeList1.OptionsFilter.AllowMRUFilterList = true;
-                        this.treeList1.OptionsFilter.FilterMode = DevExpress.XtraTreeList.FilterMode.Extended;
-                        this.treeList1.OptionsFilter.DefaultFilterEditorView = FilterEditorViewMode.VisualAndText;
-                        this.treeList1.OptionsFilter.ShowAllValuesInCheckedFilterPopup = true;
-                        this.treeList1.OptionsFilter.ShowAllValuesInFilterPopup = false;
-                        //
-                        this.treeList1.OptionsMenu.EnableColumnMenu = true;
-                        this.treeList1.OptionsMenu.EnableFooterMenu = true;
-                        this.treeList1.OptionsMenu.ShowAutoFilterRowItem = true;
-                        this.treeList1.OptionsMenu.ShowConditionalFormattingItem = true;
-                        this.treeList1.OptionsMenu.ShowFooterItem = true;
-                        //
-                        this.treeList1.OptionsPrint.AllowCancelPrintExport = true;
-                        this.treeList1.OptionsPrint.AutoRowHeight = true;
-                        this.treeList1.OptionsPrint.AutoWidth = false;
-                        this.treeList1.OptionsPrint.PrintAllNodes = true;
-                        this.treeList1.OptionsPrint.PrintBandHeader = true;
-                        this.treeList1.OptionsPrint.PrintCheckBoxes = true;
-                        this.treeList1.OptionsPrint.PrintFilledTreeIndent = true;
-                        this.treeList1.OptionsPrint.PrintHorzLines = true;
-                        this.treeList1.OptionsPrint.PrintImages = true;
-                        this.treeList1.OptionsPrint.PrintPageHeader = true;
-                        this.treeList1.OptionsPrint.PrintPreview = true;
-                        this.treeList1.OptionsPrint.PrintReportFooter = true;
-                        this.treeList1.OptionsPrint.PrintRowFooterSummary = true;
-
-                        this.treeList1.OptionsPrint.PrintTree = true;
-                        this.treeList1.OptionsPrint.PrintTreeButtons = false;
-                        this.treeList1.OptionsPrint.PrintVertLines = false;
-                        //
-                        this.treeList1.OptionsSelection.EnableAppearanceFocusedCell = true;
-                        this.treeList1.OptionsSelection.EnableAppearanceFocusedRow = true;
-                        this.treeList1.OptionsSelection.InvertSelection = true;
-                        this.treeList1.OptionsSelection.MultiSelect = false;
-                        this.treeList1.OptionsSelection.MultiSelectMode = DevExpress.XtraTreeList.TreeListMultiSelectMode.RowSelect;
-                        //
-                        this.treeList1.OptionsView.AutoCalcPreviewLineCount = true;
-                        this.treeList1.OptionsView.AutoWidth = true;
-                        this.treeList1.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.True;
-                        this.treeList1.OptionsView.ShowAutoFilterRow = true;
-                        this.treeList1.OptionsView.ShowBandsMode = DevExpress.Utils.DefaultBoolean.Default;
-                        this.treeList1.OptionsView.ShowButtons = true;
-                        this.treeList1.OptionsView.ShowCaption = true;
-                        this.treeList1.OptionsView.ShowColumns = true;
-                        this.treeList1.OptionsView.ShowFilterPanelMode = DevExpress.XtraTreeList.ShowFilterPanelMode.ShowAlways;
-                        this.treeList1.OptionsView.ShowHorzLines = false;
-                        this.treeList1.OptionsView.ShowIndicator = false;
-                        //this.treeList1.OptionsView.ShowPreview = true;
-                        this.treeList1.OptionsView.ShowRowFooterSummary = true;
-                        this.treeList1.OptionsView.ShowSummaryFooter = true;
-                        this.treeList1.OptionsView.ShowVertLines = false;
-                        #endregion
-                        //
-                        this.treeList1.ShowFindPanel();
-                        //
-                        this.AddMetadaDataValues();
-                        this.AddDataValues();
-                        //
-                        this.Controls.Add(this.treeList1);
-                        this.treeList1.ExpandAll();
-                    }
-                    this.treeList1.HideLoadingPanel();
-                }
-                ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
+                this.InitializeStateImageCollection();
+                this.InitializeTreeList();
             }
+        }
+
+        private void InitializeTreeList()
+        {
+            this.treeList1 = new DevExpress.XtraTreeList.TreeList();
+            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
+            {
+                this.treeList1.ShowLoadingPanel();
+                {
+                    this.treeList1.Name = "treeList1";
+                    this.treeList1.Caption = "Data Stores Tree";
+                    this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
+                    //this.treeList1.FixedLineWidth = 2;
+                    //this.treeList1.Location = new System.Drawing.Point(0, 0);
+                    //this.treeList1.PreviewLineCount = 2;
+                    //this.treeList1.Size = new System.Drawing.Size(632, 278);
+                    this.treeList1.TabIndex = 0;
+                    //this.treeList1.ActiveFilterEnabled = true;
+                    //
+                    {
+                        this.treeList1.StateImageList = this.imageCollection1;
+                    }
+                    #region --- General TreeList Configuration ---
+                    //this.treeList1.LookAndFeel.UseDefaultLookAndFeel = false;
+                    //this.treeList1.LookAndFeel.SkinName = "iMaginary";
+                    //
+                    this.treeList1.OptionsBehavior.AllowExpandOnDblClick = false;
+                    this.treeList1.OptionsBehavior.AllowIndeterminateCheckState = true;
+                    this.treeList1.OptionsBehavior.AllowPixelScrolling = DevExpress.Utils.DefaultBoolean.Default;
+                    this.treeList1.OptionsBehavior.AllowRecursiveNodeChecking = true;
+                    this.treeList1.OptionsBehavior.EnableFiltering = true;
+                    this.treeList1.OptionsBehavior.ReadOnly = false;
+                    this.treeList1.OptionsBehavior.ShowToolTips = true;
+                    //
+                    this.treeList1.OptionsCustomization.AllowFilter = true;
+                    this.treeList1.OptionsCustomization.AllowQuickHideColumns = true;
+                    this.treeList1.OptionsCustomization.AllowSort = true;
+                    this.treeList1.OptionsCustomization.CustomizationFormSearchBoxVisible = true;
+                    this.treeList1.OptionsCustomization.CustomizationFormSnapMode = DevExpress.Utils.Controls.SnapMode.OwnerControl;
+                    this.treeList1.OptionsCustomization.ShowBandsInCustomizationForm = true;
+                    //
+                    this.treeList1.OptionsFind.AllowFindPanel = true;
+                    this.treeList1.OptionsFind.AllowIncrementalSearch = true;
+                    this.treeList1.OptionsFind.AlwaysVisible = true;
+                    this.treeList1.OptionsFind.ClearFindOnClose = false;
+                    this.treeList1.OptionsFind.ExpandNodesOnIncrementalSearch = true;
+                    this.treeList1.OptionsFind.FindMode = DevExpress.XtraTreeList.FindMode.Default;
+                    //this.treeList1.OptionsFind.FindNullPrompt = "---ALEX---";
+                    this.treeList1.OptionsFind.HighlightFindResults = true;
+                    this.treeList1.OptionsFind.ShowClearButton = true;
+                    this.treeList1.OptionsFind.ShowCloseButton = true;
+                    this.treeList1.OptionsFind.ShowFindButton = true;
+                    // ---------- AUTO FILTER...
+                    this.treeList1.OptionsFilter.AllowAutoFilterConditionChange = DevExpress.Utils.DefaultBoolean.True;
+                    this.treeList1.OptionsFilter.AllowColumnMRUFilterList = true;
+                    this.treeList1.OptionsFilter.AllowFilterEditor = true;
+                    this.treeList1.OptionsFilter.AllowMRUFilterList = true;
+                    this.treeList1.OptionsFilter.FilterMode = DevExpress.XtraTreeList.FilterMode.Extended;
+                    this.treeList1.OptionsFilter.DefaultFilterEditorView = FilterEditorViewMode.VisualAndText;
+                    this.treeList1.OptionsFilter.ShowAllValuesInCheckedFilterPopup = true;
+                    this.treeList1.OptionsFilter.ShowAllValuesInFilterPopup = false;
+                    //
+                    this.treeList1.OptionsMenu.EnableColumnMenu = true;
+                    this.treeList1.OptionsMenu.EnableFooterMenu = true;
+                    this.treeList1.OptionsMenu.ShowAutoFilterRowItem = true;
+                    this.treeList1.OptionsMenu.ShowConditionalFormattingItem = true;
+                    this.treeList1.OptionsMenu.ShowFooterItem = true;
+                    //
+                    this.treeList1.OptionsPrint.AllowCancelPrintExport = true;
+                    this.treeList1.OptionsPrint.AutoRowHeight = true;
+                    this.treeList1.OptionsPrint.AutoWidth = false;
+                    this.treeList1.OptionsPrint.PrintAllNodes = true;
+                    this.treeList1.OptionsPrint.PrintBandHeader = true;
+                    this.treeList1.OptionsPrint.PrintCheckBoxes = true;
+                    this.treeList1.OptionsPrint.PrintFilledTreeIndent = true;
+                    this.treeList1.OptionsPrint.PrintHorzLines = true;
+                    this.treeList1.OptionsPrint.PrintImages = true;
+                    this.treeList1.OptionsPrint.PrintPageHeader = true;
+                    this.treeList1.OptionsPrint.PrintPreview = true;
+                    this.treeList1.OptionsPrint.PrintReportFooter = true;
+                    this.treeList1.OptionsPrint.PrintRowFooterSummary = true;
+
+                    this.treeList1.OptionsPrint.PrintTree = true;
+                    this.treeList1.OptionsPrint.PrintTreeButtons = false;
+                    this.treeList1.OptionsPrint.PrintVertLines = false;
+                    //
+                    this.treeList1.OptionsSelection.EnableAppearanceFocusedCell = true;
+                    this.treeList1.OptionsSelection.EnableAppearanceFocusedRow = true;
+                    this.treeList1.OptionsSelection.InvertSelection = true;
+                    this.treeList1.OptionsSelection.MultiSelect = false;
+                    this.treeList1.OptionsSelection.MultiSelectMode = DevExpress.XtraTreeList.TreeListMultiSelectMode.RowSelect;
+                    //
+                    this.treeList1.OptionsView.AutoCalcPreviewLineCount = true;
+                    this.treeList1.OptionsView.AutoWidth = true;
+                    this.treeList1.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.True;
+                    this.treeList1.OptionsView.ShowAutoFilterRow = true;
+                    this.treeList1.OptionsView.ShowBandsMode = DevExpress.Utils.DefaultBoolean.Default;
+                    this.treeList1.OptionsView.ShowButtons = true;
+                    this.treeList1.OptionsView.ShowCaption = true;
+                    this.treeList1.OptionsView.ShowColumns = true;
+                    this.treeList1.OptionsView.ShowFilterPanelMode = DevExpress.XtraTreeList.ShowFilterPanelMode.ShowAlways;
+                    this.treeList1.OptionsView.ShowHorzLines = false;
+                    this.treeList1.OptionsView.ShowIndicator = false;
+                    this.treeList1.OptionsView.ShowPreview = true;
+                    this.treeList1.OptionsView.ShowRowFooterSummary = true;
+                    this.treeList1.OptionsView.ShowSummaryFooter = true;
+                    this.treeList1.OptionsView.ShowVertLines = false;
+                    #endregion
+                    //
+                    this.treeList1.ShowFindPanel();
+                    //
+                    this.AddMetadaDataValues();
+                    //this.AddUnboundDataValues();
+                    //this.AddBoundDataValues();
+                    //
+                    this.Controls.Add(this.treeList1);
+                    this.treeList1.ExpandAll();
+                }
+                this.treeList1.HideLoadingPanel();
+            }
+                        ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
+        }
+
+        private void InitializeStateImageCollection()
+        {
+            this.imageCollection1 = new DevExpress.Utils.ImageCollection();
+            ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).BeginInit();
+            {
+                this.imageCollection1.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollection1.ImageStream")));
+                this.imageCollection1.InsertGalleryImage("bofolder_16x16.png", "images/business%20objects/bofolder_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/business%20objects/bofolder_16x16.png"), 0);
+                this.imageCollection1.Images.SetKeyName(0, "bofolder_16x16.png");
+                this.imageCollection1.InsertGalleryImage("open_16x16.png", "images/actions/open_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/open_16x16.png"), 1);
+                this.imageCollection1.Images.SetKeyName(1, "open_16x16.png");
+                this.imageCollection1.InsertGalleryImage("database_16x16.png", "images/data/database_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/data/database_16x16.png"), 2);
+                this.imageCollection1.Images.SetKeyName(2, "database_16x16.png");
+            }
+                        ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).EndInit();
         }
 
         private void AddMetadaDataValues()
@@ -203,9 +236,25 @@ namespace TreeListForm
                     }
             );
         }
-        private void AddDataValues()
+        private void AddBoundDataValues()
         {
             this.treeList1.DataSource = GetTreeListDataTable( /*10, 5*/ );
+        }
+        private void AddUnboundDataValues()
+        {
+            this.treeList1.BeginUnboundLoad();
+            {
+                this.treeList1.AppendNode(new object[] { "Root 01" }, -1, System.Windows.Forms.CheckState.Checked);
+                this.treeList1.AppendNode(new object[] { "Branch 01" }, 0);
+                this.treeList1.AppendNode(new object[] { "Leaf" }, 1);
+                this.treeList1.AppendNode(new object[] { "Root 02" }, -1);
+                this.treeList1.AppendNode(new object[] { "Branch 01" }, 3);
+                this.treeList1.AppendNode(new object[] { "Leaf" }, 4);
+                this.treeList1.AppendNode(new object[] { "Root 03" }, -1);
+                this.treeList1.AppendNode(new object[] { "Leaf 01" }, 6);
+                this.treeList1.AppendNode(new object[] { "Leaf 02" }, 6);
+            }
+            this.treeList1.EndUnboundLoad();
         }
         //
         private void AddColumnEditor()
@@ -235,6 +284,9 @@ namespace TreeListForm
         //
         private void AddEventHandlers()
         {
+            this.treeList1.GetStateImage += new DevExpress.XtraTreeList.GetStateImageEventHandler(this.treeList1_GetStateImage);
+            this.treeList1.GetSelectImage += new DevExpress.XtraTreeList.GetSelectImageEventHandler(this.treeList1_GetSelectImage);
+
             //this.treeList1.NodeCellStyle += new DevExpress.XtraTreeList.GetCustomNodeCellStyleEventHandler(this.treeList1_NodeCellStyle);
             //this.treeList1.PopupMenuShowing += new DevExpress.XtraTreeList.PopupMenuShowingEventHandler(this.treeList1_PopupMenuShowing);
             //this.treeList1.TreeListMenuItemClick += new DevExpress.XtraTreeList.TreeListMenuItemClickEventHandler(this.treeList1_TreeListMenuItemClick);
@@ -271,6 +323,15 @@ namespace TreeListForm
         }
         //
         #region --- TreeList Event Handlers... ---
+        private void treeList1_GetStateImage(object sender, DevExpress.XtraTreeList.GetStateImageEventArgs e)
+        {
+            e.NodeImageIndex = !e.Node.HasChildren ? 2 : (e.Node.Expanded ? 1 : 0);
+        }
+
+        private void treeList1_GetSelectImage(object sender, DevExpress.XtraTreeList.GetSelectImageEventArgs e)
+        {
+
+        }
         private void treeList1_NodeCellStyle(object sender, DevExpress.XtraTreeList.GetCustomNodeCellStyleEventArgs e)
         {
 
@@ -416,7 +477,7 @@ namespace TreeListForm
         #endregion
         //
         #region --- Data Source, Data Sets and Data Columns ---
-        DataTable GetTreeListDataTable(int count = 100, int rootNodesCount = 4)
+        DataTable GetTreeListDataTable(int count = 12, int rootNodesCount = 3)
         {
             var dataTable = new DataTable();
             dataTable.Columns.Add("Id", typeof(int));

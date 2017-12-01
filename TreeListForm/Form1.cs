@@ -18,9 +18,11 @@ namespace TreeListForm
         {
             StartConnectionConfigDb();
             InitializeComponent();
-            XPCollection collection = Q0001.DataStore.getCollection("[Name] <> 'ROOT'");
-            this.treeViewXUC1.SetDataSource(collection);
-            //this.treeViewXUC1.Print(this.ps);
+            {
+                //XPCollection collection = Q0001.DataStore.getCollection("[Name] <> 'ROOT'");
+                //this.treeViewXUC1.SetDataSource(collection);
+                //this.treeViewXUC1.Print(this.ps);
+            }
         }
         private DevExpress.XtraPrinting.PrintingSystem ps = new DevExpress.XtraPrinting.PrintingSystem();
         private static void StartConnectionConfigDb()
