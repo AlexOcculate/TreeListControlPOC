@@ -4,6 +4,7 @@ using DevExpress.XtraTreeList.Columns;
 using DevExpress.XtraTreeList.Menu;
 using DevExpress.XtraTreeList.Nodes;
 using System;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -14,8 +15,225 @@ namespace TreeListTest
         public Form1()
         {
             InitializeComponent();
+            ConfigTreeList();
         }
 
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colType;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colName;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colDescription;
+        private void ConfigTreeList()
+        {
+            {
+                this.colType = this.createTypeColumn();
+                this.treeList1.Columns.AddRange(
+                    new DevExpress.XtraTreeList.Columns.TreeListColumn[]
+                    {
+                            this.colName = this.createNameColumn(),
+                            this.colDescription = this.createDescriptionColumn()
+                    }
+                );
+                this.treeList1.PreviewFieldName = this.colDescription.FieldName;
+                this.treeList1.OptionsView.AutoCalcPreviewLineCount = true;
+                this.treeList1.OptionsView.AutoWidth = true;
+                this.treeList1.OptionsView.ShowPreview = true;
+                this.treeList1.OptionsView.ShowCheckBoxes = true;
+                this.treeList1.OptionsBehavior.AllowBoundCheckBoxesInVirtualMode = true;
+                this.treeList1.OptionsBehavior.AllowIndeterminateCheckState = true;
+                this.treeList1.OptionsBehavior.AllowRecursiveNodeChecking = true;
+                this.treeList1.OptionsBehavior.AllowExpandOnDblClick = true;
+            }
+            this.treeList1.BeginUnboundLoad();
+            {
+                this.treeList1.DataSource = new object();
+                this.treeList1.RefreshDataSource();
+            }
+            this.treeList1.EndUnboundLoad();
+            this.treeList1.VirtualTreeGetChildNodes += new VirtualTreeGetChildNodesEventHandler(this.treeList1_VirtualTreeGetChildNodes);
+            this.treeList1.VirtualTreeGetCellValue += new VirtualTreeGetCellValueEventHandler(this.treeList1_VirtualTreeGetCellValue);
+            this.treeList1.VirtualTreeSetCellValue += new VirtualTreeSetCellValueEventHandler(this.treeList1_VirtualTreeSetCellValue);
+        }
+
+        private TreeListColumn createTypeColumn()
+        {
+            TreeListColumn o = this.treeList1.Columns[0];
+            {
+                o.FieldName = "Type";
+                o.Name = "col" + o.FieldName;
+                o.Visible = true;
+                o.VisibleIndex = 0;
+                o.Fixed = FixedStyle.None;
+                // o.FieldNameSort = "";
+                // o.SortIndex = 1;
+                o.SortMode = DevExpress.XtraGrid.ColumnSortMode.Default;
+                o.SortOrder = System.Windows.Forms.SortOrder.None;
+                //this.treeList1.OptionsView.ShowSummaryFooter = true;
+                o.SummaryFooter = SummaryItemType.Count;
+                o.AllNodesSummary = true;
+                o.RowFooterSummary = SummaryItemType.Count;
+                //this.treeList1.OptionsView.ShowRowFooterSummary = true;
+                {
+                    o.OptionsColumn.AllowEdit = true;
+                    o.OptionsColumn.AllowFocus = true;
+                    o.OptionsColumn.AllowMove = true;
+                    o.OptionsColumn.AllowMoveToCustomizationForm = true;
+                    o.OptionsColumn.AllowSize = true;
+                    o.OptionsColumn.AllowSort = true;
+                    //o.OptionsColumn.FixedWidth = true;
+                    o.OptionsColumn.Printable = DevExpress.Utils.DefaultBoolean.True;
+                    o.OptionsColumn.ReadOnly = false;
+                    o.OptionsColumn.ShowInCustomizationForm = true;
+                    o.OptionsColumn.ShowInExpressionEditor = true;
+                    //
+                }
+            }
+            return o;
+        }
+
+        private TreeListColumn createNameColumn()
+        {
+            TreeListColumn o = new TreeListColumn();
+            {
+                o.FieldName = "Name";
+                o.Name = "col" + o.FieldName;
+                o.Visible = true;
+                o.VisibleIndex = 0;
+                o.Fixed = FixedStyle.None;
+                // o.FieldNameSort = "";
+                // o.SortIndex = 1;
+                o.SortMode = DevExpress.XtraGrid.ColumnSortMode.Default;
+                o.SortOrder = System.Windows.Forms.SortOrder.None;
+                //this.treeList1.OptionsView.ShowSummaryFooter = true;
+                o.SummaryFooter = SummaryItemType.Count;
+                o.AllNodesSummary = true;
+                o.RowFooterSummary = SummaryItemType.Count;
+                //this.treeList1.OptionsView.ShowRowFooterSummary = true;
+                {
+                    o.OptionsColumn.AllowEdit = true;
+                    o.OptionsColumn.AllowFocus = true;
+                    o.OptionsColumn.AllowMove = true;
+                    o.OptionsColumn.AllowMoveToCustomizationForm = true;
+                    o.OptionsColumn.AllowSize = true;
+                    o.OptionsColumn.AllowSort = true;
+                    //o.OptionsColumn.FixedWidth = true;
+                    o.OptionsColumn.Printable = DevExpress.Utils.DefaultBoolean.True;
+                    o.OptionsColumn.ReadOnly = false;
+                    o.OptionsColumn.ShowInCustomizationForm = true;
+                    o.OptionsColumn.ShowInExpressionEditor = true;
+                    //
+                }
+            }
+            return o;
+        }
+
+        private TreeListColumn createDescriptionColumn()
+        {
+            TreeListColumn o = new TreeListColumn();
+            {
+                o.FieldName = "Description";
+                o.Name = "col" + o.FieldName;
+                o.VisibleIndex = -1;
+                o.Width = 21;
+                o.Fixed = FixedStyle.None;
+                // this.treeList1.FixedLineWidth = 2;
+                //o.FieldNameSort = "";
+                // o.SortIndex = 1;
+                o.SortMode = DevExpress.XtraGrid.ColumnSortMode.Default;
+                o.SortOrder = System.Windows.Forms.SortOrder.None;
+                {
+                    o.OptionsColumn.AllowEdit = true;
+                    o.OptionsColumn.AllowFocus = true;
+                    o.OptionsColumn.AllowMove = true;
+                    o.OptionsColumn.AllowMoveToCustomizationForm = true;
+                    o.OptionsColumn.AllowSize = true;
+                    o.OptionsColumn.AllowSort = true;
+                    //o.OptionsColumn.FixedWidth = true;
+                    o.OptionsColumn.Printable = DevExpress.Utils.DefaultBoolean.True;
+                    o.OptionsColumn.ReadOnly = true;
+                    o.OptionsColumn.ShowInCustomizationForm = true;
+                    o.OptionsColumn.ShowInExpressionEditor = true;
+                }
+            }
+            return o;
+        }
+
+        private bool driverLoaded = false;
+        private void treeList1_VirtualTreeGetChildNodes(object sender, VirtualTreeGetChildNodesInfo e)
+        {
+            // METADATA...
+            if (this.driverLoaded)
+            {
+                try
+                {
+                    string path = e.Node as string;
+                    if (Directory.Exists(path))
+                    {
+                        string[] dirs = Directory.GetDirectories(path);
+                        string[] files = Directory.GetFiles(path);
+                        string[] arr = new string[dirs.Length + files.Length];
+                        dirs.CopyTo(arr, 0);
+                        files.CopyTo(arr, dirs.Length);
+                        e.Children = arr;
+                    }
+                    else
+                    {
+                        e.Children = new object[] { };
+                    }
+                }
+                catch (Exception ex)
+                {
+                    e.Children = new object[] { };
+                }
+                return;
+            }
+            e.Children = Directory.GetLogicalDrives();
+            this.driverLoaded = true;
+        }
+        private void treeList1_VirtualTreeGetCellValue(object sender, VirtualTreeGetCellValueInfo e)
+        {
+            // DATAVALUE...
+            DirectoryInfo di = new DirectoryInfo((string)e.Node);
+            if (e.IsCheckState)
+            {
+                if ((di.Attributes & FileAttributes.Directory) == 0)
+                {
+                    e.CellData = true;
+                }
+                else
+                {
+                    e.CellData = false;
+                }
+                return;
+            }
+            if (e.Column == this.colType)
+            {
+                if ((di.Attributes & FileAttributes.Directory) == 0)
+                {
+                    e.CellData = "file";
+                }
+                else
+                {
+                    e.CellData = "Folder";
+                }
+                return;
+            }
+            if (e.Column == this.colName)
+            {
+                e.CellData = di.Name;
+                return;
+            }
+            if (e.Column == this.colDescription)
+            {
+                e.CellData = di.CreationTimeUtc.ToLongDateString();
+                return;
+            }
+        }
+
+        private void treeList1_VirtualTreeSetCellValue(object sender, VirtualTreeSetCellValueInfo e)
+        {
+
+        }
+
+        //--------------------------
         private void treeList1_GetStateImage(object sender, DevExpress.XtraTreeList.GetStateImageEventArgs e)
         {
             e.NodeImageIndex = !e.Node.HasChildren ? 2 : (e.Node.Expanded ? 1 : 0);
@@ -98,6 +316,21 @@ namespace TreeListTest
             TreeListNode node = item.Tag as TreeListNode;
             if (node == null) return;
             node.TreeList.DeleteNode(node);
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.treeList1.ExportToXml(@"D:\TEMP\SQLite\treeListData.xml");
         }
     }
 }

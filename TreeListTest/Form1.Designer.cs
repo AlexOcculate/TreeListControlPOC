@@ -130,26 +130,7 @@
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeList1.Location = new System.Drawing.Point(0, 49);
             this.treeList1.Name = "treeList1";
-            this.treeList1.BeginUnboundLoad();
-            this.treeList1.AppendNode(new object[] {
-            "Root 01"}, -1, System.Windows.Forms.CheckState.Checked);
-            this.treeList1.AppendNode(new object[] {
-            "Branch 01"}, 0);
-            this.treeList1.AppendNode(new object[] {
-            "Leaf"}, 1);
-            this.treeList1.AppendNode(new object[] {
-            "Root 02"}, -1);
-            this.treeList1.AppendNode(new object[] {
-            "Branch 01"}, 3);
-            this.treeList1.AppendNode(new object[] {
-            "Leaf"}, 4);
-            this.treeList1.AppendNode(new object[] {
-            "Root 03"}, -1);
-            this.treeList1.AppendNode(new object[] {
-            "Leaf 01"}, 6);
-            this.treeList1.AppendNode(new object[] {
-            "Leaf 02"}, 6);
-            this.treeList1.EndUnboundLoad();
+            this.treeList1.OptionsView.AutoWidth = false;
             this.treeList1.OptionsView.FocusRectStyle = DevExpress.XtraTreeList.DrawFocusRectStyle.RowFocus;
             this.treeList1.OptionsView.ShowCheckBoxes = true;
             this.treeList1.OptionsView.ShowHorzLines = false;
@@ -196,6 +177,9 @@
             this.Controls.Add(this.barDockControlTop);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).EndInit();
