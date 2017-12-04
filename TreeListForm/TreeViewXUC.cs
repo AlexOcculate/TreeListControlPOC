@@ -196,7 +196,7 @@ namespace TreeListForm
                 }
                 this.treeList1.HideLoadingPanel();
             }
-                        ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
         }
 
         private void InitializeStateImageCollection()

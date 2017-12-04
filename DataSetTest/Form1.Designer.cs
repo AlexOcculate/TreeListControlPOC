@@ -145,6 +145,8 @@
             this.treeList1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeList1.Location = new System.Drawing.Point(0, 0);
             this.treeList1.Name = "treeList1";
+            this.treeList1.OptionsBehavior.Editable = false;
+            this.treeList1.OptionsBehavior.ReadOnly = true;
             this.treeList1.Size = new System.Drawing.Size(461, 446);
             this.treeList1.TabIndex = 0;
             // 

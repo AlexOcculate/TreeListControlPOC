@@ -1,0 +1,105 @@
+<?xml version="1.0" standalone="yes"?>
+<x:CONFIG_DATASET xmlns:x="y">
+  <xs:schema id="CONFIG_DATASET" targetNamespace="y" xmlns:mstns="y" xmlns="y" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+    <xs:element name="CONFIG_DATASET" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msdata:Prefix="x">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="CONFIG">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="ID" type="xs:int" minOccurs="0" />
+                <xs:element name="ParentID" type="xs:int" minOccurs="0" />
+                <xs:element name="IsFolder" type="xs:boolean" minOccurs="0" />
+                <xs:element name="Name" type="xs:string" minOccurs="0" />
+                <xs:element name="Preview" type="xs:string" minOccurs="0" />
+                <xs:element name="Type" type="xs:string" minOccurs="0" />
+                <xs:element name="Uri" type="xs:string" minOccurs="0" />
+                <xs:element name="Creation" type="xs:dateTime" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="DATASTORE">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="ID" type="xs:int" minOccurs="0" />
+                <xs:element name="Port" type="xs:string" minOccurs="0" />
+                <xs:element name="UserId" type="xs:string" minOccurs="0" />
+                <xs:element name="Password" type="xs:string" minOccurs="0" />
+                <xs:element name="Database" type="xs:string" minOccurs="0" />
+                <xs:element name="DatabaseFile" type="xs:string" minOccurs="0" />
+                <xs:element name="AttachDbFile" type="xs:string" minOccurs="0" />
+                <xs:element name="ServerType" type="xs:string" minOccurs="0" />
+                <xs:element name="UserInstance" type="xs:string" minOccurs="0" />
+                <xs:element name="CharSet" type="xs:string" minOccurs="0" />
+                <xs:element name="Encoding" type="xs:string" minOccurs="0" />
+                <xs:element name="Creation" type="xs:dateTime" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <CONFIG xmlns="y">
+    <ID>-1</ID>
+    <ParentID>-1</ParentID>
+    <IsFolder>false</IsFolder>
+    <Name>ROOT</Name>
+    <Preview>This is the[root] of al[branches]! Don't remove it!!!</Preview>
+    <Creation>2017-12-04T21:41:36.9380669+11:00</Creation>
+  </CONFIG>
+  <CONFIG xmlns="y">
+    <ID>1</ID>
+    <ParentID>-1</ParentID>
+    <IsFolder>true</IsFolder>
+    <Name>DataStore</Name>
+    <Preview>This is the[root] of al[branches]! Don't remove it!!!</Preview>
+    <Type>DataStore</Type>
+    <Creation>2017-12-04T21:41:36.9380669+11:00</Creation>
+  </CONFIG>
+  <CONFIG xmlns="y">
+    <ID>10000</ID>
+    <ParentID>1</ParentID>
+    <IsFolder>true</IsFolder>
+    <Name>Alex</Name>
+    <Preview>Alex Mello Occulate</Preview>
+    <Creation>2017-12-04T21:41:36.9380669+11:00</Creation>
+  </CONFIG>
+  <CONFIG xmlns="y">
+    <ID>10001</ID>
+    <ParentID>10000</ParentID>
+    <IsFolder>false</IsFolder>
+    <Name>Geraldo</Name>
+    <Preview>Geraldo Occulate</Preview>
+    <Type>DATASTORE</Type>
+    <Creation>2017-12-04T21:41:36.9380669+11:00</Creation>
+  </CONFIG>
+  <CONFIG xmlns="y">
+    <ID>2</ID>
+    <ParentID>-1</ParentID>
+    <IsFolder>true</IsFolder>
+    <Name>DataSource</Name>
+    <Preview>This is the[root] of al[branches]! Don't remove it!!!</Preview>
+    <Type>DataSource</Type>
+    <Uri>D:\users\user01\source\repos\TreeListControlPOC\DataSetTest\DataSource.xml</Uri>
+    <Creation>2017-12-04T21:41:36.9380669+11:00</Creation>
+  </CONFIG>
+  <CONFIG xmlns="y">
+    <ID>3</ID>
+    <ParentID>-1</ParentID>
+    <IsFolder>true</IsFolder>
+    <Name>DataTarget</Name>
+    <Preview>This is the[root] of al[branches]! Don't remove it!!!</Preview>
+    <Type>DataTarget</Type>
+    <Uri>D:\users\user01\source\repos\TreeListControlPOC\DataSetTest\DataTarget.xml</Uri>
+    <Creation>2017-12-04T21:41:36.9380669+11:00</Creation>
+  </CONFIG>
+  <DATASTORE xmlns="y">
+    <ID>10001</ID>
+    <Port>3456</Port>
+    <UserId>user01</UserId>
+    <Password>*****</Password>
+    <Database>localhost/db</Database>
+    <Creation>2017-12-04T21:41:49.3468326+11:00</Creation>
+  </DATASTORE>
+</x:CONFIG_DATASET>

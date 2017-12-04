@@ -1,0 +1,93 @@
+<?xml version="1.0" standalone="yes"?>
+<diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1">
+  <x:office xmlns:x="y">
+    <DATASTORE diffgr:id="DATASTORE1" msdata:rowOrder="0" diffgr:hasChanges="inserted" xmlns="y">
+      <ID>-1</ID>
+      <ParentID>-1</ParentID>
+      <IsFolder>false</IsFolder>
+      <Name>ROOT</Name>
+      <Preview>This is the [root] of al [branches]! Don't remove it!!!</Preview>
+      <Creation>2017-12-04T12:17:28.6832837+11:00</Creation>
+    </DATASTORE>
+    <DATASTORE diffgr:id="DATASTORE2" msdata:rowOrder="1" diffgr:hasChanges="inserted" xmlns="y">
+      <ID>1</ID>
+      <ParentID>-1</ParentID>
+      <IsFolder>true</IsFolder>
+      <Name>Alex</Name>
+      <Preview>Alex Mello Occulate</Preview>
+      <Creation>2017-12-04T12:17:28.6832837+11:00</Creation>
+    </DATASTORE>
+    <DATASTORE diffgr:id="DATASTORE3" msdata:rowOrder="2" diffgr:hasChanges="inserted" xmlns="y">
+      <ID>10</ID>
+      <ParentID>1</ParentID>
+      <IsFolder>false</IsFolder>
+      <Name>Geraldo</Name>
+      <Preview>Geraldo Occulate</Preview>
+      <Creation>2017-12-04T12:17:28.6832837+11:00</Creation>
+    </DATASTORE>
+    <DATASTORE diffgr:id="DATASTORE4" msdata:rowOrder="3" diffgr:hasChanges="inserted" xmlns="y">
+      <ID>11</ID>
+      <ParentID>1</ParentID>
+      <IsFolder>false</IsFolder>
+      <Name>Eva</Name>
+      <Preview>Eva Mello Occulate</Preview>
+      <Creation>2017-12-04T12:17:28.6832837+11:00</Creation>
+    </DATASTORE>
+    <DATASTORE diffgr:id="DATASTORE5" msdata:rowOrder="4" diffgr:hasChanges="inserted" xmlns="y">
+      <ID>12</ID>
+      <ParentID>1</ParentID>
+      <IsFolder>false</IsFolder>
+      <Name>Andre</Name>
+      <Preview>Andre Mello Occulate</Preview>
+      <Creation>2017-12-04T12:17:28.6832837+11:00</Creation>
+    </DATASTORE>
+    <DATASTORE diffgr:id="DATASTORE6" msdata:rowOrder="5" diffgr:hasChanges="inserted" xmlns="y">
+      <ID>13</ID>
+      <ParentID>1</ParentID>
+      <IsFolder>false</IsFolder>
+      <Name>Fabiane</Name>
+      <Preview>Fabiane Mello Occulate</Preview>
+      <Creation>2017-12-04T12:17:28.6832837+11:00</Creation>
+    </DATASTORE>
+    <DATASTORE diffgr:id="DATASTORE7" msdata:rowOrder="6" diffgr:hasChanges="inserted" xmlns="y">
+      <ID>14</ID>
+      <ParentID>1</ParentID>
+      <IsFolder>false</IsFolder>
+      <Name>Marcos</Name>
+      <Preview>Marcos Antonio Occulate</Preview>
+      <Creation>2017-12-04T12:17:28.6832837+11:00</Creation>
+    </DATASTORE>
+    <DATASTORE diffgr:id="DATASTORE8" msdata:rowOrder="7" diffgr:hasChanges="inserted" xmlns="y">
+      <ID>2</ID>
+      <ParentID>-1</ParentID>
+      <IsFolder>true</IsFolder>
+      <Name>Simone</Name>
+      <Preview>Simone Licnerski Occulate</Preview>
+      <Creation>2017-12-04T12:17:28.6832837+11:00</Creation>
+    </DATASTORE>
+    <DATASTORE diffgr:id="DATASTORE9" msdata:rowOrder="8" diffgr:hasChanges="inserted" xmlns="y">
+      <ID>20</ID>
+      <ParentID>2</ParentID>
+      <IsFolder>false</IsFolder>
+      <Name>Claudio</Name>
+      <Preview>Claudio Licnerski</Preview>
+      <Creation>2017-12-04T12:17:28.6832837+11:00</Creation>
+    </DATASTORE>
+    <DATASTORE diffgr:id="DATASTORE10" msdata:rowOrder="9" diffgr:hasChanges="inserted" xmlns="y">
+      <ID>21</ID>
+      <ParentID>2</ParentID>
+      <IsFolder>false</IsFolder>
+      <Name>Lucy</Name>
+      <Preview>Lucy de Almeida Licnerski</Preview>
+      <Creation>2017-12-04T12:17:28.6832837+11:00</Creation>
+    </DATASTORE>
+    <DATASTORE diffgr:id="DATASTORE11" msdata:rowOrder="10" diffgr:hasChanges="inserted" xmlns="y">
+      <ID>22</ID>
+      <ParentID>2</ParentID>
+      <IsFolder>false</IsFolder>
+      <Name>Fabio</Name>
+      <Preview>Fabio de Almeida Licnerski</Preview>
+      <Creation>2017-12-04T12:17:28.6832837+11:00</Creation>
+    </DATASTORE>
+  </x:office>
+</diffgr:diffgram>
