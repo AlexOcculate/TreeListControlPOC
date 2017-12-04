@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintPOC", "PrintPOC\PrintP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreeListTest", "TreeListTest\TreeListTest.csproj", "{A8CA7D1E-C6E0-4AE4-AC36-3ACCF9EBF8C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataSetTest", "DataSetTest\DataSetTest.csproj", "{BD72F028-F6AF-4569-B7B3-087065D77442}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A8CA7D1E-C6E0-4AE4-AC36-3ACCF9EBF8C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8CA7D1E-C6E0-4AE4-AC36-3ACCF9EBF8C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8CA7D1E-C6E0-4AE4-AC36-3ACCF9EBF8C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD72F028-F6AF-4569-B7B3-087065D77442}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD72F028-F6AF-4569-B7B3-087065D77442}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD72F028-F6AF-4569-B7B3-087065D77442}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD72F028-F6AF-4569-B7B3-087065D77442}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

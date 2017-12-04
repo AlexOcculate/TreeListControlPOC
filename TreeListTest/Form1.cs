@@ -15,23 +15,38 @@ namespace TreeListTest
         public Form1()
         {
             InitializeComponent();
-            ConfigTreeList();
+            this.ConfigTreeList();
+            //{
+            //    TreeListColumnCollection columns0 = this.treeList1.Columns;
+            //    this.treeList1.RestoreLayoutFromXml(@"D:\TEMP\SQLite\treeListLayout.xml");
+            //    TreeListColumnCollection columns = this.treeList1.Columns;
+            //    TreeListColumn treeListColumn0 = columns[0];
+            //    TreeListColumn treeListColumn1 = columns[1];
+            //    TreeListColumn treeListColumn2 = columns[2];
+            //    TreeListColumn treeListColumn3 = columns[3];
+            //    this.colType = this.createTypeColumn();
+            //    this.treeList1.ImportFromXml(@"D:\TEMP\SQLite\treeListData.xml");
+            //}
         }
 
         private DevExpress.XtraTreeList.Columns.TreeListColumn colType;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colName;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colDescription;
-        private void ConfigTreeList()
+        private void ConfigTreeList(bool x = true)
         {
+            if (x)
             {
-                this.colType = this.createTypeColumn();
                 this.treeList1.Columns.AddRange(
                     new DevExpress.XtraTreeList.Columns.TreeListColumn[]
                     {
-                            this.colName = this.createNameColumn(),
-                            this.colDescription = this.createDescriptionColumn()
+                        this.colType = this.createTypeColumn(),
+                        this.colName = this.createNameColumn(),
+                        this.colDescription = this.createDescriptionColumn()
                     }
                 );
+            }
+            TreeListColumnCollection columns = this.treeList1.Columns;
+            {
                 this.treeList1.PreviewFieldName = this.colDescription.FieldName;
                 this.treeList1.OptionsView.AutoCalcPreviewLineCount = true;
                 this.treeList1.OptionsView.AutoWidth = true;
@@ -45,9 +60,18 @@ namespace TreeListTest
             this.treeList1.BeginUnboundLoad();
             {
                 this.treeList1.DataSource = new object();
-                this.treeList1.RefreshDataSource();
+                //this.treeList1.RefreshDataSource();
             }
             this.treeList1.EndUnboundLoad();
+            this.ConfigureTreeListUnboundDataHandles();
+            //{
+            //    this.treeList1.RestoreLayoutFromXml(@"D:\TEMP\SQLite\treeListLayout.xml");
+            //    this.treeList1.ImportFromXml(@"D:\TEMP\SQLite\treeListData.xml");
+            //}
+        }
+
+        private void ConfigureTreeListUnboundDataHandles()
+        {
             this.treeList1.VirtualTreeGetChildNodes += new VirtualTreeGetChildNodesEventHandler(this.treeList1_VirtualTreeGetChildNodes);
             this.treeList1.VirtualTreeGetCellValue += new VirtualTreeGetCellValueEventHandler(this.treeList1_VirtualTreeGetCellValue);
             this.treeList1.VirtualTreeSetCellValue += new VirtualTreeSetCellValueEventHandler(this.treeList1_VirtualTreeSetCellValue);
@@ -55,8 +79,10 @@ namespace TreeListTest
 
         private TreeListColumn createTypeColumn()
         {
-            TreeListColumn o = this.treeList1.Columns[0];
+            //TreeListColumn o = this.treeList1.Columns[0];
+            TreeListColumn o = new TreeListColumn();
             {
+                o.Caption = "Type";
                 o.FieldName = "Type";
                 o.Name = "col" + o.FieldName;
                 o.Visible = true;
@@ -320,7 +346,8 @@ namespace TreeListTest
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            //this.treeList1.RestoreLayoutFromXml(@"D:\TEMP\SQLite\treeListData.xml");
+            //this.treeList1.ImportFromXml(@"D:\TEMP\SQLite\treeListData.xml");
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -330,7 +357,9 @@ namespace TreeListTest
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
+            TreeListColumnCollection columns = this.treeList1.Columns;
             this.treeList1.ExportToXml(@"D:\TEMP\SQLite\treeListData.xml");
+            this.treeList1.SaveLayoutToXml(@"D:\TEMP\SQLite\treeListLayout.xml");
         }
     }
 }
