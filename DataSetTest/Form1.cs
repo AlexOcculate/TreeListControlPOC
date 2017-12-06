@@ -130,10 +130,10 @@ namespace DataSetTest
             DataTable ds = _cfg.getDataStoreTable();
             DataRow[] select2 = ds.Select("ID = " + id, null, DataViewRowState.CurrentRows);
             DataRow dr2 = select2[0];
-            string port = (string)dr2[ConfigDataSet.PORT_NUMBER_PROP_NAME];
-            string userId = (string)dr2[ConfigDataSet.USER_ID_PROP_NAME];
-            string password = (string)dr2[ConfigDataSet.PASSWORD_PROP_NAME];
-            string database = (string)dr2[ConfigDataSet.DATABASE_PROP_NAME];
+            //string port = (string)dr2[ConfigDataSet.PORT_NUMBER_PROP_NAME];
+            //string userId = (string)dr2[ConfigDataSet.USER_ID_PROP_NAME];
+            //string password = (string)dr2[ConfigDataSet.PASSWORD_PROP_NAME];
+            //string database = (string)dr2[ConfigDataSet.DATABASE_PROP_NAME];
             DateTime creation = (DateTime)dr2[ConfigDataSet.CREATION_FIELD_NM];
         }
 

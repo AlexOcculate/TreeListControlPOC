@@ -59,7 +59,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigDataSet.cs" />
+    <Compile Include="DataSet\ConfigDataSet.cs" />
+    <Compile Include="DataSet\DataTable\BaseTable.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataSet\DataTable\BranchType.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataSet\DataTable\Config.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataSet\DataTable\DataStore.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataSet\DataTable\SyntaxProviderType.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
