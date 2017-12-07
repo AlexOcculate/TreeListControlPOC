@@ -62,7 +62,7 @@ namespace DataSetTest
             }
         }
 
-        public override void CreateBuiltInDataValues()
+        public new void CreateBuiltInDataValues()
         {
             const bool fldr = false;
             const int tp = 0;

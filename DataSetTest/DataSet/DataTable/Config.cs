@@ -1,17 +1,20 @@
 ﻿using System;
+using System.Data;
 using System.Linq;
+using DevExpress.XtraTreeList.Columns;
 
 namespace DataSetTest
 {
     public class Config : BaseTable
     {
         public const string TABLE_NAME = "Config";
-        //
+
         public Config(string filePathName, string xmlNamespace = null, string xmlPrefix = null, string tableName = TABLE_NAME)
             : base(filePathName, xmlNamespace, xmlPrefix, tableName)
         {
         }
-        public override void CreateBuiltInDataValues()
+
+        public new void CreateBuiltInDataValues()
         {
             const object URI = null;
             const object PVW = null;

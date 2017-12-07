@@ -11,7 +11,7 @@ namespace DataSetTest
             : base(filePathName, xmlNamespace, xmlPrefix, tableName)
         {
         }
-        public override void CreateBuiltInDataValues()
+        public new void CreateBuiltInDataValues()
         {
             const bool fldr = false;
             const int tp = 0;

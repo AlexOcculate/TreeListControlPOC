@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.barManager1 = new DevExpress.XtraBars.BarManager();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.bar3 = new DevExpress.XtraBars.Bar();
@@ -39,7 +38,7 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
-            this.imageCollection1 = new DevExpress.Utils.ImageCollection(this.components);
+            this.imageCollection1 = new DevExpress.Utils.ImageCollection();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).BeginInit();
@@ -146,12 +145,18 @@
             // imageCollection1
             // 
             this.imageCollection1.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollection1.ImageStream")));
-            this.imageCollection1.InsertGalleryImage("bofolder_16x16.png", "images/business%20objects/bofolder_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/business%20objects/bofolder_16x16.png"), 0);
-            this.imageCollection1.Images.SetKeyName(0, "bofolder_16x16.png");
-            this.imageCollection1.InsertGalleryImage("open_16x16.png", "images/actions/open_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/open_16x16.png"), 1);
-            this.imageCollection1.Images.SetKeyName(1, "open_16x16.png");
-            this.imageCollection1.InsertGalleryImage("database_16x16.png", "images/data/database_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/data/database_16x16.png"), 2);
-            this.imageCollection1.Images.SetKeyName(2, "database_16x16.png");
+            this.imageCollection1.InsertGalleryImage("question_16x16.png", "images/support/question_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/support/question_16x16.png"), 0);
+            this.imageCollection1.Images.SetKeyName(0, "question_16x16.png");
+            this.imageCollection1.InsertGalleryImage("bolocalization_16x16.png", "images/business%20objects/bolocalization_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/business%20objects/bolocalization_16x16.png"), 1);
+            this.imageCollection1.Images.SetKeyName(1, "bolocalization_16x16.png");
+            this.imageCollection1.InsertGalleryImage("servermode_16x16.png", "images/data/servermode_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/data/servermode_16x16.png"), 2);
+            this.imageCollection1.Images.SetKeyName(2, "servermode_16x16.png");
+            this.imageCollection1.InsertGalleryImage("bofolder_16x16.png", "images/business%20objects/bofolder_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/business%20objects/bofolder_16x16.png"), 3);
+            this.imageCollection1.Images.SetKeyName(3, "bofolder_16x16.png");
+            this.imageCollection1.InsertGalleryImage("open_16x16.png", "images/actions/open_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/open_16x16.png"), 4);
+            this.imageCollection1.Images.SetKeyName(4, "open_16x16.png");
+            this.imageCollection1.InsertGalleryImage("database_16x16.png", "images/data/database_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/data/database_16x16.png"), 5);
+            this.imageCollection1.Images.SetKeyName(5, "database_16x16.png");
             // 
             // Form1
             // 
