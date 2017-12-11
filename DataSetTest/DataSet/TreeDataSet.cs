@@ -32,6 +32,15 @@ namespace DataSetTest
             [System.Diagnostics.DebuggerStepThrough]
             set { this._cfgFileFullPathName = value; }
         }
+        //
+        private string _dsFileFullPathName;
+        public string DataStoreFileFullPathName
+        {
+            [System.Diagnostics.DebuggerStepThrough]
+            get { return this._dsFileFullPathName; }
+            [System.Diagnostics.DebuggerStepThrough]
+            set { this._dsFileFullPathName = value; }
+        }
         // ---------- ---------- ---------- ---------- ----------
         bool _wasLoadedFromFile;
         public bool WasLoadedFromFile
@@ -62,13 +71,21 @@ namespace DataSetTest
             [System.Diagnostics.DebuggerStepThrough]
             get { return this._cfgTbl; }
         }
+        //
+        private DataStore _dsTbl;
+        public DataStore DataStoreTbl
+        {
+            [System.Diagnostics.DebuggerStepThrough]
+            get { return this._dsTbl; }
+        }
         #endregion
         //
-        public TreeDataSet(string syntaxProviderTypeFileFullPathName, string branchTypeFileFullPathName, string configFileFullPathName )
+        public TreeDataSet(string syntaxProviderTypeFileFullPathName, string branchTypeFileFullPathName, string configFileFullPathName, string dataStoreFileFullPathName)
         {
             this.SyntaxProviderTypeFileFullPathName = syntaxProviderTypeFileFullPathName;
             this.BranchTypeFileFullPathName = branchTypeFileFullPathName;
             this.ConfigFileFullPathName = configFileFullPathName;
+            this.DataStoreFileFullPathName = dataStoreFileFullPathName;
             try
             {
                 this._sptTbl = new SyntaxProviderType(this.SyntaxProviderTypeFileFullPathName);
@@ -108,20 +125,19 @@ namespace DataSetTest
             {
 
             }
-            //try
-            //{
-            //    DataStore o = new DataStore(@"D:\TEMP\SQLite\DataStoreXYZ.xml");
-            //    if (o.Rows.Count == 0)
-            //    {
-            //        o.CreateBuiltInDataValues();
-            //        //o.WriteXml();
-            //    }
-            //    this.Tables.Add(o);
-            //}
-            //catch (System.Data.ConstraintException ex)
-            //{
+            try
+            {
+                this._dsTbl = new DataStore(this.DataStoreFileFullPathName);
+                if (this._dsTbl.Rows.Count == 0)
+                {
+                    this._dsTbl.CreateBuiltInDataValues();
+                    this._dsTbl.WriteXml();
+                }
+            }
+            catch (System.Data.ConstraintException ex)
+            {
 
-            //}
+            }
         }
 
     }

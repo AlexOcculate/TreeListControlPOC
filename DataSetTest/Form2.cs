@@ -14,15 +14,21 @@ namespace DataSetTest
             this._ds = new TreeDataSet(
                 @"D:\TEMP\SQLite\SyntaxProviderTypeXYZ.xml",
                 @"D:\TEMP\SQLite\BranchTypeXYZ.xml",
-                @"D:\TEMP\SQLite\ConfigXYZ.xml"
+                @"D:\TEMP\SQLite\ConfigXYZ.xml",
+                @"D:\TEMP\SQLite\DataStoreXYZ.xml"
             );
             InitializeTreeList();
-            this.gridControl1.DataSource = this._ds.ConfigTbl;
+            this.gridControl1.DataSource = this._ds.DataStoreTbl;
+
         }
         private TreeDataSet _ds;
 
         private void Form1_Load(object sender, EventArgs e)
         {
+        }
+        private void Form2_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
+        {
+            this._ds.DataStoreTbl.WriteXml();
         }
 
         #region  --- TREELIST METHODS ---
@@ -58,7 +64,7 @@ namespace DataSetTest
         }
         private void treeList1_GetStateImage(object sender, DevExpress.XtraTreeList.GetStateImageEventArgs e)
         {
-            int id = (int) e.Node[this._ds.ConfigTbl.TypeTreeListColumn];
+            int id = (int)e.Node[this._ds.ConfigTbl.TypeTreeListColumn];
             this._ds.BranchTypeTbl.GetStateImage(sender, e, id);
             //e.NodeImageIndex = !e.Node.HasChildren ? 2 : (e.Node.Expanded ? 1 : 0);
         }
@@ -66,5 +72,59 @@ namespace DataSetTest
         {
         }
         #endregion
+
+        private void folderBrowserBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            // Set the help text description for the FolderBrowserDialog.
+            this.xtraFolderBrowserDialog1.Description = "Select the directory that you want to use as the default.";
+            // Do not allow the user to create new files via the FolderBrowserDialog.
+            this.xtraFolderBrowserDialog1.ShowNewFolderButton = false;
+            // Default to the My Documents folder.
+            this.xtraFolderBrowserDialog1.RootFolder = Environment.SpecialFolder.Personal;
+            this.xtraFolderBrowserDialog1.RootFolder = Environment.SpecialFolder.MyComputer;
+            System.Windows.Forms.DialogResult result = this.xtraFolderBrowserDialog1.ShowDialog();
+
+            string selectedPath = this.xtraFolderBrowserDialog1.SelectedPath;
+            //if (!fileOpened)
+            //{
+                // No file is opened, bring up openFileDialog in selected path.
+                xtraOpenFileDialog1.InitialDirectory = selectedPath;
+            //xtraOpenFileDialog1.FileName = null;
+            //xtraOpenFileDialog1.PerformClick();
+            //}
+            flyoutPanel1.Options.CloseOnOuterClick = true;
+            flyoutPanel1.ShowPopup();
+        }
+
+        private void openFileDialogBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            xtraOpenFileDialog1.InitialDirectory = "c:\\";
+            xtraOpenFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            xtraOpenFileDialog1.FilterIndex = 2;
+
+            if (xtraOpenFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+            }
+        }
+
+        private void fileDialogBarButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            xtraSaveFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            xtraSaveFileDialog1.FilterIndex = 2;
+
+            if (xtraSaveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+            }
+        }
+
+        private void defaultToolTipController1_DefaultController_GetActiveObjectInfo(object sender, DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventArgs e)
+        {
+
+        }
+
+        private void gridView1_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
+        {
+
+        }
     }
 }

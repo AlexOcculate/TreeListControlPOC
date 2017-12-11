@@ -21,7 +21,8 @@ namespace DataSetTest
             DateTime now = DateTime.Now;
             this.Rows.Add(now, 1000, -1, fldr, tp, "ROOT", URI, PVW, DSC);
             this.Rows.Add(now, 2000, -1, fldr, tp, "FOLDER", URI, PVW, DSC);
-            this.Rows.Add(now, 3000, -1, fldr, tp, "DATASTORE", URI, PVW, DSC);
+            this.Rows.Add(now, 3000, -1, fldr, tp, "DATASTORE CATEGORY", URI, PVW, DSC);
+            this.Rows.Add(now, 4000, -1, fldr, tp, "DATASTORE", URI, PVW, DSC);
         }
         //
         public void GetStateImage(object sender, DevExpress.XtraTreeList.GetStateImageEventArgs e, int branchType)
@@ -39,6 +40,9 @@ namespace DataSetTest
                     break;
                 case 3000:
                     e.NodeImageIndex = 2;
+                    break;
+                case 4000:
+                    e.NodeImageIndex = 5;
                     break;
             }
         }

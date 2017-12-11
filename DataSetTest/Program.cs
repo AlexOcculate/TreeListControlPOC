@@ -22,7 +22,7 @@ namespace DataSetTest
 
             BonusSkins.Register();
             SkinManager.EnableFormSkins();
-            Application.Run(new Form2());
+            Application.Run(new XXX());
             //NewMethod();
         }
 
