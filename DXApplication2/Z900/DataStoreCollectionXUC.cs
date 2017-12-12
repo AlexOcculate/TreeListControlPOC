@@ -1,72 +1,65 @@
-﻿using DevExpress.XtraGrid.Views.Base;
-using DevExpress.XtraLayout;
+﻿using DevExpress.XtraBars;
+using DevExpress.XtraGrid.Views.Grid;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.IO;
-using System.Linq;
-using System.Xml.Serialization;
+using System.Windows.Forms;
 
-namespace DataSetTest
+namespace Z900
 {
-    public partial class XXX : DevExpress.XtraEditors.XtraForm
+    public partial class DataStoreCollectionXUC : DevExpress.XtraEditors.XtraUserControl
     {
-        public XXX()
+        public DataStoreCollectionXUC()
         {
             InitializeComponent();
-            //
-            DataStore2 dataSource = this.createDataSource();
-            {
-                this.bindingSource1.DataSource = typeof(DataStore2);
-                this.bindingSource1.Add(dataSource);
-                //
-                this.dataLayoutControl1.DataSource = bindingSource1;
-                this.dataLayoutControl1.AllowGeneratingCollectionProperties = DevExpress.Utils.DefaultBoolean.True;
-                this.dataLayoutControl1.RetrieveFields();
-                this.dataLayoutControl1.BestFit();
-                //dataLayoutControl1.AutoRetrieveFields = true;
-            }
-            {
-                this.gridControl1.UseEmbeddedNavigator = true;
-                this.gridControl1.DataSource = bindingSource1;
-                this.gridView1.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
-                this.gridView1.OptionsView.ShowFooter = true;
-                this.gridView1.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridView1_InitNewRow);
-            }
-            this.dataLayoutControl1.SaveLayoutToXml(@"D:\TEMP\SQLite\layout");
-            BaseLayoutItem baseLayoutItem = this.dataLayoutControl1.Root[0];
-            {
-                #region Save the object
-                // Create a new XmlSerializer instance with the type of the test class
-                XmlSerializer SerializerObj = new XmlSerializer(typeof(DataStore2));
 
-                // Create a new file stream to write the serialized object to a file
-                TextWriter WriteFileStream = new StreamWriter(@"D:\TEMP\SQLite\DataStore2.xml");
-                SerializerObj.Serialize(WriteFileStream, dataSource);
-
-                // Cleanup
-                WriteFileStream.Close();
-
-                #endregion
-            }
-            BaseView mainView = this.gc.MainView;
+            BindingList<DataStore4> dataSource = GetDataSource();
+            gridControl.DataSource = dataSource;
+            bsiRecordsCount.Caption = "RECORDS : " + dataSource.Count;
         }
-        private void gridView1_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
+        void bbiPrintPreview_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            this.gridControl.ShowRibbonPrintPreview();
         }
 
-        public List<DataStore2> createDataSourceList()
+        private void bbiNew_ItemClick(object sender, ItemClickEventArgs e)
         {
-            List<DataStore2> o = new List<DataStore2>();
-            return o;
-        }
-        public DataStore2 createDataSource()
-        {
-            DataStore2 o = new DataStore2()
+            BindingList<DataStore4> dataSource = this.gridControl.DataSource as BindingList<DataStore4>;
+            dataSource.Add(new DataStore4()
             {
-                Name = "alex",
+                ID = 1,
+                Name = System.DateTime.UtcNow+"="
+            });
+        }
+
+        private void bbiEdit_ItemClick(object sender, ItemClickEventArgs e)
+        {
+        }
+
+        private void bbiDelete_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (MessageBox.Show("Delete row?", "Confirmation", MessageBoxButtons.YesNo) != DialogResult.Yes)
+                return;
+            int focusedRowHandle = this.gridView.FocusedRowHandle;
+            if (focusedRowHandle == int.MinValue)
+                return;
+            this.gridView.DeleteRow(focusedRowHandle);
+        }
+
+        private void bbiRefresh_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.gridControl.RefreshDataSource();
+        }
+        //
+        #region --- DATASOURCE ---
+        public BindingList<DataStore4> GetDataSource()
+        {
+            BindingList<DataStore4> result = new BindingList<DataStore4>();
+            result.Add(new DataStore4()
+            {
+                ID = 1,
+                Name = "ACME",
                 Description = "Alex Mello Occulate!!!",
                 Props = new List<Props>()
                 {
@@ -79,49 +72,29 @@ namespace DataSetTest
                     new Props("prop2", "value2"),
                     new Props("prop3", "value3"),
                 }
-            };
-            return o;
+            });
+            result.Add(new DataStore4()
+            {
+                ID = 2,
+                Name = "Electronics Depot",
+                Description = "Alex da Silva Mello",
+                Props = new List<Props>()
+                {
+                    new Props("prop0", "value0"),
+                    new Props("prop1", "value1"),
+                    new Props("prop2", "value2"),
+                    new Props("prop3", "value3"),
+                    new Props("prop0", "value0"),
+                    new Props("prop1", "value1"),
+                    new Props("prop2", "value2"),
+                    new Props("prop3", "value3"),
+                }
+            });
+            return result;
         }
-
-        private void dataLayoutControl1_FieldRetrieving(object sender, DevExpress.XtraDataLayout.FieldRetrievingEventArgs e)
-        {
-            if (e.FieldName == "Port")
-            {
-                e.EditorType = typeof(DevExpress.XtraEditors.SpinEdit);
-                e.Handled = true;
-            }
-        }
-
-        private DevExpress.XtraGrid.GridControl gc;
-
-        private void dataLayoutControl1_FieldRetrieved(object sender, DevExpress.XtraDataLayout.FieldRetrievedEventArgs e)
-        {
-            if (e.FieldName == "ConnectionWasTested" || e.FieldName == "IsFolder")
-            {
-                (e.Control as DevExpress.XtraEditors.CheckEdit).Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Near;
-                e.Item.TextVisible = false;
-                return;
-            }
-            if (e.FieldName == "Description" || e.FieldName == "Preview")
-            {
-                e.Item.TextLocation = DevExpress.Utils.Locations.Top;
-                return;
-            }
-            if( e.FieldName == "Props" )
-            {
-                this.gc = e.Item.Control as DevExpress.XtraGrid.GridControl;
-                if (this.gc == null) return;
-                gc.UseEmbeddedNavigator = true;
-                BaseView mainView = gc.MainView;
-                //.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
-                //gc.OptionsView.ShowFooter = true;
-                //gc.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridView1_InitNewRow);
-            }
-        }
+        #endregion
     }
-
-    [Serializable()]
-    public class DataStore2
+    public class DataStore4
     {
         public const string RootGroup = "<Root>";
         public const string MainContent = RootGroup + "/Data Store Connection";
@@ -136,7 +109,7 @@ namespace DataSetTest
         [Display(Name = "Creation:", AutoGenerateField = false)]
         [ReadOnly(true)]
         [DataType(DataType.DateTime)]
-        public DateTime Creation { get; set; }
+        public System.DateTime Creation { get; set; }
         //
         [Display(Name = "ID:", AutoGenerateField = false)]
         public int ID { get; set; }
@@ -270,7 +243,7 @@ namespace DataSetTest
         [Display(Name = "Properties:", GroupName = ConnectionGroup, Order = 4)]
         public List<Props> Props { get; set; }
 
-        public DataStore2()
+        public DataStore4()
         {
         }
     }
