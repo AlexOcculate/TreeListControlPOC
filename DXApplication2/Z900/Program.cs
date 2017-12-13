@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using DevExpress.UserSkins;
 using DevExpress.Skins;
 using DevExpress.LookAndFeel;
+using Z900.Model;
 
 namespace Z900
 {
@@ -16,12 +17,12 @@ namespace Z900
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+         Application.EnableVisualStyles();
+         Application.SetCompatibleTextRenderingDefault(false);
 
-            BonusSkins.Register();
-            SkinManager.EnableFormSkins();
-            Application.Run(new NavigationControllerForm());
-        }
-    }
+         BonusSkins.Register();
+         SkinManager.EnableFormSkins();
+         Application.Run(new NavigationControllerForm());
+      }
+   }
 }

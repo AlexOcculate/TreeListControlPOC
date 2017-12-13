@@ -28,43 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.skinRibbonGalleryBarItem = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
-            this.barSubItemNavigation = new DevExpress.XtraBars.BarSubItem();
-            this.employeesBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.customersBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.dataStoresBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.configPathsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
-            this.ribbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroupNavigation = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
-            this.dockManager = new DevExpress.XtraBars.Docking.DockManager(this.components);
-            this.dockPanel = new DevExpress.XtraBars.Docking.DockPanel();
-            this.dockPanel_Container = new DevExpress.XtraBars.Docking.ControlContainer();
-            this.accordionControl = new DevExpress.XtraBars.Navigation.AccordionControl();
-            this.mainAccordionGroup = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.dataStoresAccordionControlElement = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.employeesAccordionControlElement = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.customersAccordionControlElement = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.configAccordionGroup = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.tabbedView = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
-            this.documentManager = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
-            this.configPathsAccordionControlElement = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dockManager)).BeginInit();
-            this.dockPanel.SuspendLayout();
-            this.dockPanel_Container.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.accordionControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.documentManager)).BeginInit();
-            this.SuspendLayout();
-            // 
-            // ribbonControl
-            // 
-            this.ribbonControl.ExpandCollapseItem.Id = 0;
-            this.ribbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+         this.components = new System.ComponentModel.Container();
+         this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
+         this.skinRibbonGalleryBarItem = new DevExpress.XtraBars.SkinRibbonGalleryBarItem();
+         this.barSubItemNavigation = new DevExpress.XtraBars.BarSubItem();
+         this.employeesBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+         this.customersBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+         this.dataStoresBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+         this.configPathsBarButtonItem = new DevExpress.XtraBars.BarButtonItem();
+         this.ribbonPage = new DevExpress.XtraBars.Ribbon.RibbonPage();
+         this.ribbonPageGroupNavigation = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+         this.ribbonPageGroup = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+         this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
+         this.dockManager = new DevExpress.XtraBars.Docking.DockManager(this.components);
+         this.dockPanel = new DevExpress.XtraBars.Docking.DockPanel();
+         this.dockPanel_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+         this.accordionControl = new DevExpress.XtraBars.Navigation.AccordionControl();
+         this.mainAccordionGroup = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+         this.dataStoresAccordionControlElement = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+         this.employeesAccordionControlElement = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+         this.customersAccordionControlElement = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+         this.configAccordionGroup = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+         this.configPathsAccordionControlElement = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+         this.tabbedView = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
+         this.documentManager = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
+         ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
+         ((System.ComponentModel.ISupportInitialize)(this.dockManager)).BeginInit();
+         this.dockPanel.SuspendLayout();
+         this.dockPanel_Container.SuspendLayout();
+         ((System.ComponentModel.ISupportInitialize)(this.accordionControl)).BeginInit();
+         ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).BeginInit();
+         ((System.ComponentModel.ISupportInitialize)(this.documentManager)).BeginInit();
+         this.SuspendLayout();
+         // 
+         // ribbonControl
+         // 
+         this.ribbonControl.ExpandCollapseItem.Id = 0;
+         this.ribbonControl.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.ribbonControl.ExpandCollapseItem,
             this.skinRibbonGalleryBarItem,
             this.barSubItemNavigation,
@@ -72,98 +72,98 @@
             this.customersBarButtonItem,
             this.dataStoresBarButtonItem,
             this.configPathsBarButtonItem});
-            this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl.MaxItemId = 50;
-            this.ribbonControl.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
-            this.ribbonControl.Name = "ribbonControl";
-            this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
+         this.ribbonControl.Location = new System.Drawing.Point(0, 0);
+         this.ribbonControl.MaxItemId = 50;
+         this.ribbonControl.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
+         this.ribbonControl.Name = "ribbonControl";
+         this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage});
-            this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
-            this.ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
-            this.ribbonControl.Size = new System.Drawing.Size(790, 143);
-            this.ribbonControl.StatusBar = this.ribbonStatusBar;
-            this.ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
-            // 
-            // skinRibbonGalleryBarItem
-            // 
-            this.skinRibbonGalleryBarItem.Id = 14;
-            this.skinRibbonGalleryBarItem.Name = "skinRibbonGalleryBarItem";
-            // 
-            // barSubItemNavigation
-            // 
-            this.barSubItemNavigation.Caption = "Navigation";
-            this.barSubItemNavigation.Id = 15;
-            this.barSubItemNavigation.ImageOptions.ImageUri.Uri = "NavigationBar";
-            this.barSubItemNavigation.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+         this.ribbonControl.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2013;
+         this.ribbonControl.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
+         this.ribbonControl.Size = new System.Drawing.Size(790, 143);
+         this.ribbonControl.StatusBar = this.ribbonStatusBar;
+         this.ribbonControl.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
+         // 
+         // skinRibbonGalleryBarItem
+         // 
+         this.skinRibbonGalleryBarItem.Id = 14;
+         this.skinRibbonGalleryBarItem.Name = "skinRibbonGalleryBarItem";
+         // 
+         // barSubItemNavigation
+         // 
+         this.barSubItemNavigation.Caption = "Navigation";
+         this.barSubItemNavigation.Id = 15;
+         this.barSubItemNavigation.ImageOptions.ImageUri.Uri = "NavigationBar";
+         this.barSubItemNavigation.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.employeesBarButtonItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.customersBarButtonItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.dataStoresBarButtonItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.configPathsBarButtonItem)});
-            this.barSubItemNavigation.Name = "barSubItemNavigation";
-            // 
-            // employeesBarButtonItem
-            // 
-            this.employeesBarButtonItem.Caption = "Employees";
-            this.employeesBarButtonItem.Id = 46;
-            this.employeesBarButtonItem.Name = "employeesBarButtonItem";
-            this.employeesBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonNavigation_ItemClick);
-            // 
-            // customersBarButtonItem
-            // 
-            this.customersBarButtonItem.Caption = "Cutomers";
-            this.customersBarButtonItem.Id = 47;
-            this.customersBarButtonItem.Name = "customersBarButtonItem";
-            this.customersBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonNavigation_ItemClick);
-            // 
-            // dataStoresBarButtonItem
-            // 
-            this.dataStoresBarButtonItem.Caption = "DataStores";
-            this.dataStoresBarButtonItem.Id = 48;
-            this.dataStoresBarButtonItem.Name = "dataStoresBarButtonItem";
-            this.dataStoresBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonNavigation_ItemClick);
-            // 
-            // configPathsBarButtonItem
-            // 
-            this.configPathsBarButtonItem.Caption = "Configuration Paths";
-            this.configPathsBarButtonItem.Id = 49;
-            this.configPathsBarButtonItem.Name = "configPathsBarButtonItem";
-            this.configPathsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonNavigation_ItemClick);
-            // 
-            // ribbonPage
-            // 
-            this.ribbonPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+         this.barSubItemNavigation.Name = "barSubItemNavigation";
+         // 
+         // employeesBarButtonItem
+         // 
+         this.employeesBarButtonItem.Caption = "Employees";
+         this.employeesBarButtonItem.Id = 46;
+         this.employeesBarButtonItem.Name = "employeesBarButtonItem";
+         this.employeesBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonNavigation_ItemClick);
+         // 
+         // customersBarButtonItem
+         // 
+         this.customersBarButtonItem.Caption = "Cutomers";
+         this.customersBarButtonItem.Id = 47;
+         this.customersBarButtonItem.Name = "customersBarButtonItem";
+         this.customersBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonNavigation_ItemClick);
+         // 
+         // dataStoresBarButtonItem
+         // 
+         this.dataStoresBarButtonItem.Caption = "DataStores";
+         this.dataStoresBarButtonItem.Id = 48;
+         this.dataStoresBarButtonItem.Name = "dataStoresBarButtonItem";
+         this.dataStoresBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonNavigation_ItemClick);
+         // 
+         // configPathsBarButtonItem
+         // 
+         this.configPathsBarButtonItem.Caption = "Configuration Paths";
+         this.configPathsBarButtonItem.Id = 49;
+         this.configPathsBarButtonItem.Name = "configPathsBarButtonItem";
+         this.configPathsBarButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonNavigation_ItemClick);
+         // 
+         // ribbonPage
+         // 
+         this.ribbonPage.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroupNavigation,
             this.ribbonPageGroup});
-            this.ribbonPage.Name = "ribbonPage";
-            this.ribbonPage.Text = "View";
-            // 
-            // ribbonPageGroupNavigation
-            // 
-            this.ribbonPageGroupNavigation.ItemLinks.Add(this.barSubItemNavigation);
-            this.ribbonPageGroupNavigation.Name = "ribbonPageGroupNavigation";
-            this.ribbonPageGroupNavigation.Text = "Module";
-            // 
-            // ribbonPageGroup
-            // 
-            this.ribbonPageGroup.AllowTextClipping = false;
-            this.ribbonPageGroup.ItemLinks.Add(this.skinRibbonGalleryBarItem);
-            this.ribbonPageGroup.Name = "ribbonPageGroup";
-            this.ribbonPageGroup.ShowCaptionButton = false;
-            this.ribbonPageGroup.Text = "Appearance";
-            // 
-            // ribbonStatusBar
-            // 
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 568);
-            this.ribbonStatusBar.Name = "ribbonStatusBar";
-            this.ribbonStatusBar.Ribbon = this.ribbonControl;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(790, 31);
-            // 
-            // dockManager
-            // 
-            this.dockManager.Form = this;
-            this.dockManager.RootPanels.AddRange(new DevExpress.XtraBars.Docking.DockPanel[] {
+         this.ribbonPage.Name = "ribbonPage";
+         this.ribbonPage.Text = "View";
+         // 
+         // ribbonPageGroupNavigation
+         // 
+         this.ribbonPageGroupNavigation.ItemLinks.Add(this.barSubItemNavigation);
+         this.ribbonPageGroupNavigation.Name = "ribbonPageGroupNavigation";
+         this.ribbonPageGroupNavigation.Text = "Module";
+         // 
+         // ribbonPageGroup
+         // 
+         this.ribbonPageGroup.AllowTextClipping = false;
+         this.ribbonPageGroup.ItemLinks.Add(this.skinRibbonGalleryBarItem);
+         this.ribbonPageGroup.Name = "ribbonPageGroup";
+         this.ribbonPageGroup.ShowCaptionButton = false;
+         this.ribbonPageGroup.Text = "Appearance";
+         // 
+         // ribbonStatusBar
+         // 
+         this.ribbonStatusBar.Location = new System.Drawing.Point(0, 568);
+         this.ribbonStatusBar.Name = "ribbonStatusBar";
+         this.ribbonStatusBar.Ribbon = this.ribbonControl;
+         this.ribbonStatusBar.Size = new System.Drawing.Size(790, 31);
+         // 
+         // dockManager
+         // 
+         this.dockManager.Form = this;
+         this.dockManager.RootPanels.AddRange(new DevExpress.XtraBars.Docking.DockPanel[] {
             this.dockPanel});
-            this.dockManager.TopZIndexControls.AddRange(new string[] {
+         this.dockManager.TopZIndexControls.AddRange(new string[] {
             "DevExpress.XtraBars.BarDockControl",
             "DevExpress.XtraBars.StandaloneBarDockControl",
             "System.Windows.Forms.StatusBar",
@@ -173,116 +173,119 @@
             "DevExpress.XtraBars.Ribbon.RibbonControl",
             "DevExpress.XtraBars.Navigation.OfficeNavigationBar",
             "DevExpress.XtraBars.Navigation.TileNavPane"});
-            // 
-            // dockPanel
-            // 
-            this.dockPanel.Controls.Add(this.dockPanel_Container);
-            this.dockPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
-            this.dockPanel.ID = new System.Guid("a045df26-1503-4d9a-99c1-a531310af22b");
-            this.dockPanel.Location = new System.Drawing.Point(0, 143);
-            this.dockPanel.Name = "dockPanel";
-            this.dockPanel.OriginalSize = new System.Drawing.Size(200, 200);
-            this.dockPanel.Size = new System.Drawing.Size(200, 425);
-            this.dockPanel.Text = "Navigation";
-            // 
-            // dockPanel_Container
-            // 
-            this.dockPanel_Container.Controls.Add(this.accordionControl);
-            this.dockPanel_Container.Location = new System.Drawing.Point(4, 23);
-            this.dockPanel_Container.Name = "dockPanel_Container";
-            this.dockPanel_Container.Size = new System.Drawing.Size(191, 398);
-            this.dockPanel_Container.TabIndex = 0;
-            // 
-            // accordionControl
-            // 
-            this.accordionControl.AllowItemSelection = true;
-            this.accordionControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.accordionControl.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+         // 
+         // dockPanel
+         // 
+         this.dockPanel.Controls.Add(this.dockPanel_Container);
+         this.dockPanel.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
+         this.dockPanel.ID = new System.Guid("a045df26-1503-4d9a-99c1-a531310af22b");
+         this.dockPanel.Location = new System.Drawing.Point(0, 143);
+         this.dockPanel.Name = "dockPanel";
+         this.dockPanel.OriginalSize = new System.Drawing.Size(200, 200);
+         this.dockPanel.Size = new System.Drawing.Size(200, 425);
+         this.dockPanel.Text = "Navigation";
+         // 
+         // dockPanel_Container
+         // 
+         this.dockPanel_Container.Controls.Add(this.accordionControl);
+         this.dockPanel_Container.Location = new System.Drawing.Point(4, 23);
+         this.dockPanel_Container.Name = "dockPanel_Container";
+         this.dockPanel_Container.Size = new System.Drawing.Size(191, 398);
+         this.dockPanel_Container.TabIndex = 0;
+         // 
+         // accordionControl
+         // 
+         this.accordionControl.AllowItemSelection = true;
+         this.accordionControl.Dock = System.Windows.Forms.DockStyle.Fill;
+         this.accordionControl.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.mainAccordionGroup,
             this.configAccordionGroup});
-            this.accordionControl.Location = new System.Drawing.Point(0, 0);
-            this.accordionControl.Name = "accordionControl";
-            this.accordionControl.Size = new System.Drawing.Size(191, 398);
-            this.accordionControl.TabIndex = 0;
-            this.accordionControl.Text = "accordionControl";
-            this.accordionControl.SelectedElementChanged += new DevExpress.XtraBars.Navigation.SelectedElementChangedEventHandler(this.accordionControl_SelectedElementChanged);
-            // 
-            // mainAccordionGroup
-            // 
-            this.mainAccordionGroup.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+         this.accordionControl.Location = new System.Drawing.Point(0, 0);
+         this.accordionControl.Name = "accordionControl";
+         this.accordionControl.Size = new System.Drawing.Size(191, 398);
+         this.accordionControl.TabIndex = 0;
+         this.accordionControl.Text = "accordionControl";
+         this.accordionControl.SelectedElementChanged += new DevExpress.XtraBars.Navigation.SelectedElementChangedEventHandler(this.accordionControl_SelectedElementChanged);
+         // 
+         // mainAccordionGroup
+         // 
+         this.mainAccordionGroup.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.dataStoresAccordionControlElement,
             this.employeesAccordionControlElement,
             this.customersAccordionControlElement});
-            this.mainAccordionGroup.Expanded = true;
-            this.mainAccordionGroup.HeaderVisible = false;
-            this.mainAccordionGroup.Name = "mainAccordionGroup";
-            this.mainAccordionGroup.Text = "mainGroup";
-            // 
-            // dataStoresAccordionControlElement
-            // 
-            this.dataStoresAccordionControlElement.Name = "dataStoresAccordionControlElement";
-            this.dataStoresAccordionControlElement.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.dataStoresAccordionControlElement.Text = "DataStores";
-            // 
-            // configPathsAccordionControlElement
-            // 
-            this.configPathsAccordionControlElement.Name = "configPathsAccordionControlElement";
-            this.configPathsAccordionControlElement.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.configPathsAccordionControlElement.Text = "Paths";
-            // 
-            // employeesAccordionControlElement
-            // 
-            this.employeesAccordionControlElement.Name = "employeesAccordionControlElement";
-            this.employeesAccordionControlElement.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.employeesAccordionControlElement.Text = "Employees";
-            // 
-            // customersAccordionControlElement
-            // 
-            this.customersAccordionControlElement.Name = "customersAccordionControlElement";
-            this.customersAccordionControlElement.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.customersAccordionControlElement.Text = "Customers";
-            // 
-            // configAccordionControlElement
-            // 
-            this.configAccordionGroup.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+         this.mainAccordionGroup.Expanded = true;
+         this.mainAccordionGroup.HeaderVisible = false;
+         this.mainAccordionGroup.Name = "mainAccordionGroup";
+         this.mainAccordionGroup.Text = "mainGroup";
+         // 
+         // dataStoresAccordionControlElement
+         // 
+         this.dataStoresAccordionControlElement.Name = "dataStoresAccordionControlElement";
+         this.dataStoresAccordionControlElement.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+         this.dataStoresAccordionControlElement.Text = "DataStores";
+         // 
+         // employeesAccordionControlElement
+         // 
+         this.employeesAccordionControlElement.Name = "employeesAccordionControlElement";
+         this.employeesAccordionControlElement.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+         this.employeesAccordionControlElement.Text = "Employees";
+         // 
+         // customersAccordionControlElement
+         // 
+         this.customersAccordionControlElement.Name = "customersAccordionControlElement";
+         this.customersAccordionControlElement.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+         this.customersAccordionControlElement.Text = "Customers";
+         // 
+         // configAccordionGroup
+         // 
+         this.configAccordionGroup.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.configPathsAccordionControlElement});
-            this.configAccordionGroup.Expanded = true;
-            this.configAccordionGroup.Name = "configAccordionControlElement";
-            this.configAccordionGroup.Text = "Configurations";
-            // 
-            // tabbedView
-            // 
-            this.tabbedView.RootContainer.Element = null;
-            this.tabbedView.DocumentClosed += new DevExpress.XtraBars.Docking2010.Views.DocumentEventHandler(this.tabbedView_DocumentClosed);
-            // 
-            // documentManager
-            // 
-            this.documentManager.ContainerControl = this;
-            this.documentManager.RibbonAndBarsMergeStyle = DevExpress.XtraBars.Docking2010.Views.RibbonAndBarsMergeStyle.Always;
-            this.documentManager.View = this.tabbedView;
-            this.documentManager.ViewCollection.AddRange(new DevExpress.XtraBars.Docking2010.Views.BaseView[] {
+         this.configAccordionGroup.Expanded = true;
+         this.configAccordionGroup.Name = "configAccordionGroup";
+         this.configAccordionGroup.Text = "Configurations";
+         // 
+         // configPathsAccordionControlElement
+         // 
+         this.configPathsAccordionControlElement.Name = "configPathsAccordionControlElement";
+         this.configPathsAccordionControlElement.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+         this.configPathsAccordionControlElement.Text = "Paths";
+         // 
+         // tabbedView
+         // 
+         this.tabbedView.RootContainer.Element = null;
+         this.tabbedView.DocumentClosed += new DevExpress.XtraBars.Docking2010.Views.DocumentEventHandler(this.tabbedView_DocumentClosed);
+         // 
+         // documentManager
+         // 
+         this.documentManager.ContainerControl = this;
+         this.documentManager.RibbonAndBarsMergeStyle = DevExpress.XtraBars.Docking2010.Views.RibbonAndBarsMergeStyle.Always;
+         this.documentManager.View = this.tabbedView;
+         this.documentManager.ViewCollection.AddRange(new DevExpress.XtraBars.Docking2010.Views.BaseView[] {
             this.tabbedView});
-            // 
-            // NavigationControllerForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(790, 599);
-            this.Controls.Add(this.dockPanel);
-            this.Controls.Add(this.ribbonStatusBar);
-            this.Controls.Add(this.ribbonControl);
-            this.Name = "NavigationControllerForm";
-            this.Ribbon = this.ribbonControl;
-            this.StatusBar = this.ribbonStatusBar;
-            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dockManager)).EndInit();
-            this.dockPanel.ResumeLayout(false);
-            this.dockPanel_Container.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.accordionControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.documentManager)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+         // 
+         // NavigationControllerForm
+         // 
+         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+         this.ClientSize = new System.Drawing.Size(790, 599);
+         this.Controls.Add(this.dockPanel);
+         this.Controls.Add(this.ribbonStatusBar);
+         this.Controls.Add(this.ribbonControl);
+         this.Name = "NavigationControllerForm";
+         this.Ribbon = this.ribbonControl;
+         this.StatusBar = this.ribbonStatusBar;
+         this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NavigationControllerForm_FormClosing);
+         this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.NavigationControllerForm_FormClosed);
+         this.Load += new System.EventHandler(this.NavigationControllerForm_Load);
+         ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
+         ((System.ComponentModel.ISupportInitialize)(this.dockManager)).EndInit();
+         this.dockPanel.ResumeLayout(false);
+         this.dockPanel_Container.ResumeLayout(false);
+         ((System.ComponentModel.ISupportInitialize)(this.accordionControl)).EndInit();
+         ((System.ComponentModel.ISupportInitialize)(this.tabbedView)).EndInit();
+         ((System.ComponentModel.ISupportInitialize)(this.documentManager)).EndInit();
+         this.ResumeLayout(false);
+         this.PerformLayout();
 
         }
 

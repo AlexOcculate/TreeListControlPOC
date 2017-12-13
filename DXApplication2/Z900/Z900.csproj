@@ -56,11 +56,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigPathsCollection.cs">
+    <Compile Include="ConfigPathsCollectionXUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ConfigPathsCollection.Designer.cs">
-      <DependentUpon>ConfigPathsCollection.cs</DependentUpon>
+    <Compile Include="ConfigPathsCollectionXUC.Designer.cs">
+      <DependentUpon>ConfigPathsCollectionXUC.cs</DependentUpon>
     </Compile>
     <Compile Include="DataStoreCollectionXUC.cs">
       <SubType>UserControl</SubType>
@@ -74,6 +74,8 @@
     <Compile Include="dataStoreXUC.Designer.cs">
       <DependentUpon>dataStoreXUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\ConfigPath.cs" />
+    <Compile Include="Model\ConfigPathCollection.cs" />
     <Compile Include="NavigationControllerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +84,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ConfigPathsCollectionXUC.resx">
+      <DependentUpon>ConfigPathsCollectionXUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DataStoreCollectionXUC.resx">
       <DependentUpon>DataStoreCollectionXUC.cs</DependentUpon>
     </EmbeddedResource>
