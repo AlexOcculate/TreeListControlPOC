@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Security.AccessControl;
+using System.Security.Principal;
 using System.Xml.Serialization;
 
 namespace Z900.Model
@@ -21,50 +23,71 @@ namespace Z900.Model
       public static string XMLFILENAME = @"ConfigPath.xml";
       public static string XMLFULLNAME = XMLFILEPATH + XMLFILENAME;
 
-      [XmlArray("PathList")]
-      [XmlArrayItem(typeof(ConfigPath), ElementName = "Path")]
+      [XmlArray( "ConfigPathList" )]
+      [XmlArrayItem( typeof( ConfigPath ), ElementName = "ConfigPath" )]
       public BindingList<ConfigPath> List { get; set; }
 
       public ConfigPathCollection()
       {
-         this.List = new BindingList<ConfigPath>();
+         this.List = new BindingList<ConfigPath>( );
       }
 
       public void Save()
       {
-         if (!Directory.Exists(ConfigPathCollection.XMLFILEPATH))
+         if( !Directory.Exists( ConfigPathCollection.XMLFILEPATH ) )
          {
-            Directory.CreateDirectory(ConfigPathCollection.XMLFILEPATH);
+            Directory.CreateDirectory( ConfigPathCollection.XMLFILEPATH );
          }
-         this.XmlSerialize(ConfigPathCollection.XMLFULLNAME);
+         this.XmlSerialize( ConfigPathCollection.XMLFULLNAME );
       }
 
       public static ConfigPathCollection Load()
       {
-         if (File.Exists(ConfigPathCollection.XMLFULLNAME))
+         if( File.Exists( ConfigPathCollection.XMLFULLNAME ) )
          {
-            return ConfigPathCollection.XmlDeserialize(ConfigPathCollection.XMLFULLNAME);
+            ConfigPathCollection coll = ConfigPathCollection.XmlDeserialize( ConfigPathCollection.XMLFULLNAME );
+            ConfigPathCollection.RemoveInvalidTypes( coll );
+            return coll;
          }
-         ConfigPathCollection o = new ConfigPathCollection();
-         o.Save();
+         ConfigPathCollection o = new ConfigPathCollection( );
+         o.Save( );
          return o;
       }
 
-      #region --- XML Serialization ---
-      public void XmlSerialize(string path)
+      private static void RemoveInvalidTypes( ConfigPathCollection coll )
       {
-         XmlSerializer xs = new XmlSerializer(typeof(ConfigPathCollection));
-         using (TextWriter tw = new StreamWriter(path))
+         if( coll == null ) return;
+         BindingList<ConfigPath> list = coll.List;
+         if( list == null ) return;
+         //
+         for( int i = 0; i < list.Count; i++ )
          {
-            xs.Serialize(tw, this);
+            ConfigPath cp = list[ i ];
+            if( cp != null )
+            {
+               cp.Normalize( );
+               continue;
+            }
+            list.Remove( cp );
+            i = -1;
          }
       }
-      public static ConfigPathCollection XmlDeserialize(string path)
+
+      #region --- XML Serialization ---
+      public void XmlSerialize( string path )
       {
-         XmlSerializer xs = new XmlSerializer(typeof(ConfigPathCollection));
-         using (TextReader tr = new StreamReader(path))
+         XmlSerializer xs = new XmlSerializer( typeof( ConfigPathCollection ) );
+         using( TextWriter tw = new StreamWriter( path ) )
          {
-            var o = xs.Deserialize(tr) as ConfigPathCollection;
+            xs.Serialize( tw, this );
+         }
+      }
+      public static ConfigPathCollection XmlDeserialize( string path )
+      {
+         XmlSerializer xs = new XmlSerializer( typeof( ConfigPathCollection ) );
+         using( TextReader tr = new StreamReader( path ) )
+         {
+            var o = xs.Deserialize( tr ) as ConfigPathCollection;
             return o;
          }
       }
@@ -72,138 +95,29 @@ namespace Z900.Model
 
       public static ConfigPath NewTemplate()
       {
-         ConfigPath o = new ConfigPath()
+         ConfigPath o = new ConfigPath( )
          {
-            Type = (int)ConfigPath.ConfigPathTypeEnum.Temporary,
-            IsActive = false,
-            ShortCut = (int)ConfigPath.PathTypeShortCutEnum.ApplicationData,
-            Path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            Type = (int) ConfigPath.ConfigPathTypeEnum.DataStores,
+            IsActive = true,
+            ShortCut = (int) ConfigPath.PathTypeShortCutEnum.MyDocuments,
             BaseDir = ConfigPathCollection.BASEDIR
          };
+         o.Normalize( );
          return o;
       }
       public static ConfigPathCollection NewCollectionTemplate()
       {
-         ConfigPathCollection c = new ConfigPathCollection();
+         int type = (int) ConfigPath.ConfigPathTypeEnum.Temporary;
+         ConfigPathCollection c = new ConfigPathCollection( );
          {
-            ConfigPath o = new ConfigPath()
+            ConfigPath o = new ConfigPath( )
             {
-               Type = (int)ConfigPath.ConfigPathTypeEnum.Temporary,
-               IsActive = false,
-               ShortCut = (int)ConfigPath.PathTypeShortCutEnum.CommonPictures,
-               Path = Environment.GetFolderPath(Environment.SpecialFolder.CommonPictures)
+               Type = (int) ConfigPath.ConfigPathTypeEnum.Temporary,
+               IsActive = true,
+               ShortCut = (int) ConfigPath.PathTypeShortCutEnum.CommonPictures,
+               PathDir = Environment.GetFolderPath( Environment.SpecialFolder.CommonPictures )
             };
-            c.List.Add(o);
-         }
-         {
-            ConfigPath o = new ConfigPath()
-            {
-               Type = (int)ConfigPath.ConfigPathTypeEnum.Temporary,
-               IsActive = false,
-               ShortCut = (int)ConfigPath.PathTypeShortCutEnum.LocalApplicationData,
-               Path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)
-            };
-            c.List.Add(o);
-         }
-         {
-            ConfigPath o = new ConfigPath()
-            {
-               Type = (int)ConfigPath.ConfigPathTypeEnum.Temporary,
-               IsActive = false,
-               ShortCut = (int)ConfigPath.PathTypeShortCutEnum.MyDocuments,
-               Path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-            };
-            c.List.Add(o);
-         }
-         {
-            ConfigPath o = new ConfigPath()
-            {
-               Type = (int)ConfigPath.ConfigPathTypeEnum.Temporary,
-               IsActive = false,
-               ShortCut = (int)ConfigPath.PathTypeShortCutEnum.CommonDocuments,
-               Path = Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments)
-            };
-            c.List.Add(o);
-         }
-         {
-            ConfigPath o = new ConfigPath()
-            {
-               Type = (int)ConfigPath.ConfigPathTypeEnum.Temporary,
-               IsActive = false,
-               ShortCut = (int)ConfigPath.PathTypeShortCutEnum.ApplicationData,
-               Path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
-            };
-            c.List.Add(o);
-         }
-         {
-            ConfigPath o = new ConfigPath()
-            {
-               Type = (int)ConfigPath.ConfigPathTypeEnum.Temporary,
-               IsActive = false,
-               ShortCut = (int)ConfigPath.PathTypeShortCutEnum.CommonApplicationData,
-               Path = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)
-            };
-            c.List.Add(o);
-         }
-         {
-            ConfigPath o = new ConfigPath()
-            {
-               Type = (int)ConfigPath.ConfigPathTypeEnum.Temporary,
-               IsActive = false,
-               ShortCut = (int)ConfigPath.PathTypeShortCutEnum.LocalApplicationData,
-               Path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)
-            };
-            c.List.Add(o);
-         }
-         {
-            ConfigPath o = new ConfigPath()
-            {
-               Type = (int)ConfigPath.ConfigPathTypeEnum.DataStores,
-               IsActive = false,
-               ShortCut = (int)ConfigPath.PathTypeShortCutEnum.Desktop,
-               Path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
-            };
-            c.List.Add(o);
-         }
-         {
-            ConfigPath o = new ConfigPath()
-            {
-               Type = (int)ConfigPath.ConfigPathTypeEnum.Temporary,
-               IsActive = false,
-               ShortCut = (int)ConfigPath.PathTypeShortCutEnum.MyDocuments,
-               Path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-            };
-            c.List.Add(o);
-         }
-         {
-            ConfigPath o = new ConfigPath()
-            {
-               Type = (int)ConfigPath.ConfigPathTypeEnum.Temporary,
-               IsActive = false,
-               ShortCut = (int)ConfigPath.PathTypeShortCutEnum.Desktop,
-               Path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
-            };
-            c.List.Add(o);
-         }
-         {
-            ConfigPath o = new ConfigPath()
-            {
-               Type = (int)ConfigPath.ConfigPathTypeEnum.Temporary,
-               IsActive = false,
-               ShortCut = (int)ConfigPath.PathTypeShortCutEnum.DesktopDirectory,
-               Path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)
-            };
-            c.List.Add(o);
-         }
-         {
-            ConfigPath o = new ConfigPath()
-            {
-               Type = (int)ConfigPath.ConfigPathTypeEnum.Temporary,
-               IsActive = false,
-               ShortCut = (int)ConfigPath.PathTypeShortCutEnum.CommonDesktopDirectory,
-               Path = Environment.GetFolderPath(Environment.SpecialFolder.CommonDesktopDirectory)
-            };
-            c.List.Add(o);
+            c.List.Add( o );
          }
          return c;
       }

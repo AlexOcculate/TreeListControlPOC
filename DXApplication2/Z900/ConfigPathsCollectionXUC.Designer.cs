@@ -28,6 +28,7 @@
       /// </summary>
       public void InitializeComponent()
         {
+         this.components = new System.ComponentModel.Container();
          this.gridControl = new DevExpress.XtraGrid.GridControl();
          this.gridView = new DevExpress.XtraGrid.Views.Grid.GridView();
          this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
@@ -41,6 +42,7 @@
          this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
          this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
          this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
+         this.xtraFolderBrowserDialog1 = new DevExpress.XtraEditors.XtraFolderBrowserDialog(this.components);
          ((System.ComponentModel.ISupportInitialize)(this.gridControl)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this.gridView)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
@@ -57,6 +59,7 @@
          this.gridControl.TabIndex = 2;
          this.gridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView});
+         this.gridControl.Load += new System.EventHandler(this.gridControl_Load);
          // 
          // gridView
          // 
@@ -174,6 +177,10 @@
          this.ribbonStatusBar.Ribbon = this.ribbonControl;
          this.ribbonStatusBar.Size = new System.Drawing.Size(800, 27);
          // 
+         // xtraFolderBrowserDialog1
+         // 
+         this.xtraFolderBrowserDialog1.SelectedPath = "xtraFolderBrowserDialog1";
+         // 
          // ConfigPathsCollectionXUC
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -206,5 +213,6 @@
         private DevExpress.XtraBars.BarButtonItem bbiEdit;
         private DevExpress.XtraBars.BarButtonItem bbiDelete;
         private DevExpress.XtraBars.BarButtonItem bbiRefresh;
-    }
+      private DevExpress.XtraEditors.XtraFolderBrowserDialog xtraFolderBrowserDialog1;
+   }
 }
