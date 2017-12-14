@@ -26,12 +26,12 @@ namespace Z900
             this.gridControl.RefreshDataSource( );
             this.gridControl.Refresh( );
          }
-         this.bsiRecordsCount.Caption = "RECORDS : " + ((BindingList<ConfigPath>) this.gridControl.DataSource).Count;
+         this.bsiRecordsCount.Caption = null;
          {
             this.gridControl.UseEmbeddedNavigator = true;
             this.gridView.OptionsView.NewItemRowPosition = NewItemRowPosition.Top;
             this.gridView.InitNewRow += new InitNewRowEventHandler( this.gridView1_InitNewRow );
-            //this.gridView.OptionsView.ShowFooter = true;
+            this.gridView.OptionsView.ShowFooter = true;
             this.gridView.OptionsBehavior.Editable = true;
             this.gridView.OptionsBehavior.ReadOnly = false;
             {
@@ -46,6 +46,7 @@ namespace Z900
                this.gridView.Columns[ ConfigPath.EXISTS_DIRFLAG_FIELDNAME ].OptionsColumn.AllowFocus = false;
                this.gridView.Columns[ ConfigPath.READABLE_DIRFLAG_FIELDNAME ].OptionsColumn.AllowFocus = false;
                this.gridView.Columns[ ConfigPath.WRITABLE_DIRFLAG_FIELDNAME ].OptionsColumn.AllowFocus = false;
+               this.gridView.Columns[ ConfigPath.PATHDIR_FIELDNAME ].OptionsColumn.AllowFocus = false;
             }
             {
                this.gridView.Columns[ ConfigPath.PATHDIR_FIELDNAME ].OptionsColumn.ReadOnly = true;
@@ -55,11 +56,13 @@ namespace Z900
       private void gridView1_InitNewRow( object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e )
       {
          GridView gv = sender as GridView;
-         gv.SetRowCellValue( e.RowHandle, gv.Columns[ ConfigPath.ISACTIVE_DISPLAYNAME ], ConfigPathCollection.NewTemplate( ).IsActive );
-         gv.SetRowCellValue( e.RowHandle, gv.Columns[ ConfigPath.TYPE_DISPLAYNAME ], ConfigPathCollection.NewTemplate( ).Type );
-         gv.SetRowCellValue( e.RowHandle, gv.Columns[ ConfigPath.SHORTCUT_DISPLAYNAME ], ConfigPathCollection.NewTemplate( ).ShortCut );
-         gv.SetRowCellValue( e.RowHandle, gv.Columns[ ConfigPath.PATHDIR_DISPLAYNAME ], ConfigPathCollection.NewTemplate( ).PathDir );
-         gv.SetRowCellValue( e.RowHandle, gv.Columns[ ConfigPath.BASEDIR_DISPLAYNAME ], ConfigPathCollection.NewTemplate( ).BaseDir );
+         var o = ConfigPathCollection.NewTemplate( );
+         gv.SetRowCellValue( e.RowHandle, gv.Columns[ ConfigPath.ISACTIVE_DISPLAYNAME ], o.IsActive );
+         gv.SetRowCellValue( e.RowHandle, gv.Columns[ ConfigPath.TYPE_DISPLAYNAME ], o.Type );
+         gv.SetRowCellValue( e.RowHandle, gv.Columns[ ConfigPath.SHORTCUT_DISPLAYNAME ], o.ShortCut );
+         gv.SetRowCellValue( e.RowHandle, gv.Columns[ ConfigPath.PATHDIR_DISPLAYNAME ], o.PathDir );
+         //gv.SetRowCellValue( e.RowHandle, gv.Columns[ ConfigPath.BASEDIR_DISPLAYNAME ], o.BaseDir );
+         //this.bsiRecordsCount.Caption = "RECORDS : " + ((BindingList<ConfigPath>) this.gridControl.DataSource).Count;
       }
 
       private void bbiNew_ItemClick( object sender, ItemClickEventArgs e )
@@ -67,13 +70,12 @@ namespace Z900
          BindingList<Model.ConfigPath> dataSource = this.gridControl.DataSource as BindingList<Model.ConfigPath>;
          dataSource.Add( ConfigPathCollection.NewTemplate( ) );
          this.gridView.BestFitColumns( );
+         //this.bsiRecordsCount.Caption = "RECORDS : " + ((BindingList<ConfigPath>) this.gridControl.DataSource).Count;
       }
-
       private void bbiEdit_ItemClick( object sender, ItemClickEventArgs e )
       {
-
+         //this.bsiRecordsCount.Caption = "RECORDS : " + ((BindingList<ConfigPath>) this.gridControl.DataSource).Count;
       }
-
       private void bbiDelete_ItemClick( object sender, ItemClickEventArgs e )
       {
          if( MessageBox.Show( "Delete row?", "Confirmation", MessageBoxButtons.YesNo ) != DialogResult.Yes )
@@ -83,15 +85,35 @@ namespace Z900
             return;
          this.gridView.DeleteRow( focusedRowHandle );
       }
-
       private void bbiRefresh_ItemClick( object sender, ItemClickEventArgs e )
       {
          this.gridControl.RefreshDataSource( );
       }
+      private void bbiClone_ItemClick( object sender, ItemClickEventArgs e )
+      {
+         GridView gv = this.gridView;
+         if( gv.SelectedRowsCount == 0 )
+            return;
+         int[ ] selectedRows = gv.GetSelectedRows( );
+         for( int i = 0; i < selectedRows.Length; i++ )
+         {
+            ConfigPath row = gv.GetRow( selectedRows[ i ] ) as ConfigPath;
+            ConfigPath clone = new ConfigPath( row );
+            this.cpColl.List.Add( clone );
+         }
+      }
+      private void bbiLoadTemplates_ItemClick( object sender, ItemClickEventArgs e )
+      {
+         ConfigPathCollection coll = ConfigPathCollection.NewCollectionTemplate( );
+         foreach( var o in coll.List )
+         {
+            this.cpColl.List.Add( o );
+         }
+      }
 
       private void bbiPrintPreview_ItemClick( object sender, ItemClickEventArgs e )
       {
-         gridControl.ShowRibbonPrintPreview( );
+         this.gridControl.ShowRibbonPrintPreview( );
       }
 
       private void gridView_ValidatingEditor( object sender, DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventArgs e )
@@ -129,12 +151,12 @@ namespace Z900
             e.Valid = false;
             {
                GridColumn col = view.Columns[ ConfigPath.PATHDIR_DISPLAYNAME ];
-               view.SetColumnError( col, "Invalid [pathdir] or [basedir]" );
+               view.SetColumnError( col, "Invalid conbination [pathdir] or [basedir]" );
             }
-            {
-               GridColumn col = view.Columns[ ConfigPath.BASEDIR_DISPLAYNAME ];
-               view.SetColumnError( col, "Invalid combination [pathdir] or [basedir]" );
-            }
+            //{
+            //   GridColumn col = view.Columns[ ConfigPath.BASEDIR_DISPLAYNAME ];
+            //   view.SetColumnError( col, "Invalid combination [pathdir] or [basedir]" );
+            //}
          }
       }
 
@@ -165,7 +187,8 @@ namespace Z900
                   selectedPath = this.xtraFolderBrowserDialog1.SelectedPath;
                }
             }
-            gridview.SetRowCellValue( e.RowHandle, gridview.Columns[ "PathDir" ], selectedPath );
+            gridview.SetRowCellValue( e.RowHandle, gridview.Columns[ ConfigPath.PATHDIR_DISPLAYNAME ], selectedPath );
+            gridview.SetRowCellValue( e.RowHandle, gridview.Columns[ ConfigPath.TYPE_DISPLAYNAME ], ConfigPath.PathTypeShortCutEnum.Custom );
          }
       }
 
@@ -184,7 +207,7 @@ namespace Z900
          //
          this.gridView.Columns[ ConfigPath.TYPE_FIELDNAME ].BestFit( );
          this.gridView.Columns[ ConfigPath.SHORTCUT_FIELDNAME ].BestFit( );
-         this.gridView.Columns[ ConfigPath.BASEDIR_FIELDNAME ].BestFit( );
+         //this.gridView.Columns[ ConfigPath.BASEDIR_FIELDNAME ].BestFit( );
       }
    }
 }

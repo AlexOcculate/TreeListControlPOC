@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 namespace Z900.Model
 {
    [Serializable( )]
-   public class ConfigPath
+   public partial class ConfigPath
    {
       public enum ConfigPathTypeEnum
       {
@@ -99,71 +99,9 @@ namespace Z900.Model
       [Display( Name = PATHDIR_DISPLAYNAME )]
       public string PathDir { get; set; }
 
-      public const string BASEDIR_DISPLAYNAME = "BaseDir";
-      public const string BASEDIR_FIELDNAME = "BaseDir";
-      [Display( Name = BASEDIR_DISPLAYNAME )]
-      public string BaseDir { get; set; }
-
-      public void Normalize()
-      {
-         bool isDefined = Enum.IsDefined( typeof( ConfigPath.PathTypeShortCutEnum ), this.ShortCut );
-         if( isDefined )
-         {
-            if( this.ShortCut != (int) ConfigPath.PathTypeShortCutEnum.Custom )
-            {
-               this.PathDir = Environment.GetFolderPath( (Environment.SpecialFolder) this.ShortCut );
-            }
-            else
-            {
-               this.PathDir = this.PathDir?.Trim( );
-            }
-            this.BaseDir = this.BaseDir?.Trim( );
-            string fullpath = (this.PathDir != null ? this.PathDir : "");
-            fullpath += (this.BaseDir != null ? @"\" + this.BaseDir : "");
-            this.DirExists = Directory.Exists( fullpath );
-            this.DirReadable = this.DirExists ? CanRead( fullpath ) : false;
-            this.DirWritable = this.DirExists ? CanWrite( fullpath ) : false;
-            this.IsValid = (this.DirExists && this.DirReadable && this.DirWritable);
-            this.IsActive = this.IsValid && this.IsActive ? true : false;
-         }
-      }
-      public static bool CanRead( string path )
-      {
-         return VerifyFileSystemAccessRule( path, FileSystemRights.Read );
-      }
-      public static bool CanWrite( string path )
-      {
-         return VerifyFileSystemAccessRule( path, FileSystemRights.Write );
-      }
-      public static bool VerifyFileSystemAccessRule( string path, FileSystemRights fsr )
-      {
-         var readAllow = false;
-         var readDeny = false;
-         try
-         {
-            // @"MyDomain\MyUserOrGroup"
-            //string NtAccountName = System.Security.Principal.WindowsIdentity.GetCurrent( ).Name;
-            var accessControlList = Directory.GetAccessControl( path );
-            if( accessControlList == null )
-               return false;
-            var accessRules = accessControlList.GetAccessRules( true, true, typeof( System.Security.Principal.SecurityIdentifier ) );
-            if( accessRules == null )
-               return false;
-            foreach( FileSystemAccessRule rule in accessRules )
-            {
-               if( (fsr & rule.FileSystemRights) != fsr )
-                  continue;
-               if( rule.AccessControlType == AccessControlType.Allow )
-                  readAllow = true;
-               else if( rule.AccessControlType == AccessControlType.Deny )
-                  readDeny = true;
-            }
-            return readAllow && !readDeny;
-         }
-         catch( System.IO.DirectoryNotFoundException ex )
-         {
-            return false;
-         }
-      }
+      //public const string BASEDIR_DISPLAYNAME = "BaseDir";
+      //public const string BASEDIR_FIELDNAME = "BaseDir";
+      //[Display( Name = BASEDIR_DISPLAYNAME )]
+      //public string BaseDir { get; set; }
    }
 }

@@ -64,8 +64,8 @@ namespace Z900
          {
             return;
          }
-         tabbedView.AddDocument(uc);
-         tabbedView.ActivateDocument(uc);
+         this.tabbedView.AddDocument(uc);
+         this.tabbedView.ActivateDocument(uc);
          RibbonControl mergedRibbon = this.ribbonControl.MergedRibbon;
          if (mergedRibbon == null)
             return;

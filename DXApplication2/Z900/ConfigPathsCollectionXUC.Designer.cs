@@ -1,24 +1,24 @@
 ﻿namespace Z900
 {
-    partial class ConfigPathsCollectionXUC
-    {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+   partial class ConfigPathsCollectionXUC
+   {
+      /// <summary>
+      /// Required designer variable.
+      /// </summary>
+      private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+      /// <summary>
+      /// Clean up any resources being used.
+      /// </summary>
+      /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+      protected override void Dispose( bool disposing )
+      {
+         if( disposing && (components != null) )
+         {
+            components.Dispose( );
+         }
+         base.Dispose( disposing );
+      }
 
       #region Component Designer generated code
 
@@ -27,7 +27,7 @@
       /// the contents of this method with the code editor.
       /// </summary>
       public void InitializeComponent()
-        {
+      {
          this.components = new System.ComponentModel.Container();
          this.gridControl = new DevExpress.XtraGrid.GridControl();
          this.gridView = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -38,6 +38,8 @@
          this.bbiEdit = new DevExpress.XtraBars.BarButtonItem();
          this.bbiDelete = new DevExpress.XtraBars.BarButtonItem();
          this.bbiRefresh = new DevExpress.XtraBars.BarButtonItem();
+         this.bbiClone = new DevExpress.XtraBars.BarButtonItem();
+         this.bbiLoadTemplates = new DevExpress.XtraBars.BarButtonItem();
          this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
          this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
          this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -83,9 +85,11 @@
             this.bbiNew,
             this.bbiEdit,
             this.bbiDelete,
-            this.bbiRefresh});
+            this.bbiRefresh,
+            this.bbiClone,
+            this.bbiLoadTemplates});
          this.ribbonControl.Location = new System.Drawing.Point(0, 0);
-         this.ribbonControl.MaxItemId = 20;
+         this.ribbonControl.MaxItemId = 22;
          this.ribbonControl.Name = "ribbonControl";
          this.ribbonControl.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -141,6 +145,22 @@
          this.bbiRefresh.Name = "bbiRefresh";
          this.bbiRefresh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiRefresh_ItemClick);
          // 
+         // bbiClone
+         // 
+         this.bbiClone.Caption = "Clone";
+         this.bbiClone.Id = 20;
+         this.bbiClone.ImageOptions.ImageUri.Uri = "Copy";
+         this.bbiClone.Name = "bbiClone";
+         this.bbiClone.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiClone_ItemClick);
+         // 
+         // bbiLoadTemplates
+         // 
+         this.bbiLoadTemplates.Caption = "Templates";
+         this.bbiLoadTemplates.Id = 21;
+         this.bbiLoadTemplates.ImageOptions.ImageUri.Uri = "Copy";
+         this.bbiLoadTemplates.Name = "bbiLoadTemplates";
+         this.bbiLoadTemplates.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbiLoadTemplates_ItemClick);
+         // 
          // ribbonPage1
          // 
          this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -157,6 +177,8 @@
          this.ribbonPageGroup1.ItemLinks.Add(this.bbiEdit);
          this.ribbonPageGroup1.ItemLinks.Add(this.bbiDelete);
          this.ribbonPageGroup1.ItemLinks.Add(this.bbiRefresh);
+         this.ribbonPageGroup1.ItemLinks.Add(this.bbiClone);
+         this.ribbonPageGroup1.ItemLinks.Add(this.bbiLoadTemplates);
          this.ribbonPageGroup1.Name = "ribbonPageGroup1";
          this.ribbonPageGroup1.ShowCaptionButton = false;
          this.ribbonPageGroup1.Text = "Tasks";
@@ -196,23 +218,25 @@
          this.ResumeLayout(false);
          this.PerformLayout();
 
-        }
+      }
 
-        #endregion
+      #endregion
 
-        private DevExpress.XtraGrid.GridControl gridControl;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView;
-        private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
-        private DevExpress.XtraBars.BarButtonItem bbiPrintPreview;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
-        private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar;
-        private DevExpress.XtraBars.BarStaticItem bsiRecordsCount;
-        private DevExpress.XtraBars.BarButtonItem bbiNew;
-        private DevExpress.XtraBars.BarButtonItem bbiEdit;
-        private DevExpress.XtraBars.BarButtonItem bbiDelete;
-        private DevExpress.XtraBars.BarButtonItem bbiRefresh;
+      private DevExpress.XtraGrid.GridControl gridControl;
+      private DevExpress.XtraGrid.Views.Grid.GridView gridView;
+      private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl;
+      private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
+      private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+      private DevExpress.XtraBars.BarButtonItem bbiPrintPreview;
+      private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
+      private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar;
+      private DevExpress.XtraBars.BarStaticItem bsiRecordsCount;
+      private DevExpress.XtraBars.BarButtonItem bbiNew;
+      private DevExpress.XtraBars.BarButtonItem bbiEdit;
+      private DevExpress.XtraBars.BarButtonItem bbiDelete;
+      private DevExpress.XtraBars.BarButtonItem bbiRefresh;
+      private DevExpress.XtraBars.BarButtonItem bbiClone;
       private DevExpress.XtraEditors.XtraFolderBrowserDialog xtraFolderBrowserDialog1;
+      private DevExpress.XtraBars.BarButtonItem bbiLoadTemplates;
    }
 }
