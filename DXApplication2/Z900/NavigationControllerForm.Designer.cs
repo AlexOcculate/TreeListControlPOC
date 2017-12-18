@@ -253,6 +253,7 @@
          // tabbedView
          // 
          this.tabbedView.RootContainer.Element = null;
+         this.tabbedView.DocumentActivated += new DevExpress.XtraBars.Docking2010.Views.DocumentEventHandler(this.tabbedView_DocumentActivated);
          this.tabbedView.DocumentClosed += new DevExpress.XtraBars.Docking2010.Views.DocumentEventHandler(this.tabbedView_DocumentClosed);
          // 
          // documentManager

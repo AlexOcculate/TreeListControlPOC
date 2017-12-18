@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
-using System.Security.AccessControl;
-using System.Security.Principal;
 using System.Xml.Serialization;
 using static Z900.Model.ConfigPath;
 
@@ -12,21 +9,11 @@ namespace Z900.Model
 {
    public class ConfigPathCollection
    {
-      public static string BASEDIR = @"Z900";
-      public static string XMLFILEPATH = Environment.GetFolderPath(
-         Environment.SpecialFolder.MyDocuments,
-         Environment.SpecialFolderOption.Create
-         )
-         + @"\"
-         + ConfigPathCollection.BASEDIR
-         + @"\"
-   ;
-      public static string XMLFILENAME = @"ConfigPath.xml";
-      public static string XMLFULLNAME = XMLFILEPATH + XMLFILENAME;
-
       [XmlArray( "ConfigPathList" )]
       [XmlArrayItem( typeof( ConfigPath ), ElementName = "ConfigPath" )]
       public BindingList<ConfigPath> List { get; set; }
+
+      private static readonly BindingList<ConfigPath> emptyList = new BindingList<ConfigPath>( );
 
       public ConfigPathCollection()
       {
@@ -35,19 +22,19 @@ namespace Z900.Model
 
       public void Save()
       {
-         if( !Directory.Exists( ConfigPathCollection.XMLFILEPATH ) )
+         if( !Directory.Exists( Program.XMLFILEPATH ) )
          {
-            Directory.CreateDirectory( ConfigPathCollection.XMLFILEPATH );
+            Directory.CreateDirectory( Program.XMLFILEPATH );
          }
-         this.XmlSerialize( ConfigPathCollection.XMLFULLNAME );
+         this.XmlSerialize( Program.CONFIGPATH_XMLFULLNAME );
       }
 
       public static ConfigPathCollection Load()
       {
          ConfigPathCollection coll;
-         if( File.Exists( ConfigPathCollection.XMLFULLNAME ) )
+         if( File.Exists( Program.CONFIGPATH_XMLFULLNAME ) )
          {
-            coll = ConfigPathCollection.XmlDeserialize( ConfigPathCollection.XMLFULLNAME );
+            coll = ConfigPathCollection.XmlDeserialize( Program.CONFIGPATH_XMLFULLNAME );
             ConfigPathCollection.ValidateCollection( coll );
             return coll;
          }
@@ -295,6 +282,28 @@ namespace Z900.Model
          #endregion
 
          return c;
+      }
+      public static BindingList<ConfigPath> GetDirListEmpty( )
+      {
+            return emptyList;
+      }
+      public BindingList<ConfigPath> GetDirList( ConfigPathTypeEnum type )
+      {
+         if( !Enum.IsDefined( typeof( ConfigPathTypeEnum ), type ) )
+         {
+            throw new ArgumentOutOfRangeException( "type" );
+         }
+         if( this.List == null || this.List.Count < 1 )
+         {
+            return emptyList;
+         }
+         BindingList<ConfigPath> list = new BindingList<ConfigPath>( );
+         foreach( ConfigPath e in this.List )
+         {
+            if( e.Type == (int) type )
+               list.Add( e );
+         }
+         return list;
       }
    }
 }

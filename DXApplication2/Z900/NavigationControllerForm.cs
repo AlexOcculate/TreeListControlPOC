@@ -4,6 +4,7 @@ using DevExpress.XtraBars.Navigation;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using Z900.Model;
@@ -17,46 +18,50 @@ namespace Z900
       private XtraUserControl dataStoresUserControl;
       private XtraUserControl configPathsUserControl;
       private ConfigPathCollection cpColl;
+      private DataStoreCollection dsColl;
       public NavigationControllerForm()
       {
-         InitializeComponent();
-      }
-      private void NavigationControllerForm_Load(object sender, EventArgs e)
-      {
-         this.cpColl = ConfigPathCollection.Load();
-         this.RecreateUserControls();
+         InitializeComponent( );
       }
 
-      private void NavigationControllerForm_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+      #region --- GUI Events... ---
+      private void NavigationControllerForm_Load( object sender, EventArgs e )
       {
-         this.cpColl?.Save();
+         this.cpColl = ConfigPathCollection.Load( );
+         this.dsColl = DataStoreCollection.Load( this.cpColl.GetDirList( ConfigPath.ConfigPathTypeEnum.DataStores ) );
+         this.RecreateUserControls( );
       }
 
-      private void NavigationControllerForm_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
+      private void NavigationControllerForm_FormClosing( object sender, System.Windows.Forms.FormClosingEventArgs e )
+      {
+         this.cpColl?.Save( );
+         this.dsColl?.Save( );
+      }
+      private void NavigationControllerForm_FormClosed( object sender, System.Windows.Forms.FormClosedEventArgs e )
       {
 
       }
-      private void accordionControl_SelectedElementChanged(object sender, SelectedElementChangedEventArgs e)
+      private void accordionControl_SelectedElementChanged( object sender, SelectedElementChangedEventArgs e )
       {
-         if (e.Element == null) return;
+         if( e.Element == null ) return;
          //XtraUserControl userControl = e.Element.Text == "Employees" ? employeesUserControl : customersUserControl;
          //tabbedView.AddDocument(userControl);
          //tabbedView.ActivateDocument(userControl);
          XtraUserControl uc; ;
-         if (e.Element == this.dataStoresAccordionControlElement)
+         if( e.Element == this.dataStoresAccordionControlElement )
          {
             uc = this.dataStoresUserControl;
             //this.dataStoresUserControl.Focus();
          }
-         else if (e.Element == this.configPathsAccordionControlElement)
+         else if( e.Element == this.configPathsAccordionControlElement )
          {
             uc = this.configPathsUserControl;
          }
-         else if (e.Element == this.employeesAccordionControlElement)
+         else if( e.Element == this.employeesAccordionControlElement )
          {
             uc = this.employeesUserControl;
          }
-         else if (e.Element == this.customersAccordionControlElement)
+         else if( e.Element == this.customersAccordionControlElement )
          {
             uc = this.customersUserControl;
          }
@@ -64,87 +69,111 @@ namespace Z900
          {
             return;
          }
-         this.tabbedView.AddDocument(uc);
-         this.tabbedView.ActivateDocument(uc);
+         this.tabbedView.AddDocument( uc );
+         this.tabbedView.ActivateDocument( uc );
          RibbonControl mergedRibbon = this.ribbonControl.MergedRibbon;
-         if (mergedRibbon == null)
+         if( mergedRibbon == null )
             return;
-         this.ribbonControl.SelectedPage = mergedRibbon.Pages["Home"];
+         this.ribbonControl.SelectedPage = mergedRibbon.Pages[ "Home" ];
       }
-      private void barButtonNavigation_ItemClick(object sender, ItemClickEventArgs e)
+      private void barButtonNavigation_ItemClick( object sender, ItemClickEventArgs e )
       {
          //int barItemIndex = barSubItemNavigation.ItemLinks.IndexOf(e.Link);
          //accordionControl.SelectedElement = mainAccordionGroup.Elements[barItemIndex];
          BarItem item = e.Item;
-         if (item == this.dataStoresBarButtonItem)
-         {
-            accordionControl.SelectedElement = this.dataStoresAccordionControlElement;
-         }
-         else if (item == this.configPathsBarButtonItem)
-         {
-            accordionControl.SelectedElement = this.configPathsAccordionControlElement;
-         }
-         else if (item == this.employeesBarButtonItem)
-         {
-            accordionControl.SelectedElement = this.employeesAccordionControlElement;
-         }
-         else if (item == this.customersBarButtonItem)
-         {
-            accordionControl.SelectedElement = this.customersAccordionControlElement;
-         }
-      }
-      private void tabbedView_DocumentClosed(object sender, DocumentEventArgs e)
-      {
-         RecreateUserControls(e);
-         SetAccordionSelectedElement(e);
-      }
-      private void SetAccordionSelectedElement(DocumentEventArgs e)
-      {
-         if (tabbedView.Documents.Count == 0)
-         {
-            accordionControl.SelectedElement = null;
-            return;
-         }
-         //if (e.Document.Caption == "Employees")
-         //{
-         //    accordionControl.SelectedElement = customersAccordionControlElement;
-         //}
-         //else
-         //{
-         //    accordionControl.SelectedElement = employeesAccordionControlElement;
-         //}
-      }
-      private void RecreateUserControls(DocumentEventArgs e = null)
-      {
-         if (e == null || e.Document.Caption == "DataStores")
-         {
-            this.dataStoresUserControl = CreateDataStoreUserControl("DataStores");
-         }
-         if (e == null || e.Document.Caption == "Paths")
-         {
-            this.configPathsUserControl = this.CreateConfigPathsUserControl("Paths");
-         }
-         if (e == null || e.Document.Caption == "Employees")
-         {
-            this.employeesUserControl = CreateUserControl("Employees");
-         }
-         if (e == null || e.Document.Caption == "Customers")
-         {
-            this.customersUserControl = CreateUserControl("Customers");
-         }
-         if (e == null)
+         if( item == this.dataStoresBarButtonItem )
          {
             this.accordionControl.SelectedElement = this.dataStoresAccordionControlElement;
          }
+         else if( item == this.configPathsBarButtonItem )
+         {
+            this.accordionControl.SelectedElement = this.configPathsAccordionControlElement;
+         }
+         else if( item == this.employeesBarButtonItem )
+         {
+            this.accordionControl.SelectedElement = this.employeesAccordionControlElement;
+         }
+         else if( item == this.customersBarButtonItem )
+         {
+            this.accordionControl.SelectedElement = this.customersAccordionControlElement;
+         }
       }
-      private XtraUserControl CreateDataStoreUserControl(string text)
+      private void tabbedView_DocumentClosed( object sender, DocumentEventArgs e )
       {
-         XtraUserControl result = new DataStoreCollectionXUC();
-         result.Name = text.ToLower() + "UserControl";
+         RecreateUserControls( e );
+         SetAccordionSelectedElement( e );
+      }
+      private void tabbedView_DocumentActivated( object sender, DocumentEventArgs e )
+      {
+         var control = e.Document.Control;
+         var caption = e.Document.Caption;
+         if( control as DataStoreCollectionXUC != null )
+            this.accordionControl.SelectedElement = this.dataStoresAccordionControlElement;
+         else if( control as ConfigPathsCollectionXUC != null )
+            this.accordionControl.SelectedElement = this.configPathsAccordionControlElement;
+         else if( control as XtraUserControl != null )
+         {
+            if( caption == "Employees" )
+               this.accordionControl.SelectedElement = this.employeesAccordionControlElement;
+            else if( caption == "Customers" )
+               this.accordionControl.SelectedElement = this.customersAccordionControlElement;
+         }
+      }
+      #endregion
+
+      private void SetAccordionSelectedElement( DocumentEventArgs e )
+      {
+         if( this.tabbedView.Documents.Count == 0 )
+         {
+            this.accordionControl.SelectedElement = null;
+         }
+         else
+         {
+            var control = this.tabbedView.Documents[ 0 ].Control;
+            if( control as DataStoreCollectionXUC != null )
+               this.accordionControl.SelectedElement = this.dataStoresAccordionControlElement;
+            else if( control as ConfigPathsCollectionXUC != null )
+               this.accordionControl.SelectedElement = this.configPathsAccordionControlElement;
+            else if( control as XtraUserControl != null )
+            {
+               if( this.tabbedView.Documents[ 0 ].Caption == "Employees" )
+                  this.accordionControl.SelectedElement = this.employeesAccordionControlElement;
+               else if( this.tabbedView.Documents[ 0 ].Caption == "Customers" )
+                  this.accordionControl.SelectedElement = this.customersAccordionControlElement;
+            }
+         }
+      }
+      private void RecreateUserControls( DocumentEventArgs e = null )
+      {
+         if( e == null || e.Document.Caption == "Paths" )
+         {
+            this.configPathsUserControl = this.CreateConfigPathsUserControl( "Paths" );
+         }
+         if( e == null || e.Document.Caption == "DataStores" )
+         {
+            this.dataStoresUserControl = CreateDataStoreUserControl( "DataStores" );
+         }
+         if( e == null || e.Document.Caption == "Employees" )
+         {
+            this.employeesUserControl = CreateUserControl( "Employees" );
+         }
+         if( e == null || e.Document.Caption == "Customers" )
+         {
+            this.customersUserControl = CreateUserControl( "Customers" );
+         }
+         if( e == null )
+         {
+            this.accordionControl.SelectedElement = this.configPathsAccordionControlElement;
+         }
+      }
+      private XtraUserControl CreateConfigPathsUserControl( string text )
+      {
+         XtraUserControl result = new ConfigPathsCollectionXUC( this.cpColl );
+         result.Name = text.ToLower( ) + "UserControl";
          result.Text = text;
-         LabelControl label = new LabelControl();
+         LabelControl label = new LabelControl( );
          label.Parent = result;
-         label.Appearance.Font = new Font("Tahoma", 25.25F);
+         label.Appearance.Font = new Font( "Tahoma", 25.25F );
          label.Appearance.ForeColor = Color.Gray;
          label.Dock = System.Windows.Forms.DockStyle.Fill;
          label.AutoSizeMode = LabelAutoSizeMode.None;
@@ -153,14 +182,14 @@ namespace Z900
          label.Text = text;
          return result;
       }
-      private XtraUserControl CreateConfigPathsUserControl(string text)
+      private XtraUserControl CreateDataStoreUserControl( string text )
       {
-         XtraUserControl result = new ConfigPathsCollectionXUC(this.cpColl);
-         result.Name = text.ToLower() + "UserControl";
+         XtraUserControl result = new DataStoreCollectionXUC( this.dsColl );
+         result.Name = text.ToLower( ) + "UserControl";
          result.Text = text;
-         LabelControl label = new LabelControl();
+         LabelControl label = new LabelControl( );
          label.Parent = result;
-         label.Appearance.Font = new Font("Tahoma", 25.25F);
+         label.Appearance.Font = new Font( "Tahoma", 25.25F );
          label.Appearance.ForeColor = Color.Gray;
          label.Dock = System.Windows.Forms.DockStyle.Fill;
          label.AutoSizeMode = LabelAutoSizeMode.None;
@@ -169,14 +198,14 @@ namespace Z900
          label.Text = text;
          return result;
       }
-      private XtraUserControl CreateUserControl(string text)
+      private XtraUserControl CreateUserControl( string text )
       {
-         XtraUserControl result = new XtraUserControl();
-         result.Name = text.ToLower() + "UserControl";
+         XtraUserControl result = new XtraUserControl( );
+         result.Name = text.ToLower( ) + "UserControl";
          result.Text = text;
-         LabelControl label = new LabelControl();
+         LabelControl label = new LabelControl( );
          label.Parent = result;
-         label.Appearance.Font = new Font("Tahoma", 25.25F);
+         label.Appearance.Font = new Font( "Tahoma", 25.25F );
          label.Appearance.ForeColor = Color.Gray;
          label.Dock = System.Windows.Forms.DockStyle.Fill;
          label.AutoSizeMode = LabelAutoSizeMode.None;

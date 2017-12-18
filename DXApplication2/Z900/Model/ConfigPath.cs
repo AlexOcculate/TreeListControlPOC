@@ -11,6 +11,7 @@ namespace Z900.Model
    [Serializable( )]
    public partial class ConfigPath
    {
+      #region --- Enums... ---
       public enum ConfigPathTypeEnum
       {
          DataStores = 0,
@@ -38,6 +39,7 @@ namespace Z900.Model
          CommonPictures = Environment.SpecialFolder.CommonPictures, // 54,
          CommonVideos = Environment.SpecialFolder.CommonVideos, // 55,
       }
+      #endregion
 
       //[Key]
       //[Display(AutoGenerateField = false)]

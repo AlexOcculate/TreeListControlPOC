@@ -80,6 +80,9 @@
     <Compile Include="Model\ConfigPath.Rules.cs" />
     <Compile Include="Model\ConfigPath.cs" />
     <Compile Include="Model\ConfigPathCollection.cs" />
+    <Compile Include="Model\DataStore.Rules.cs" />
+    <Compile Include="Model\DataStore.cs" />
+    <Compile Include="Model\DataStoreCollection.cs" />
     <Compile Include="NavigationControllerForm.cs">
       <SubType>Form</SubType>
     </Compile>

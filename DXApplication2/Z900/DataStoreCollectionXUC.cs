@@ -4,25 +4,94 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Windows.Forms;
+using Z900.Model;
 
 namespace Z900
 {
    public partial class DataStoreCollectionXUC : DevExpress.XtraEditors.XtraUserControl
    {
-      public DataStoreCollectionXUC()
-      {
-         InitializeComponent( );
+//      private BindingList<ConfigPath> dirList;
+      private DataStoreCollection dsColl;
 
-         BindingList<DataStore4> dataSource = GetDataSource( );
-         this.gridControl.DataSource = dataSource;
-         this.bsiRecordsCount.Caption = "RECORDS : " + dataSource.Count;
+      public DataStoreCollectionXUC( DataStoreCollection dsColl = null )
+      {
+         this.dsColl = dsColl;
+         InitializeComponent( );
+         if( this.DesignMode )
+         {
+            //this.gridControl.DataSource = DataStoreCollection.NewCollectionTemplate( ).List;
+         }
+         else
+         {
+            this.gridControl.DataSource = this.dsColl?.List;
+            this.gridControl.RefreshDataSource( );
+            this.gridControl.Refresh( );
+         }
+         this.bsiRecordsCount.Caption = null;
+         {
+            this.gridControl.UseEmbeddedNavigator = true;
+            this.gridView.OptionsView.NewItemRowPosition = NewItemRowPosition.Top;
+            //this.gridView.InitNewRow += new InitNewRowEventHandler( this.gridView1_InitNewRow );
+            this.gridView.OptionsView.ShowFooter = true;
+            this.gridView.OptionsBehavior.Editable = true;
+            this.gridView.OptionsBehavior.ReadOnly = false;
+            {
+               this.gridView.Columns[ DataStore.IS_ACTIVE_FIELDNAME ].Visible = true;
+               this.gridView.Columns[ DataStore.WAS_TESTED_FIELDNAME ].Visible = false;
+               this.gridView.Columns[ DataStore.NAME_FIELDNAME ].Visible = true;
+               this.gridView.Columns[ DataStore.CONNECTION_STRING_FIELDNAME ].Visible = true;
+               this.gridView.Columns[ DataStore.LOGIN_ID_FIELDNAME ].Visible = true;
+               this.gridView.Columns[ DataStore.PASSWORD_FIELDNAME ].Visible = false;
+               this.gridView.Columns[ DataStore.FULLPATHNAME_FIELDNAME ].Visible = false;
+               this.gridView.Columns[ DataStore.CREATION_FIELDNAME ].Visible = false;
+               this.gridView.Columns[ DataStore.SYNTAX_PROVIDER_FIELDNAME ].Visible = true;
+               this.gridView.Columns[ DataStore.METADATA_PROVIDER_FIELDNAME ].Visible = true;
+               this.gridView.Columns[ DataStore.PREVIEW_FIELDNAME ].Visible = false;
+               this.gridView.Columns[ DataStore.DESCRIPTION_FIELDNAME ].Visible = false;
+            }
+            {
+               this.gridView.Columns[ DataStore.WAS_TESTED_FIELDNAME ].OptionsColumn.AllowFocus = false;
+               this.gridView.Columns[ DataStore.FULLPATHNAME_FIELDNAME ].OptionsColumn.AllowFocus = false;
+               this.gridView.Columns[ DataStore.CREATION_FIELDNAME ].OptionsColumn.AllowFocus = false;
+               this.gridView.Columns[ DataStore.PREVIEW_FIELDNAME ].OptionsColumn.AllowFocus = false;
+            }
+            {
+               this.gridView.Columns[ DataStore.WAS_TESTED_FIELDNAME ].OptionsColumn.ReadOnly = true;
+               this.gridView.Columns[ DataStore.FULLPATHNAME_FIELDNAME ].OptionsColumn.ReadOnly = true;
+            }
+         }
+      }
+      private void DataStoreCollectionXUC_Load( object sender, EventArgs e )
+      {
+         //BindingList<DataStore4> dataSource = this.GetDataSource( );
+         //this.bsiRecordsCount.Caption = "RECORDS : " + dataSource.Count;
+         //{
+
+         //foreach( ConfigPath cp in this.dirList )
+         //{
+         //   try
+         //   {
+         //      string[ ] files = Directory.GetFiles( cp.PathDir, "*.ds.xml", SearchOption.TopDirectoryOnly );
+         //      foreach( string s in files )
+         //      {
+         //         this.dsColl.
+         //      }
+         //   catch( Exception ex )
+         //   {
+
+         //   }
+         //}
+         //}
+         //this.gridControl.DataSource = this.dirList;
+         //this.bsiRecordsCount.Caption = "RECORDS : " + this.dirList.Count;
+
       }
       void bbiPrintPreview_ItemClick( object sender, ItemClickEventArgs e )
       {
          this.gridControl.ShowRibbonPrintPreview( );
       }
-
       private void bbiNew_ItemClick( object sender, ItemClickEventArgs e )
       {
          BindingList<DataStore4> dataSource = this.gridControl.DataSource as BindingList<DataStore4>;
@@ -32,11 +101,9 @@ namespace Z900
             Name = System.DateTime.UtcNow + "="
          } );
       }
-
       private void bbiEdit_ItemClick( object sender, ItemClickEventArgs e )
       {
       }
-
       private void bbiDelete_ItemClick( object sender, ItemClickEventArgs e )
       {
          if( MessageBox.Show( "Delete row?", "Confirmation", MessageBoxButtons.YesNo ) != DialogResult.Yes )
@@ -46,7 +113,6 @@ namespace Z900
             return;
          this.gridView.DeleteRow( focusedRowHandle );
       }
-
       private void bbiRefresh_ItemClick( object sender, ItemClickEventArgs e )
       {
          this.gridControl.RefreshDataSource( );
@@ -94,6 +160,9 @@ namespace Z900
       }
       #endregion
    }
+
+   ///////////////////////////////////////////////////////////////////////////////
+
    public class DataStore4
    {
       public const string RootGroup = "<Root>";

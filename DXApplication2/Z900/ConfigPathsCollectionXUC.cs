@@ -6,6 +6,7 @@ using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using Z900.Model;
+using static Z900.Model.ConfigPath;
 
 namespace Z900
 {
@@ -209,5 +210,29 @@ namespace Z900
          this.gridView.Columns[ ConfigPath.SHORTCUT_FIELDNAME ].BestFit( );
          //this.gridView.Columns[ ConfigPath.BASEDIR_FIELDNAME ].BestFit( );
       }
+      //
+      //public BindingList<ConfigPath> GetDirList( ConfigPathTypeEnum type )
+      //{
+      //   if( this.cpColl == null )
+      //   {
+
+      //   }
+      //   if( !Enum.IsDefined( typeof( ConfigPathTypeEnum ), type ) )
+      //   {
+      //      throw new ArgumentOutOfRangeException( "type" );
+      //   }
+      //   if( this.List == null || this.List.Count < 1 )
+      //   {
+      //      return emptyList;
+      //   }
+      //   BindingList<ConfigPath> list = new BindingList<ConfigPath>( );
+      //   foreach( ConfigPath e in this.List )
+      //   {
+      //      if( e.Type == (int) type )
+      //         list.Add( e );
+      //   }
+      //   return list;
+      //}
+
    }
 }
