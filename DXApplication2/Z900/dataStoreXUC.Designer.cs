@@ -1,6 +1,6 @@
 ﻿namespace Z900
 {
-    partial class dataStoreXUC
+    partial class DataStoreXUC
     {
         /// <summary>
         /// Required designer variable.

@@ -15,9 +15,9 @@ using System.IO;
 
 namespace Z900
 {
-    public partial class dataStoreXUC : DevExpress.XtraEditors.XtraUserControl
+    public partial class DataStoreXUC : DevExpress.XtraEditors.XtraUserControl
     {
-        public dataStoreXUC()
+        public DataStoreXUC()
         {
             InitializeComponent();
 

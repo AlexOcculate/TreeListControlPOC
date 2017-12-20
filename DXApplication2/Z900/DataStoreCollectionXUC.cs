@@ -1,9 +1,9 @@
 ﻿using DevExpress.XtraBars;
+using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Windows.Forms;
 using Z900.Model;
@@ -12,8 +12,9 @@ namespace Z900
 {
    public partial class DataStoreCollectionXUC : DevExpress.XtraEditors.XtraUserControl
    {
-//      private BindingList<ConfigPath> dirList;
+      //      private BindingList<ConfigPath> dirList;
       private DataStoreCollection dsColl;
+      private RepositoryItemComboBox editorForDisplay, editorForEditing;
 
       public DataStoreCollectionXUC( DataStoreCollection dsColl = null )
       {
@@ -32,24 +33,25 @@ namespace Z900
          this.bsiRecordsCount.Caption = null;
          {
             this.gridControl.UseEmbeddedNavigator = true;
+            this.gridControl.ForceInitialize( );
             this.gridView.OptionsView.NewItemRowPosition = NewItemRowPosition.Top;
-            //this.gridView.InitNewRow += new InitNewRowEventHandler( this.gridView1_InitNewRow );
+            this.gridView.InitNewRow += new InitNewRowEventHandler( this.gridView_InitNewRow );
             this.gridView.OptionsView.ShowFooter = true;
             this.gridView.OptionsBehavior.Editable = true;
             this.gridView.OptionsBehavior.ReadOnly = false;
             {
-               this.gridView.Columns[ DataStore.IS_ACTIVE_FIELDNAME ].Visible = true;
-               this.gridView.Columns[ DataStore.WAS_TESTED_FIELDNAME ].Visible = false;
-               this.gridView.Columns[ DataStore.NAME_FIELDNAME ].Visible = true;
-               this.gridView.Columns[ DataStore.CONNECTION_STRING_FIELDNAME ].Visible = true;
-               this.gridView.Columns[ DataStore.LOGIN_ID_FIELDNAME ].Visible = true;
-               this.gridView.Columns[ DataStore.PASSWORD_FIELDNAME ].Visible = false;
-               this.gridView.Columns[ DataStore.FULLPATHNAME_FIELDNAME ].Visible = false;
-               this.gridView.Columns[ DataStore.CREATION_FIELDNAME ].Visible = false;
-               this.gridView.Columns[ DataStore.SYNTAX_PROVIDER_FIELDNAME ].Visible = true;
-               this.gridView.Columns[ DataStore.METADATA_PROVIDER_FIELDNAME ].Visible = true;
-               this.gridView.Columns[ DataStore.PREVIEW_FIELDNAME ].Visible = false;
-               this.gridView.Columns[ DataStore.DESCRIPTION_FIELDNAME ].Visible = false;
+               //this.gridView.Columns[ DataStore.IS_ACTIVE_FIELDNAME ].Visible = true;
+               //this.gridView.Columns[ DataStore.WAS_TESTED_FIELDNAME ].Visible = false;
+               //this.gridView.Columns[ DataStore.NAME_FIELDNAME ].Visible = true;
+               //this.gridView.Columns[ DataStore.CONNECTION_STRING_FIELDNAME ].Visible = true;
+               //this.gridView.Columns[ DataStore.LOGIN_ID_FIELDNAME ].Visible = true;
+               //this.gridView.Columns[ DataStore.PASSWORD_FIELDNAME ].Visible = false;
+               //this.gridView.Columns[ DataStore.FULLPATHNAME_FIELDNAME ].Visible = true;
+               //this.gridView.Columns[ DataStore.CREATION_FIELDNAME ].Visible = false;
+               //this.gridView.Columns[ DataStore.SYNTAX_PROVIDER_FIELDNAME ].Visible = true;
+               //this.gridView.Columns[ DataStore.METADATA_PROVIDER_FIELDNAME ].Visible = true;
+               //this.gridView.Columns[ DataStore.PREVIEW_FIELDNAME ].Visible = false;
+               //this.gridView.Columns[ DataStore.DESCRIPTION_FIELDNAME ].Visible = false;
             }
             {
                this.gridView.Columns[ DataStore.WAS_TESTED_FIELDNAME ].OptionsColumn.AllowFocus = false;
@@ -59,47 +61,62 @@ namespace Z900
             }
             {
                this.gridView.Columns[ DataStore.WAS_TESTED_FIELDNAME ].OptionsColumn.ReadOnly = true;
-               this.gridView.Columns[ DataStore.FULLPATHNAME_FIELDNAME ].OptionsColumn.ReadOnly = true;
+               this.gridView.Columns[ DataStore.FULLPATHNAME_FIELDNAME ].OptionsColumn.ReadOnly = false;
+            }
+            {
+               // In-place editors used in display and edit modes respectively. 
+               this.editorForDisplay = new RepositoryItemComboBox( );
+               this.editorForEditing = new RepositoryItemComboBox( );
+               {
+                  foreach( ConfigPath cp in this.dsColl.DirList )
+                  {
+                     this.editorForEditing.Items.Add( cp.PathDir );
+                  }
+               }
+               RepositoryItem[ ] ri = new RepositoryItem[ ] { this.editorForDisplay, this.editorForEditing };
+               this.gridView.GridControl.RepositoryItems.AddRange( ri );
+               this.gridView.Columns[ DataStore.DIRECTORYNAME_FIELDNAME ].ColumnEdit = this.editorForDisplay;
             }
          }
       }
+      private void gridView_InitNewRow( object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e )
+      {
+         GridView gv = sender as GridView;
+         var o = DataStore.NewTemplate( this.dsColl );
+         gv.SetRowCellValue( e.RowHandle, gv.Columns[ DataStore.CREATION_DISPLAYNAME ], o.Creation );
+         //gv.SetRowCellValue( e.RowHandle, gv.Columns[ DataStore.FULLPATHNAME_DISPLAYNAME ], o.FullPathName );
+         gv.SetRowCellValue( e.RowHandle, gv.Columns[ DataStore.NAME_DISPLAYNAME ], o.Name );
+         gv.SetRowCellValue( e.RowHandle, gv.Columns[ DataStore.IS_ACTIVE_DISPLAYNAME ], o.IsActive );
+         gv.SetRowCellValue( e.RowHandle, gv.Columns[ DataStore.WAS_TESTED_DISPLAYNAME ], o.wasTested );
+         gv.SetRowCellValue( e.RowHandle, gv.Columns[ DataStore.CONNECTION_STRING_DISPLAYNAME ], o.ConnectionString );
+         gv.SetRowCellValue( e.RowHandle, gv.Columns[ DataStore.LOGIN_ID_DISPLAYNAME ], o.LoginID );
+         gv.SetRowCellValue( e.RowHandle, gv.Columns[ DataStore.PASSWORD_DISPLAYNAME ], o.Password );
+         gv.SetRowCellValue( e.RowHandle, gv.Columns[ DataStore.SYNTAX_PROVIDER_DISPLAYNAME ], o.SyntaxProvider );
+         gv.SetRowCellValue( e.RowHandle, gv.Columns[ DataStore.METADATA_PROVIDER_DISPLAYNAME ], o.MetadataProvider );
+         gv.SetRowCellValue( e.RowHandle, gv.Columns[ DataStore.PREVIEW_DISPLAYNAME ], o.Preview );
+         gv.SetRowCellValue( e.RowHandle, gv.Columns[ DataStore.DESCRIPTION_DISPLAYNAME ], o.Description );
+         //this.bsiRecordsCount.Caption = "RECORDS : " + ((BindingList<ConfigPath>) this.gridControl.DataSource).Count;
+      }
       private void DataStoreCollectionXUC_Load( object sender, EventArgs e )
       {
-         //BindingList<DataStore4> dataSource = this.GetDataSource( );
-         //this.bsiRecordsCount.Caption = "RECORDS : " + dataSource.Count;
-         //{
-
-         //foreach( ConfigPath cp in this.dirList )
-         //{
-         //   try
-         //   {
-         //      string[ ] files = Directory.GetFiles( cp.PathDir, "*.ds.xml", SearchOption.TopDirectoryOnly );
-         //      foreach( string s in files )
-         //      {
-         //         this.dsColl.
-         //      }
-         //   catch( Exception ex )
-         //   {
-
-         //   }
-         //}
-         //}
-         //this.gridControl.DataSource = this.dirList;
-         //this.bsiRecordsCount.Caption = "RECORDS : " + this.dirList.Count;
-
+         this.gridView.Columns[ DataStore.CREATION_FIELDNAME ].BestFit( );
+         this.gridView.Columns[ DataStore.FULLPATHNAME_FIELDNAME ].BestFit( );
+         this.gridView.Columns[ DataStore.NAME_FIELDNAME ].BestFit( );
+         this.gridView.Columns[ DataStore.IS_ACTIVE_FIELDNAME ].BestFit( );
+         this.gridView.Columns[ DataStore.WAS_TESTED_FIELDNAME ].BestFit( );
+         this.gridView.Columns[ DataStore.CONNECTION_STRING_FIELDNAME ].BestFit( );
+         this.gridView.Columns[ DataStore.LOGIN_ID_FIELDNAME ].BestFit( );
+         this.gridView.Columns[ DataStore.PASSWORD_FIELDNAME ].BestFit( );
+         this.gridView.Columns[ DataStore.SYNTAX_PROVIDER_FIELDNAME ].BestFit( );
+         this.gridView.Columns[ DataStore.METADATA_PROVIDER_FIELDNAME ].BestFit( );
+         this.gridView.Columns[ DataStore.PREVIEW_FIELDNAME ].BestFit( );
+         this.gridView.Columns[ DataStore.DESCRIPTION_FIELDNAME ].BestFit( );
       }
-      void bbiPrintPreview_ItemClick( object sender, ItemClickEventArgs e )
-      {
-         this.gridControl.ShowRibbonPrintPreview( );
-      }
+
       private void bbiNew_ItemClick( object sender, ItemClickEventArgs e )
       {
-         BindingList<DataStore4> dataSource = this.gridControl.DataSource as BindingList<DataStore4>;
-         dataSource.Add( new DataStore4( )
-         {
-            ID = 1,
-            Name = System.DateTime.UtcNow + "="
-         } );
+         BindingList<DataStore> dataSource = this.gridControl.DataSource as BindingList<DataStore>;
+         dataSource.Add( DataStore.NewTemplate(  this.dsColl ) );
       }
       private void bbiEdit_ItemClick( object sender, ItemClickEventArgs e )
       {
@@ -117,226 +134,76 @@ namespace Z900
       {
          this.gridControl.RefreshDataSource( );
       }
-      //
-      #region --- DATASOURCE ---
-      public BindingList<DataStore4> GetDataSource()
+      private void bbiPrintPreview_ItemClick( object sender, ItemClickEventArgs e )
       {
-         BindingList<DataStore4> result = new BindingList<DataStore4>( );
-         result.Add( new DataStore4( )
+         this.gridControl.ShowRibbonPrintPreview( );
+      }
+
+      private void gridView_ValidatingEditor( object sender, DevExpress.XtraEditors.Controls.BaseContainerValidateEditorEventArgs e )
+      {
+         GridView gv = sender as GridView;
+         GridColumn gcName = gv.Columns[ DataStore.NAME_FIELDNAME ];
+         GridColumn gcPathName = gv.Columns[ DataStore.DIRECTORYNAME_FIELDNAME ];
+         GridColumn gcFullPathName = gv.Columns[ DataStore.FULLPATHNAME_FIELDNAME ];
+         if( gv.FocusedColumn == gcPathName )
          {
-            ID = 1,
-            Name = "ACME",
-            Description = "Alex Mello Occulate!!!",
-            Props = new List<Props>( )
-                {
-                    new Props("prop0", "value0"),
-                    new Props("prop1", "value1"),
-                    new Props("prop2", "value2"),
-                    new Props("prop3", "value3"),
-                    new Props("prop0", "value0"),
-                    new Props("prop1", "value1"),
-                    new Props("prop2", "value2"),
-                    new Props("prop3", "value3"),
-                }
-         } );
-         result.Add( new DataStore4( )
+            string pathName = e.Value as string;
+            string fileName = gv.GetRowCellValue( gv.FocusedRowHandle, gcName ) as string;
+            if( fileName == null )
+            {
+               fileName = "<PLACEHOLDER>";
+               gv.SetRowCellValue( gv.FocusedRowHandle, gcName, fileName );
+            }
+            string fileNameTrimmed = fileName.Trim( );
+            string fullPathName = pathName + @"\" + fileNameTrimmed + ".ds.xml";
+            gv.SetRowCellValue( gv.FocusedRowHandle, gcFullPathName, fullPathName );
+            return;
+         }
+         if( gv.FocusedColumn == gcName )
          {
-            ID = 2,
-            Name = "Electronics Depot",
-            Description = "Alex da Silva Mello",
-            Props = new List<Props>( )
-                {
-                    new Props("prop0", "value0"),
-                    new Props("prop1", "value1"),
-                    new Props("prop2", "value2"),
-                    new Props("prop3", "value3"),
-                    new Props("prop0", "value0"),
-                    new Props("prop1", "value1"),
-                    new Props("prop2", "value2"),
-                    new Props("prop3", "value3"),
-                }
-         } );
-         return result;
-      }
-      #endregion
-   }
-
-   ///////////////////////////////////////////////////////////////////////////////
-
-   public class DataStore4
-   {
-      public const string RootGroup = "<Root>";
-      public const string MainContent = RootGroup + "/Data Store Connection";
-      public const string TabbedGroup = MainContent + "/{Tabs}";
-      public const string ConnectionGroup = TabbedGroup + "/Connection";
-      public const string ConnectionFlagsGroup = ConnectionGroup + "/<ConnectionFlags->";
-      public const string ProvidersGroup = TabbedGroup + "/Providers";
-      public const string PreviewGroup = TabbedGroup + "/Preview";
-      public const string DescriptionGroup = TabbedGroup + "/Description";
-      public const string ServerGroup = TabbedGroup + "/Server";
-      //
-      [Display( Name = "Creation:", AutoGenerateField = false )]
-      [ReadOnly( true )]
-      [DataType( DataType.DateTime )]
-      public System.DateTime Creation { get; set; }
-      //
-      [Display( Name = "ID:", AutoGenerateField = false )]
-      public int ID { get; set; }
-      //
-      [Display( Name = "ParentID:", AutoGenerateField = false )]
-      public int ParentID { get; set; }
-      //
-      [Display( Name = "Is a Folder?", AutoGenerateField = false ) /*, Required*/ ]
-      public bool IsFolder { get; set; }
-      //
-      [Display( Name = "Name:", GroupName = MainContent, Order = 1 )]
-      [StringLength( 100, MinimumLength = 1 )]
-      [Required]
-      public string Name { get; set; }
-      //
-      [Display( Name = "Connection String:"
-          , GroupName = ConnectionGroup
-          , Order = 1
-          , Description =
-          "String that specifies information about a data source and the means of connecting to it."
-          + "\n"
-          + "It is passed in code to an underlying driver or provider in order to initiate the connection."
-          + "\n"
-          + "Whilst commonly used for a database connection, the data source could also be a"
-          + "\n"
-          + "spreadsheet or text file."
-          )]
-      [StringLength( 100, MinimumLength = 1 )]
-      [Required]
-      public string ConnectionString { get; set; }
-      //
-      [Display( Name = "Login ID:"
-          , GroupName = ConnectionGroup
-          , Order = 2
-          , Description = "Login ID is the unique ID that you use in conjuction with"
-          + "\n"
-          + "your password to log in to Data Stores. The purpose of the"
-          + "\n"
-          + "Login ID is to identify you and distinguish you from other"
-          + "\n"
-          + "users."
-          )]
-      [StringLength( 100, MinimumLength = 1 )]
-      public string Login { get; set; }
-      //
-      [Display( Name = "Password:", GroupName = ConnectionGroup, Order = 3 )]
-      [DataType( DataType.Password )]
-      [StringLength( 100, MinimumLength = 8 )]
-      public string Password { get; set; }
-      //
-      [Display( Name = "Active?", GroupName = ConnectionFlagsGroup, Order = 6 )]
-      public bool IsActive { get; set; }
-      //
-      [Display( Name = "Connection Tested?", GroupName = ConnectionFlagsGroup, Order = 5 )]
-      [ReadOnly( true )]
-      public bool ConnectionWasTested { get; set; }
-      //
-      [Display( Name = "Server:", GroupName = ServerGroup )]
-      [DataType( DataType.Url )]
-      [StringLength( 4096, MinimumLength = 1 )]
-      public string Server { get; set; }
-      //
-      [Display( Name = "Port:", GroupName = ServerGroup )]
-      [Range( 0, 65535 )]
-      public int Port { get; set; }
-      //
-      [Display( Name = "Syntax Provider:", GroupName = ProvidersGroup ), Required]
-      [EnumDataType( typeof( SyntaxProviderEnum ) )]
-      public int SyntaxProvider { get; set; }
-      public enum SyntaxProviderEnum
-      {
-         AUTO = 0,
-         GENERIC,
-         ANSI_SQL_2003,
-         ANSI_SQL_89,
-         ANSI_SQL_92,
-         FIREBIRD_1_0,
-         FIREBIRD_1_5,
-         FIREBIRD_2_0,
-         FIREBIRD_2_5,
-         IBM_DB2,
-         IBM_INFORMIX_10,
-         IBM_INFORMIX_8,
-         IBM_INFORMIX_9,
-         MS_ACCESS_2000_,
-         MS_ACCESS_2003_,
-         MS_ACCESS_97_,
-         MS_ACCESS_XP_,
-         MS_SQL_SERVER_2000,
-         MS_SQL_SERVER_2005,
-         MS_SQL_SERVER_2008,
-         MS_SQL_SERVER_2012,
-         MS_SQL_SERVER_2014,
-         MS_SQL_SERVER_7,
-         MS_SQL_SERVER_COMPACT_EDITION,
-         MYSQL_3_XX,
-         MYSQL_4_0,
-         MYSQL_4_1,
-         MYSQL_5_0,
-         ORACLE_10,
-         ORACLE_11,
-         ORACLE_7,
-         ORACLE_8,
-         ORACLE_9,
-         POSTGRESQL,
-         SQLITE,
-         SYBASE_ASE,
-         SYBASE_SQL_ANYWHERE,
-         TERADATA,
-         VISTADB,
-      }
-      //
-      [Display( Name = "Metadata Provider:", GroupName = ProvidersGroup ), Required]
-      [EnumDataType( typeof( MetadataProviderEnum ) )]
-      public int MetadataProvider { get; set; }
-      public enum MetadataProviderEnum
-      {
-         AUTO = 0,
-         GENERIC,
-         MS_SQL_SERVER,
-      }
-      //
-      [Display( Name = "Preview:", GroupName = PreviewGroup )]
-      [DataType( DataType.MultilineText )]
-      public string Preview { get; set; }
-      //
-      [Display( Name = "Description:", GroupName = DescriptionGroup )]
-      [DataType( DataType.MultilineText )]
-      public string Description { get; set; }
-
-      [Display( Name = "Properties:", GroupName = ConnectionGroup, Order = 4 )]
-      public List<Props> Props { get; set; }
-
-      public DataStore4()
-      {
-      }
-   }
-
-   [Serializable( )]
-   public class Props
-   {
-      [Display( Name = "Key:" )]
-      [StringLength( 100, MinimumLength = 1 )]
-      public string Key { get; set; }
-      [Display( Name = "Value:" )]
-      [StringLength( 100, MinimumLength = 1 )]
-      public string Value { get; set; }
-      [Display( Name = "Active?" )]
-      public bool IsActive { get; set; }
-
-      public Props()
-      {
+            //string fileName = gv.GetRowCellValue( gv.FocusedRowHandle, gcName ) as string;
+            string fileName = e.Value as string;
+            if( fileName == null )
+               return;
+            string fileNameTrimmed = fileName.Trim( );
+            char[ ] invalidFileNameChars = Path.GetInvalidFileNameChars( );
+            if( fileNameTrimmed.IndexOfAny( invalidFileNameChars ) >= 0 )
+            {
+               e.Valid = false;
+               e.ErrorText = "[Name] should not have invalid filename chars!";
+               return;
+            }
+            if( fileNameTrimmed.EndsWith( "." ) )
+            {
+               e.Valid = false;
+               e.ErrorText = "[Name] should not finish with '.'!";
+               return;
+            }
+            if( Path.HasExtension( fileNameTrimmed ) )
+            {
+               e.Valid = false;
+               e.ErrorText = "[Name] should not have '" + Path.GetExtension( fileNameTrimmed ) + "' extension!";
+               return;
+            }
+            string pathName = gv.GetRowCellValue( gv.FocusedRowHandle, gcPathName ) as string;
+            string fullPathName = pathName + @"\" + fileNameTrimmed + ".ds.xml";
+            gv.SetRowCellValue( gv.FocusedRowHandle, gcFullPathName, fullPathName );
+            return;
+         }
       }
 
-      public Props( string key, string value )
+      private void gridView_ValidateRow( object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e )
       {
-         Key = key ?? throw new ArgumentNullException( nameof( key ) );
-         Value = value ?? throw new ArgumentNullException( nameof( value ) );
+         GridView gv = sender as GridView;
+         GridColumn gcName = gv.Columns[ DataStore.NAME_FIELDNAME ];
+         GridColumn gcPathName = gv.Columns[ DataStore.DIRECTORYNAME_FIELDNAME ];
+//         GridColumn gcFullPathName = gv.Columns[ DataStore.FULLPATHNAME_FIELDNAME ];
+      }
+
+      private void gridView_CustomRowCellEditForEditing( object sender, CustomRowCellEditEventArgs e )
+      {
+         if( e.Column.FieldName == DataStore.DIRECTORYNAME_FIELDNAME )
+            e.RepositoryItem = this.editorForEditing;
       }
    }
 }

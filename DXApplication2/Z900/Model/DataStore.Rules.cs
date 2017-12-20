@@ -11,7 +11,8 @@ namespace Z900.Model
       public DataStore()
       {
       }
-      public static DataStore NewTemplate()
+
+      public static DataStore NewTemplate( DataStoreCollection dsColl )
       {
          // ATTENTION: THIS MUST BE NOT CHANGED "AtLeastOneDataSource" ...
          DataStore ds = new DataStore( );

@@ -19,6 +19,9 @@ namespace Z900
          BonusSkins.Register( );
          SkinManager.EnableFormSkins( );
          Application.Run( new NavigationControllerForm( ) );
+
+         //Properties.Settings.Default[ "SomeProperty" ] = "Some Value";
+         //Properties.Settings.Default.Save( ); // Saves settings in application configuration file
       }
 
       public static string BASEDIR = @"Z900";

@@ -1,4 +1,6 @@
-﻿using DevExpress.XtraBars;
+﻿using ActiveQueryBuilder.Core;
+using ActiveQueryBuilder.View.WinForms;
+using DevExpress.XtraBars;
 using DevExpress.XtraBars.Docking2010.Views;
 using DevExpress.XtraBars.Navigation;
 using DevExpress.XtraBars.Ribbon;
@@ -8,6 +10,9 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using Z900.Model;
+using DevExpress.DataAccess.ConnectionParameters;
+using DevExpress.DataAccess.Sql;
+using DevExpress.Xpo.DB;
 
 namespace Z900
 {
@@ -155,7 +160,7 @@ namespace Z900
          }
          if( e == null || e.Document.Caption == "Employees" )
          {
-            this.employeesUserControl = CreateUserControl( "Employees" );
+            this.employeesUserControl = CreateEmpregadoUserControl( "Employees" );
          }
          if( e == null || e.Document.Caption == "Customers" )
          {
@@ -214,5 +219,49 @@ namespace Z900
          label.Text = text;
          return result;
       }
+      private XtraUserControl CreateEmpregadoUserControl( string text )
+      {
+         BindingList<DataStore> dataStores = this.dsColl.GetDataStores( );
+         this.createQueryBuilder( dataStores[ 0 ].ConnectionString );
+         XtraUserControl result = new XtraUserControl( );
+         result.Name = text.ToLower( ) + "UserControl";
+         result.Text = text;
+         LabelControl label = new LabelControl( );
+         label.Parent = result;
+         label.Appearance.Font = new Font( "Tahoma", 25.25F );
+         label.Appearance.ForeColor = Color.Gray;
+         label.Dock = System.Windows.Forms.DockStyle.Fill;
+         label.AutoSizeMode = LabelAutoSizeMode.None;
+         label.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+         label.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+         label.Text = text;
+         return result;
+      }
+
+      private QueryBuilder _qb;
+      private void createQueryBuilder( string connectionString, bool loadDefaultDatabaseOnly = false, bool loadSystemObjects = false, bool withFields = true )
+      {
+         this._qb = new QueryBuilder( )
+         {
+            SyntaxProvider = new SQLiteSyntaxProvider( ),
+            MetadataProvider = new SQLiteMetadataProvider( )
+         };
+         SQLiteConnectionParameters connParms = new SQLiteConnectionParameters( );
+         connParms.FileName = connectionString;
+         connParms.Password = "password";
+         //string cs = SQLiteConnectionProvider.GetConnectionString( connectionString );
+         string cs = @"Data Source=" + connectionString;//+ ";Version=3;";
+         this._qb.MetadataProvider.Connection = new System.Data.SQLite.SQLiteConnection( cs );
+         {
+            MetadataLoadingOptions loadingOptions = this._qb.SQLContext.MetadataContainer.LoadingOptions;
+            loadingOptions.LoadDefaultDatabaseOnly = loadDefaultDatabaseOnly;
+            loadingOptions.LoadSystemObjects = loadSystemObjects;
+            //loadingOptions.IncludeFilter.Types = MetadataType.Field;
+            //loadingOptions.ExcludeFilter.Schemas.Add("dbo");
+         }
+         //qb.InitializeDatabaseSchemaTree();
+         this._qb.MetadataContainer.LoadAll( withFields );
+      } // createQueryBuilder(...)
+
    }
 }

@@ -132,11 +132,24 @@ namespace Z900.Model
       [StringLength( 50, MinimumLength = 1 )]
       public string Password { get; set; }
 
+      public const string DIRECTORYNAME_DISPLAYNAME = "DirectoryName";
+      public const string DIRECTORYNAME_FIELDNAME = "DirectoryName";
+      public const string DIRECTORYNAME_DESCRIPTION = null;
+      private string _directoryName;
+      [Display( Name = DIRECTORYNAME_DISPLAYNAME, Description = DIRECTORYNAME_DESCRIPTION )]
+      //      [ReadOnly( true )]
+      [XmlIgnore]
+      public string DirectoryName
+      {
+         get { return Path.GetDirectoryName( this.FullPathName ); }
+         set { this._directoryName = value; }
+      }
+
       public const string FULLPATHNAME_DISPLAYNAME = "FullPathName";
       public const string FULLPATHNAME_FIELDNAME = "FullPathName";
       public const string FULLPATHNAME_DESCRIPTION = null;
       [Display( Name = FULLPATHNAME_DISPLAYNAME, Description = FULLPATHNAME_DESCRIPTION )]
-      [ReadOnly( true )]
+      //      [ReadOnly( true )]
       [XmlIgnore]
       public string FullPathName { get; set; }
 
