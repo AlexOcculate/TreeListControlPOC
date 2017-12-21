@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColumnQN.cs" />
+    <Compile Include="ExtractMetadataValues.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

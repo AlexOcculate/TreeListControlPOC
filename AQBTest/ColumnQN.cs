@@ -24,11 +24,24 @@ namespace AQBTest
       public ColumnQN()
       {
       }
+      //
+      public const string METADATA_PROVIDER_FIELDNAME = "MetadataProvider";
+      public string MetadataProvider { get; set; }
+      public const string SYNTAX_PROVIDER_FIELDNAME = "SyntaxProvider";
+      public string SyntaxProvider { get; set; }
 
+      public const string ID_FIELDNAME = "ID";
+      public int ID { get; set; }
+      public const string PARENT_ID_FIELDNAME = "ParentID";
+      public int ParentID { get; set; }
+      //
       public const string IS_SYSTEM_FIELDNAME = "IsSystem";
       public bool IsSystem { get; set; }
       //
+      public const string TYPE_FIELDNAME = "Type";
       public string Type { get; set; }
+      public const string PARENT_TYPE_FIELDNAME = "ParentType";
+      public string ParentType { get; set; }
       //
       public string Cardinality { get; set; } // FK
       public int FieldsCount { get; set; }
