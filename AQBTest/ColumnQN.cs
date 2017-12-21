@@ -1,8 +1,4 @@
-﻿using ActiveQueryBuilder.Core;
-using System;
-using System.Linq;
-
-namespace AQBTest
+﻿namespace AQBTest
 {
    public class ColumnQN
    {
@@ -43,15 +39,30 @@ namespace AQBTest
       public const string PARENT_TYPE_FIELDNAME = "ParentType";
       public string ParentType { get; set; }
       //
+      public const string CARDINALYTY_FIELDNAME = "Cardinality";
+      public const string CARDINALYTY_DISPLAYNAME = "FK Cardinality";
       public string Cardinality { get; set; } // FK
+      public const string FIELDSCOUNT_FIELDNAME = "FieldsCount";
+      public const string FIELDSCOUNT_DISPLAYNAME = "FK Fields Count";
       public int FieldsCount { get; set; }
+      public const string FIELDS_FIELDNAME = "Fields";
+      public const string FIELDS_DISPLAYNAME = "FK Fields";
       public string Fields { get; set; }
       //
+      public const string REFERENCED_CARDINALYTY_NAME_FIELDNAME = "ReferencedCardinality";
+      public const string REFERENCED_CARDINALYTY_NAME_DISPLAYNAME = "TK Cardinality";
       public string ReferencedCardinality { get; set; } // FK
+      public const string REFERENCED_OBJECT_FIELDNAME = "ReferencedObject";
+      public const string REFERENCED_OBJECT_DISPLAYNAME = "TK Object";
       public string ReferencedObject { get; set; }
       public const string REFERENCED_OBJECT_NAME_FIELDNAME = "ReferencedObjectName";
+      public const string REFERENCED_OBJECT_NAME_DISPLAYNAME = "TK Object Name";
       public string ReferencedObjectName { get; set; }
+      public const string REFERENCED_FIELDS_COUNT_FIELDNAME = "ReferencedFieldsCount";
+      public const string REFERENCED_FIELDS_COUNT_DISPLAYNAME = "TK Fields Count";
       public int ReferencedFieldsCount { get; set; }
+      public const string REFERENCED_FIELDS_FIELDNAME = "ReferencedFields";
+      public const string REFERENCED_FIELDS_DISPLAYNAME = "TK Fields";
       public string ReferencedFields { get; set; }
       //
       //public string Root { get; set; }
@@ -71,6 +82,7 @@ namespace AQBTest
       public const string ALTNAME_FIELDNAME = "AltName";
       public string AltName { get; set; }
       public const string FIELD_FIELDNAME = "Field";
+      public const string FIELD_DISPLAYNAME = "Name";
       public string Field { get; set; }
       //
       public bool HasDefault { get; set; }

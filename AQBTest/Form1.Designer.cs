@@ -39,9 +39,12 @@
          this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
          this.gridControl1 = new DevExpress.XtraGrid.GridControl();
          this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+         this.gridSplitContainer1 = new DevExpress.XtraGrid.GridSplitContainer();
          ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
          ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+         ((System.ComponentModel.ISupportInitialize)(this.gridSplitContainer1)).BeginInit();
+         this.gridSplitContainer1.SuspendLayout();
          this.SuspendLayout();
          // 
          // barManager1
@@ -124,7 +127,7 @@
          // gridControl1
          // 
          this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-         this.gridControl1.Location = new System.Drawing.Point(0, 49);
+         this.gridControl1.Location = new System.Drawing.Point(0, 0);
          this.gridControl1.MainView = this.gridView1;
          this.gridControl1.MenuManager = this.barManager1;
          this.gridControl1.Name = "gridControl1";
@@ -138,12 +141,22 @@
          this.gridView1.GridControl = this.gridControl1;
          this.gridView1.Name = "gridView1";
          // 
+         // gridSplitContainer1
+         // 
+         this.gridSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+         this.gridSplitContainer1.Grid = this.gridControl1;
+         this.gridSplitContainer1.Location = new System.Drawing.Point(0, 49);
+         this.gridSplitContainer1.Name = "gridSplitContainer1";
+         this.gridSplitContainer1.Panel1.Controls.Add(this.gridControl1);
+         this.gridSplitContainer1.Size = new System.Drawing.Size(866, 415);
+         this.gridSplitContainer1.TabIndex = 9;
+         // 
          // Form1
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.ClientSize = new System.Drawing.Size(866, 487);
-         this.Controls.Add(this.gridControl1);
+         this.Controls.Add(this.gridSplitContainer1);
          this.Controls.Add(this.barDockControlLeft);
          this.Controls.Add(this.barDockControlRight);
          this.Controls.Add(this.barDockControlBottom);
@@ -153,6 +166,8 @@
          ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
          ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
          ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+         ((System.ComponentModel.ISupportInitialize)(this.gridSplitContainer1)).EndInit();
+         this.gridSplitContainer1.ResumeLayout(false);
          this.ResumeLayout(false);
          this.PerformLayout();
 
@@ -170,6 +185,7 @@
       private DevExpress.XtraBars.BarDockControl barDockControlRight;
       private DevExpress.XtraGrid.GridControl gridControl1;
       private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+      private DevExpress.XtraGrid.GridSplitContainer gridSplitContainer1;
    }
 }
 

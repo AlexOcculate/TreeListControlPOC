@@ -28,43 +28,50 @@ namespace AQBTest
             this.qb = ExtractMetadataValues.CreateQueryBuilderMSSQL( connectionString, loadDefaultDatabaseOnly, loadSystemObjects, withFields );
             //this.gridControl1.DataSource = buildBindingListMSSQL( this.qb );
             this.gridControl1.DataSource = ExtractMetadataValues.BuildBindingList( this.qb );
-         }
-         {
-            this.gridControl1.ForceInitialize( );
-            this.gridView1.OptionsBehavior.ReadOnly = true;
-            this.gridView1.OptionsView.ShowFooter = true;
-            this.gridView1.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways;
-            //
-            this.gridView1.Columns[ ColumnQN.METADATA_PROVIDER_FIELDNAME ].Visible = false;
-            this.gridView1.Columns[ ColumnQN.SYNTAX_PROVIDER_FIELDNAME ].Visible = false;
-            this.gridView1.Columns[ ColumnQN.IS_SYSTEM_FIELDNAME ].Visible = false;
-            this.gridView1.Columns[ ColumnQN.REFERENCED_OBJECT_NAME_FIELDNAME ].Visible = false;
-            this.gridView1.Columns[ ColumnQN.SERVER_FIELDNAME ].Visible = false;
-            this.gridView1.Columns[ ColumnQN.DATABASE_FIELDNAME ].Visible = false;
-            this.gridView1.Columns[ ColumnQN.SCHEMA_FIELDNAME ].Visible = false;
-            this.gridView1.Columns[ ColumnQN.OBJECT_FIELDNAME ].Visible = false;
-            this.gridView1.Columns[ ColumnQN.NAMEQUOTED_FIELDNAME ].Visible = false;
-            this.gridView1.Columns[ ColumnQN.ALTNAME_FIELDNAME ].Visible = false;
-            this.gridView1.Columns[ ColumnQN.FIELD_FIELDNAME ].Visible = false;
-            this.gridView1.Columns[ ColumnQN.EXPRESSION_FIELDNAME ].Visible = false;
-            this.gridView1.Columns[ ColumnQN.FIELDTYPE_FIELDNAME ].Visible = false;
-            this.gridView1.Columns[ ColumnQN.IS_PK_FIELDNAME ].Visible = false;
-            this.gridView1.Columns[ ColumnQN.IS_READONLY_FIELDNAME ].Visible = false;
-            this.gridView1.Columns[ ColumnQN.DESCRIPTION_FIELDNAME ].Visible = false;
-            this.gridView1.Columns[ ColumnQN.TAG_FIELDNAME ].Visible = false;
-            this.gridView1.Columns[ ColumnQN.USERDATA_FIELDNAME ].Visible = false;
+            ExtractMetadataValues.ConfigGridControl( this.gridControl1, this.gridView1 );
          }
          //ExtractMetadataValues.serializeQueryBuilder( this.qb, filename );
          // QueryBuilder.ShowMetadataContainerLoadWizard( this.qb.MetadataContainer, this.qb.MetadataLoadingOptions );
          // MetadataEditorOptions o = MetadataEditorOptions.HideLoadDatabaseButton;
          // QueryBuilder.EditMetadataContainer( this.qb.MetadataContainer, this.qb.MetadataStructure, this.qb.MetadataLoadingOptions );
       }
+
    }
 }
 
 
 /*
-      private void serializeQueryBuilder( string filename )
+         //{
+         //   //this.gridControl1.ForceInitialize( );
+         //   this.gridView1.OptionsBehavior.ReadOnly = true;
+         //   this.gridView1.OptionsView.ShowFooter = true;
+         //   this.gridView1.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways;
+         //   //
+         //   this.gridView1.Columns[ ColumnQN.METADATA_PROVIDER_FIELDNAME ].Visible = false;
+         //   this.gridView1.Columns[ ColumnQN.SYNTAX_PROVIDER_FIELDNAME ].Visible = false;
+         //   this.gridView1.Columns[ ColumnQN.IS_SYSTEM_FIELDNAME ].Visible = false;
+         //   this.gridView1.Columns[ ColumnQN.REFERENCED_OBJECT_NAME_FIELDNAME ].Visible = false;
+         //   this.gridView1.Columns[ ColumnQN.SERVER_FIELDNAME ].Visible = false;
+         //   this.gridView1.Columns[ ColumnQN.DATABASE_FIELDNAME ].Visible = false;
+         //   this.gridView1.Columns[ ColumnQN.SCHEMA_FIELDNAME ].Visible = false;
+         //   this.gridView1.Columns[ ColumnQN.OBJECT_FIELDNAME ].Visible = false;
+         //   this.gridView1.Columns[ ColumnQN.NAMEQUOTED_FIELDNAME ].Visible = false;
+         //   this.gridView1.Columns[ ColumnQN.ALTNAME_FIELDNAME ].Visible = false;
+         //   this.gridView1.Columns[ ColumnQN.FIELD_FIELDNAME ].Visible = false;
+         //   this.gridView1.Columns[ ColumnQN.EXPRESSION_FIELDNAME ].Visible = false;
+         //   this.gridView1.Columns[ ColumnQN.FIELDTYPE_FIELDNAME ].Visible = false;
+         //   this.gridView1.Columns[ ColumnQN.IS_PK_FIELDNAME ].Visible = false;
+         //   this.gridView1.Columns[ ColumnQN.IS_READONLY_FIELDNAME ].Visible = false;
+         //   this.gridView1.Columns[ ColumnQN.DESCRIPTION_FIELDNAME ].Visible = false;
+         //   this.gridView1.Columns[ ColumnQN.TAG_FIELDNAME ].Visible = false;
+         //   this.gridView1.Columns[ ColumnQN.USERDATA_FIELDNAME ].Visible = false;
+         //   //
+         //   this.gridView1.Columns[ ColumnQN.REFERENCED_CARDINALYTY_NAME_FIELDNAME ].Caption = ColumnQN.REFERENCED_CARDINALYTY_NAME_DISPLAYNAME;
+
+         //}
+
+   
+   private void serializeQueryBuilder( string filename )
       {
          {
             string xML = this.qb.MetadataContainer.XML;

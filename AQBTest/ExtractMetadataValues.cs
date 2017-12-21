@@ -6,7 +6,156 @@
       {
          public ActiveQueryBuilder.Core.MetadataList list;
          public int index;
+         public int parentID;
+         public int grandParentID;
       }
+      public static void ConfigGridControl( DevExpress.XtraGrid.GridControl gc, DevExpress.XtraGrid.Views.Grid.GridView gv )
+      {
+         gv.ShowLoadingPanel( );
+         ((System.ComponentModel.ISupportInitialize) (gc)).BeginInit( );
+         ((System.ComponentModel.ISupportInitialize) (gv)).BeginInit( );
+         {
+            //gridControl1.ForceInitialize( );
+            gv.OptionsBehavior.ReadOnly = true;
+            //
+            gv.OptionsClipboard.ClipboardMode = DevExpress.Export.ClipboardMode.Formatted;
+            gv.OptionsClipboard.PasteMode = DevExpress.Export.PasteMode.None;
+            gv.OptionsClipboard.AllowCopy = DevExpress.Utils.DefaultBoolean.True;
+            gv.OptionsClipboard.AllowCsvFormat = DevExpress.Utils.DefaultBoolean.True;
+            gv.OptionsClipboard.AllowExcelFormat = DevExpress.Utils.DefaultBoolean.True;
+            gv.OptionsClipboard.AllowHtmlFormat = DevExpress.Utils.DefaultBoolean.True;
+            gv.OptionsClipboard.AllowRtfFormat = DevExpress.Utils.DefaultBoolean.True;
+            gv.OptionsClipboard.AllowTxtFormat = DevExpress.Utils.DefaultBoolean.True;
+            gv.OptionsClipboard.CopyCollapsedData = DevExpress.Utils.DefaultBoolean.True;
+            gv.OptionsClipboard.CopyColumnHeaders = DevExpress.Utils.DefaultBoolean.True;
+            gv.OptionsClipboard.ShowProgress = DevExpress.Export.ProgressMode.Automatic;
+            //
+            gv.OptionsMenu.ShowAddNewSummaryItem = DevExpress.Utils.DefaultBoolean.True;
+            gv.OptionsMenu.ShowAutoFilterRowItem = true;
+            gv.OptionsMenu.ShowConditionalFormattingItem = true;
+            gv.OptionsMenu.ShowDateTimeGroupIntervalItems = true;
+            gv.OptionsMenu.ShowFooterItem = true;
+            gv.OptionsMenu.ShowGroupSortSummaryItems = true;
+            gv.OptionsMenu.ShowGroupSummaryEditorItem = true;
+            gv.OptionsMenu.ShowSplitItem = true;
+            //
+            gv.OptionsView.ShowFooter = true;
+            gv.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways;
+            gv.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.RowSelect;
+            gv.OptionsSelection.MultiSelect = true;
+            //
+            gv.Columns[ ColumnQN.METADATA_PROVIDER_FIELDNAME ].Visible = false;
+            gv.Columns[ ColumnQN.SYNTAX_PROVIDER_FIELDNAME ].Visible = false;
+            gv.Columns[ ColumnQN.IS_SYSTEM_FIELDNAME ].Visible = false;
+            //
+            gv.Columns[ ColumnQN.CARDINALYTY_FIELDNAME ].Visible = false;
+            gv.Columns[ ColumnQN.FIELDSCOUNT_FIELDNAME ].Visible = false;
+            gv.Columns[ ColumnQN.FIELDS_FIELDNAME ].Visible = false;
+            //
+            gv.Columns[ ColumnQN.REFERENCED_CARDINALYTY_NAME_FIELDNAME ].Visible = false;
+            gv.Columns[ ColumnQN.REFERENCED_OBJECT_FIELDNAME ].Visible = false;
+            gv.Columns[ ColumnQN.REFERENCED_OBJECT_NAME_FIELDNAME ].Visible = false;
+            gv.Columns[ ColumnQN.REFERENCED_FIELDS_COUNT_FIELDNAME ].Visible = false;
+            gv.Columns[ ColumnQN.REFERENCED_FIELDS_FIELDNAME ].Visible = false;
+            //
+            gv.Columns[ ColumnQN.REFERENCED_OBJECT_NAME_FIELDNAME ].Visible = false;
+            gv.Columns[ ColumnQN.SERVER_FIELDNAME ].Visible = false;
+            gv.Columns[ ColumnQN.DATABASE_FIELDNAME ].Visible = false;
+            gv.Columns[ ColumnQN.SCHEMA_FIELDNAME ].Visible = false;
+            gv.Columns[ ColumnQN.OBJECT_FIELDNAME ].Visible = false;
+            gv.Columns[ ColumnQN.NAMEQUOTED_FIELDNAME ].Visible = false;
+            gv.Columns[ ColumnQN.ALTNAME_FIELDNAME ].Visible = false;
+            gv.Columns[ ColumnQN.FIELD_FIELDNAME ].Visible = false;
+            gv.Columns[ ColumnQN.EXPRESSION_FIELDNAME ].Visible = false;
+            gv.Columns[ ColumnQN.FIELDTYPE_FIELDNAME ].Visible = false;
+            gv.Columns[ ColumnQN.IS_PK_FIELDNAME ].Visible = false;
+            gv.Columns[ ColumnQN.IS_READONLY_FIELDNAME ].Visible = false;
+            gv.Columns[ ColumnQN.DESCRIPTION_FIELDNAME ].Visible = false;
+            gv.Columns[ ColumnQN.TAG_FIELDNAME ].Visible = false;
+            gv.Columns[ ColumnQN.USERDATA_FIELDNAME ].Visible = false;
+            //
+            gv.Columns[ ColumnQN.FIELD_FIELDNAME ].Caption = ColumnQN.FIELD_DISPLAYNAME;
+            //
+            gv.Columns[ ColumnQN.CARDINALYTY_FIELDNAME ].Caption = ColumnQN.CARDINALYTY_DISPLAYNAME;
+            gv.Columns[ ColumnQN.FIELDSCOUNT_FIELDNAME ].Caption = ColumnQN.FIELDSCOUNT_DISPLAYNAME;
+            gv.Columns[ ColumnQN.FIELDS_FIELDNAME ].Caption = ColumnQN.FIELDS_DISPLAYNAME;
+            //
+            gv.Columns[ ColumnQN.REFERENCED_CARDINALYTY_NAME_FIELDNAME ].Caption = ColumnQN.REFERENCED_CARDINALYTY_NAME_DISPLAYNAME;
+            gv.Columns[ ColumnQN.REFERENCED_OBJECT_FIELDNAME ].Caption = ColumnQN.REFERENCED_OBJECT_DISPLAYNAME;
+            gv.Columns[ ColumnQN.REFERENCED_OBJECT_NAME_FIELDNAME ].Caption = ColumnQN.REFERENCED_OBJECT_NAME_DISPLAYNAME;
+            gv.Columns[ ColumnQN.REFERENCED_FIELDS_COUNT_FIELDNAME ].Caption = ColumnQN.REFERENCED_FIELDS_COUNT_DISPLAYNAME;
+            gv.Columns[ ColumnQN.REFERENCED_FIELDS_FIELDNAME ].Caption = ColumnQN.REFERENCED_FIELDS_DISPLAYNAME;
+            //
+            gv.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler( gridView1_RowCellStyle );
+            gv.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler( gridView1_CustomDrawCell );
+         }
+         ((System.ComponentModel.ISupportInitialize) (gc)).EndInit( );
+         ((System.ComponentModel.ISupportInitialize) (gv)).EndInit( );
+         // gv.ShowEditForm( );
+         // gv.HideEditForm( );
+         gv.HideLoadingPanel( );
+      }
+      private static void gridView1_RowCellStyle( object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e )
+      {
+         DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+         if( view == null ) return;
+
+         object cellValue = e.CellValue;
+         if( cellValue == null )
+         {
+            e.Appearance.BackColor = System.Drawing.Color.LightYellow; //.NavajoWhite;
+            return;
+         }
+         if( cellValue is string )
+         {
+            if( string.IsNullOrWhiteSpace( cellValue as string ) )
+            {
+               if( (cellValue as string) == string.Empty )
+               {
+                  e.Appearance.BackColor = System.Drawing.Color.NavajoWhite;
+                  return;
+               }
+               // WhiteSpace 
+               e.Appearance.BackColor = System.Drawing.Color.MistyRose;
+               return;
+            }
+         }
+
+         //if( e.RowHandle != view.FocusedRowHandle &&
+         //   ((e.RowHandle % 2 == 0 && e.Column.VisibleIndex % 2 == 1) ||
+         //   (e.Column.VisibleIndex % 2 == 0 && e.RowHandle % 2 == 1)) )
+         //{
+         //}
+
+      }
+      private static void gridView1_CustomDrawCell( object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e )
+      {
+         if( e.RowHandle != DevExpress.XtraGrid.GridControl.NewItemRowHandle )
+         {
+            DevExpress.XtraGrid.Views.Grid.ViewInfo.GridCellInfo gci = e.Cell as DevExpress.XtraGrid.Views.Grid.ViewInfo.GridCellInfo;
+            DevExpress.XtraEditors.ViewInfo.TextEditViewInfo info = gci.ViewInfo as DevExpress.XtraEditors.ViewInfo.TextEditViewInfo;
+            if( info == null )
+               return;
+            info.ContextImageAlignment = DevExpress.XtraEditors.ContextImageAlignment.Far;
+            //
+            if( e.Column.FieldName == ColumnQN.TYPE_FIELDNAME || e.Column.FieldName == ColumnQN.PARENT_TYPE_FIELDNAME )
+            {
+               if( e.CellValue == null )
+               {
+                  e.Appearance.BackColor = System.Drawing.Color.LightYellow; //.NavajoWhite;
+                  return;
+               }
+               if( e.CellValue.ToString( ) == "Field" )
+               {
+                  info.ContextImage = DevExpress.Images.ImageResourceCache.Default.GetImage( "devav/view/sales_16x16.png" );
+                  info.CalcViewInfo( );
+               }
+               return;
+            }
+         }
+      }
+
+      //
       public static void SerializeQueryBuilder(
          ActiveQueryBuilder.View.WinForms.QueryBuilder qb,
          string filename
@@ -81,7 +230,7 @@
          ActiveQueryBuilder.View.WinForms.QueryBuilder qb
          )
       {
-         System.ComponentModel.BindingList<ColumnQN> listDataSource = new System.ComponentModel.BindingList<ColumnQN>( );
+         System.ComponentModel.BindingList<ColumnQN> list = new System.ComponentModel.BindingList<ColumnQN>( );
          using( var sqlContext = new ActiveQueryBuilder.Core.SQLContext( ) )
          {
             sqlContext.Assign( qb.SQLContext );
@@ -92,105 +241,131 @@
             {
                miList.Load( ActiveQueryBuilder.Core.MetadataType.All, true );
                System.Collections.Generic.Stack<StackItem> stack = new System.Collections.Generic.Stack<StackItem>( );
-               stack.Push( new StackItem { list = miList, index = 0 } );
+               stack.Push( new StackItem { list = miList, index = 0, parentID = -1, grandParentID = -1 } );
                do
                {
                   StackItem si = stack.Pop( );
                   ActiveQueryBuilder.Core.MetadataList actualMIList = si.list;
                   int actualIndex = si.index;
-                  for( ; actualIndex < actualMIList.Count; actualIndex++ )
+                  int actualParentID = si.grandParentID; // IMPORTANT!!!
                   {
-                     ExtractMetadataItem( listDataSource, actualMIList[ actualIndex ] );
-                     if( actualMIList[ actualIndex ].Items.Count > 0 ) // branch...
+                     for( ; actualIndex < actualMIList.Count; actualIndex++ )
                      {
-                        // Push the "next" Item...
-                        stack.Push( new StackItem { list = actualMIList, index = actualIndex + 1 } );
-                        // Reset the loop to process the "actual" Item...
-                        actualMIList = actualMIList[ actualIndex ].Items;
-                        actualIndex = -1;
-                     }
-                  } // for(;;)...
+                        ExtractMetadataItem( list, actualMIList[ actualIndex ], actualParentID );
+                        if( actualMIList[ actualIndex ].Items.Count > 0 ) // branch...
+                        {
+                           // Push the "next" Item...
+                           stack.Push( new StackItem
+                           {
+                              list = actualMIList,
+                              index = actualIndex + 1,
+                              parentID = list[ list.Count - 1 ].ID,
+                              grandParentID = actualParentID
+                           } );
+                           // Reset the loop to process the "actual" Item...
+                           actualParentID = list[ list.Count - 1 ].ID;
+                           actualMIList = actualMIList[ actualIndex ].Items;
+                           actualIndex = -1;
+                        }
+                     } // for(;;)...
+                  }
                } while( stack.Count > 0 );
             } // using()...
          } // using()...
-         return listDataSource;
+         return list;
       } // buildBindingList(...)
+
       private static void ExtractMetadataItem(
          System.ComponentModel.BindingList<ColumnQN> list,
-         ActiveQueryBuilder.Core.MetadataItem mi
+         ActiveQueryBuilder.Core.MetadataItem mi,
+         int parentID
          )
       {
          if( mi == null ) return;
          switch( mi.Type )
          {
             case ActiveQueryBuilder.Core.MetadataType.Root:
+               ExtractItem( list, mi, parentID );
                break;
             case ActiveQueryBuilder.Core.MetadataType.Server:
+               ExtractItem( list, mi, parentID );
                break;
             case ActiveQueryBuilder.Core.MetadataType.Database:
-               ExtractNamespace( list, mi );
+               ExtractNamespace( list, mi, parentID );
                break;
             case ActiveQueryBuilder.Core.MetadataType.Schema:
-               ExtractNamespace( list, mi );
+               ExtractNamespace( list, mi, parentID );
                break;
             case ActiveQueryBuilder.Core.MetadataType.Package:
+               ExtractItem( list, mi, parentID );
                break;
             case ActiveQueryBuilder.Core.MetadataType.Namespaces:
+               ExtractItem( list, mi, parentID );
                break;
             case ActiveQueryBuilder.Core.MetadataType.Table:
-               ExtractTable( list, mi );
+               ExtractTable( list, mi, parentID );
                break;
             case ActiveQueryBuilder.Core.MetadataType.View:
-               ExtractTable( list, mi );
+               ExtractTable( list, mi, parentID );
                break;
             case ActiveQueryBuilder.Core.MetadataType.Procedure:
-               ExtractProcedure( list, mi );
+               ExtractProcedure( list, mi, parentID );
                break;
             case ActiveQueryBuilder.Core.MetadataType.Synonym:
-               ExtractSynonym( list, mi );
+               ExtractSynonym( list, mi, parentID );
                break;
             case ActiveQueryBuilder.Core.MetadataType.Objects:
+               ExtractItem( list, mi, parentID );
                break;
             case ActiveQueryBuilder.Core.MetadataType.Aggregate:
+               ExtractItem( list, mi, parentID );
                break;
             case ActiveQueryBuilder.Core.MetadataType.Parameter:
+               ExtractItem( list, mi, parentID );
                break;
             case ActiveQueryBuilder.Core.MetadataType.Field:
-               ExtractField( list, mi );
+               ExtractField( list, mi, parentID );
                break;
             case ActiveQueryBuilder.Core.MetadataType.ForeignKey:
-               ExtractForeignKey( list, mi );
+               ExtractForeignKey( list, mi, parentID );
                break;
             case ActiveQueryBuilder.Core.MetadataType.ObjectMetadata:
+               ExtractItem( list, mi, parentID );
                break;
             case ActiveQueryBuilder.Core.MetadataType.UserQuery:
+               ExtractItem( list, mi, parentID );
                break;
             case ActiveQueryBuilder.Core.MetadataType.UserField:
+               ExtractItem( list, mi, parentID );
                break;
             case ActiveQueryBuilder.Core.MetadataType.All:
+               ExtractItem( list, mi, parentID );
                break;
             default:
+               ExtractItem( list, mi, parentID );
                break;
          } // switch()...
       }
       private static void ExtractProcedure(
          System.ComponentModel.BindingList<ColumnQN> list,
-         ActiveQueryBuilder.Core.MetadataItem mi
+         ActiveQueryBuilder.Core.MetadataItem mi,
+         int parentID
          )
       {
          if( mi == null ) return;
-         var o = ExtractItem( list, mi );
+         var o = ExtractItem( list, mi, parentID );
          {
             ActiveQueryBuilder.Core.MetadataObject m = mi as ActiveQueryBuilder.Core.MetadataObject;
          }
       }
       private static void ExtractSynonym(
          System.ComponentModel.BindingList<ColumnQN> list,
-         ActiveQueryBuilder.Core.MetadataItem mi
+         ActiveQueryBuilder.Core.MetadataItem mi,
+         int parentID
          )
       {
          if( mi == null ) return;
-         var o = ExtractItem( list, mi );
+         var o = ExtractItem( list, mi, parentID );
          {
             ActiveQueryBuilder.Core.MetadataObject m = mi as ActiveQueryBuilder.Core.MetadataObject;
             o.ReferencedObject = m.ReferencedObject?.NameFull;
@@ -209,33 +384,36 @@
       }
       private static void ExtractNamespace(
          System.ComponentModel.BindingList<ColumnQN> list,
-         ActiveQueryBuilder.Core.MetadataItem mi
+         ActiveQueryBuilder.Core.MetadataItem mi,
+         int parentID
          )
       {
          if( mi == null ) return;
-         var o = ExtractItem( list, mi );
+         var o = ExtractItem( list, mi, parentID );
          {
             ActiveQueryBuilder.Core.MetadataNamespace m = mi as ActiveQueryBuilder.Core.MetadataNamespace;
          }
       }
       private static void ExtractTable(
          System.ComponentModel.BindingList<ColumnQN> list,
-         ActiveQueryBuilder.Core.MetadataItem mi
+         ActiveQueryBuilder.Core.MetadataItem mi,
+         int parentID
          )
       {
          if( mi == null ) return;
-         var o = ExtractItem( list, mi );
+         var o = ExtractItem( list, mi, parentID );
          {
             ActiveQueryBuilder.Core.MetadataObject m = mi as ActiveQueryBuilder.Core.MetadataObject;
          }
       }
       private static void ExtractForeignKey(
          System.ComponentModel.BindingList<ColumnQN> list,
-         ActiveQueryBuilder.Core.MetadataItem mi
+         ActiveQueryBuilder.Core.MetadataItem mi,
+         int parentID
          )
       {
          if( mi == null ) return;
-         var o = ExtractItem( list, mi );
+         var o = ExtractItem( list, mi, parentID );
          o.FieldType = null;
          {
             ActiveQueryBuilder.Core.MetadataForeignKey m = mi as ActiveQueryBuilder.Core.MetadataForeignKey;
@@ -273,11 +451,12 @@
       }
       private static void ExtractField(
          System.ComponentModel.BindingList<ColumnQN> list,
-         ActiveQueryBuilder.Core.MetadataItem mi
+         ActiveQueryBuilder.Core.MetadataItem mi,
+         int parentID
          )
       {
          if( mi == null ) return;
-         var o = ExtractItem( list, mi );
+         var o = ExtractItem( list, mi, parentID );
          {
             ActiveQueryBuilder.Core.MetadataField m = mi as ActiveQueryBuilder.Core.MetadataField;
             o.Expression = m.Expression;
@@ -293,7 +472,8 @@
       }
       private static ColumnQN ExtractItem(
          System.ComponentModel.BindingList<ColumnQN> list,
-         ActiveQueryBuilder.Core.MetadataItem mi
+         ActiveQueryBuilder.Core.MetadataItem mi,
+         int parentID
          )
       {
          var o = new ColumnQN( );
@@ -301,7 +481,7 @@
             o.MetadataProvider = mi.SQLContext?.MetadataProvider.Description;
             o.SyntaxProvider = mi.SQLContext?.SyntaxProvider.Description;
             o.ID = list.Count;
-            o.ParentID = -1;
+            o.ParentID = parentID;
             if( mi.Parent != null )
             {
                o.ParentType = System.Enum.GetName( typeof( ActiveQueryBuilder.Core.MetadataType ), mi.Parent.Type );
@@ -319,7 +499,7 @@
             o.NameFullQualified += mi.NameFull.EndsWith( "." ) ? "<?>" : "";
             o.NameQuoted = mi.NameQuoted;
             o.AltName = mi.AltName;
-            o.Field = mi.Name;
+            o.Field = mi.Name != null ? mi.Name : "<?>";
             //
             //
             o.HasDefault = mi.Default;
