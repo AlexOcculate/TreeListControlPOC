@@ -9,8 +9,59 @@
          public int parentID;
          public int grandParentID;
       }
+
+      private static DevExpress.Utils.Svg.SvgBitmap db_noaction_red_svg;
+      private static System.Drawing.Image db_noaction_red_img;
+      //
+      private static DevExpress.Utils.Svg.SvgBitmap sch_noaction_red_svg;
+      private static System.Drawing.Image sch_noaction_red_img;
+      //
+      private static DevExpress.Utils.Svg.SvgBitmap syn_noaction_yellow_svg;
+      private static System.Drawing.Image syn_noaction_yellow_img;
+      //
+      private static DevExpress.Utils.Svg.SvgBitmap tbl_noaction_red_svg;
+      private static System.Drawing.Image tbl_noaction_red_img;
+      //
+      private static DevExpress.Utils.Svg.SvgBitmap vw_noaction_red_svg;
+      private static System.Drawing.Image vw_noaction_red_img;
+      //
+      private static DevExpress.Utils.Svg.SvgBitmap fk_noaction_gray_svg;
+      private static System.Drawing.Image fk_noaction_gray_img;
+      //
+      private static DevExpress.Utils.Svg.SvgBitmap proc_noaction_blue_svg;
+      private static System.Drawing.Image proc_noaction_blue_img;
+      //
+      private static DevExpress.Utils.Svg.SvgBitmap fld_noaction_gray_svg;
+      private static System.Drawing.Image fld_noaction_gray_img;
+
       public static void ConfigGridControl( DevExpress.XtraGrid.GridControl gc, DevExpress.XtraGrid.Views.Grid.GridView gv )
       {
+         {
+            db_noaction_red_svg = DevExpress.Utils.Svg.SvgBitmap.FromFile( @"D:\users\user01\source\repos\TreeListControlPOC\AQBTest\images\icons\db_red.svg" );
+            db_noaction_red_img = db_noaction_red_svg.Render( null, 0.5 );
+            //
+            sch_noaction_red_svg = DevExpress.Utils.Svg.SvgBitmap.FromFile( @"D:\users\user01\source\repos\TreeListControlPOC\AQBTest\images\icons\sch_red.svg" );
+            sch_noaction_red_img = sch_noaction_red_svg.Render( null, 0.5 );
+            //
+            syn_noaction_yellow_svg = DevExpress.Utils.Svg.SvgBitmap.FromFile( @"D:\users\user01\source\repos\TreeListControlPOC\AQBTest\images\icons\syn_yellow.svg" );
+            syn_noaction_yellow_img = syn_noaction_yellow_svg.Render( null, 0.5 );
+            //
+            tbl_noaction_red_svg = DevExpress.Utils.Svg.SvgBitmap.FromFile( @"D:\users\user01\source\repos\TreeListControlPOC\AQBTest\images\icons\tbl_red.svg" );
+            tbl_noaction_red_img = tbl_noaction_red_svg.Render( null, 0.5 );
+            //
+            vw_noaction_red_svg = DevExpress.Utils.Svg.SvgBitmap.FromFile( @"D:\users\user01\source\repos\TreeListControlPOC\AQBTest\images\icons\vw_red.svg" );
+            vw_noaction_red_img = vw_noaction_red_svg.Render( null, 0.5 );
+            //
+            fk_noaction_gray_svg = DevExpress.Utils.Svg.SvgBitmap.FromFile( @"D:\users\user01\source\repos\TreeListControlPOC\AQBTest\images\icons\fk_gray.svg" );
+            fk_noaction_gray_img = fk_noaction_gray_svg.Render( null, 0.5 );
+            //
+            proc_noaction_blue_svg = DevExpress.Utils.Svg.SvgBitmap.FromFile( @"D:\users\user01\source\repos\TreeListControlPOC\AQBTest\images\icons\proc_blue.svg" );
+            proc_noaction_blue_img = proc_noaction_blue_svg.Render( null, 0.5 );
+            //
+            fld_noaction_gray_svg = DevExpress.Utils.Svg.SvgBitmap.FromFile( @"D:\users\user01\source\repos\TreeListControlPOC\AQBTest\images\icons\fld_gray.svg" );
+            fld_noaction_gray_img = fld_noaction_gray_svg.Render( null, 0.5 );
+            //fld_noaction_red_img = DevExpress.Images.ImageResourceCache.Default.GetImage( "devav/view/sales_16x16.png" );
+         }
          gv.ShowLoadingPanel( );
          ((System.ComponentModel.ISupportInitialize) (gc)).BeginInit( );
          ((System.ComponentModel.ISupportInitialize) (gv)).BeginInit( );
@@ -44,47 +95,47 @@
             gv.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.RowSelect;
             gv.OptionsSelection.MultiSelect = true;
             //
-            gv.Columns[ ColumnQN.METADATA_PROVIDER_FIELDNAME ].Visible = false;
-            gv.Columns[ ColumnQN.SYNTAX_PROVIDER_FIELDNAME ].Visible = false;
-            gv.Columns[ ColumnQN.IS_SYSTEM_FIELDNAME ].Visible = false;
+            gv.Columns[ MetadataItemFQN.METADATA_PROVIDER_FIELDNAME ].Visible = false;
+            gv.Columns[ MetadataItemFQN.SYNTAX_PROVIDER_FIELDNAME ].Visible = false;
+            gv.Columns[ MetadataItemFQN.IS_SYSTEM_FIELDNAME ].Visible = false;
             //
-            gv.Columns[ ColumnQN.CARDINALYTY_FIELDNAME ].Visible = false;
-            gv.Columns[ ColumnQN.FIELDSCOUNT_FIELDNAME ].Visible = false;
-            gv.Columns[ ColumnQN.FIELDS_FIELDNAME ].Visible = false;
+            gv.Columns[ MetadataItemFQN.CARDINALYTY_FIELDNAME ].Visible = false;
+            gv.Columns[ MetadataItemFQN.FIELDSCOUNT_FIELDNAME ].Visible = false;
+            gv.Columns[ MetadataItemFQN.FIELDS_FIELDNAME ].Visible = false;
             //
-            gv.Columns[ ColumnQN.REFERENCED_CARDINALYTY_NAME_FIELDNAME ].Visible = false;
-            gv.Columns[ ColumnQN.REFERENCED_OBJECT_FIELDNAME ].Visible = false;
-            gv.Columns[ ColumnQN.REFERENCED_OBJECT_NAME_FIELDNAME ].Visible = false;
-            gv.Columns[ ColumnQN.REFERENCED_FIELDS_COUNT_FIELDNAME ].Visible = false;
-            gv.Columns[ ColumnQN.REFERENCED_FIELDS_FIELDNAME ].Visible = false;
+            gv.Columns[ MetadataItemFQN.REFERENCED_CARDINALYTY_NAME_FIELDNAME ].Visible = false;
+            gv.Columns[ MetadataItemFQN.REFERENCED_OBJECT_FIELDNAME ].Visible = false;
+            gv.Columns[ MetadataItemFQN.REFERENCED_OBJECT_NAME_FIELDNAME ].Visible = false;
+            gv.Columns[ MetadataItemFQN.REFERENCED_FIELDS_COUNT_FIELDNAME ].Visible = false;
+            gv.Columns[ MetadataItemFQN.REFERENCED_FIELDS_FIELDNAME ].Visible = false;
             //
-            gv.Columns[ ColumnQN.REFERENCED_OBJECT_NAME_FIELDNAME ].Visible = false;
-            gv.Columns[ ColumnQN.SERVER_FIELDNAME ].Visible = false;
-            gv.Columns[ ColumnQN.DATABASE_FIELDNAME ].Visible = false;
-            gv.Columns[ ColumnQN.SCHEMA_FIELDNAME ].Visible = false;
-            gv.Columns[ ColumnQN.OBJECT_FIELDNAME ].Visible = false;
-            gv.Columns[ ColumnQN.NAMEQUOTED_FIELDNAME ].Visible = false;
-            gv.Columns[ ColumnQN.ALTNAME_FIELDNAME ].Visible = false;
-            gv.Columns[ ColumnQN.FIELD_FIELDNAME ].Visible = false;
-            gv.Columns[ ColumnQN.EXPRESSION_FIELDNAME ].Visible = false;
-            gv.Columns[ ColumnQN.FIELDTYPE_FIELDNAME ].Visible = false;
-            gv.Columns[ ColumnQN.IS_PK_FIELDNAME ].Visible = false;
-            gv.Columns[ ColumnQN.IS_READONLY_FIELDNAME ].Visible = false;
-            gv.Columns[ ColumnQN.DESCRIPTION_FIELDNAME ].Visible = false;
-            gv.Columns[ ColumnQN.TAG_FIELDNAME ].Visible = false;
-            gv.Columns[ ColumnQN.USERDATA_FIELDNAME ].Visible = false;
+            gv.Columns[ MetadataItemFQN.REFERENCED_OBJECT_NAME_FIELDNAME ].Visible = false;
+            gv.Columns[ MetadataItemFQN.SERVER_FIELDNAME ].Visible = false;
+            gv.Columns[ MetadataItemFQN.DATABASE_FIELDNAME ].Visible = false;
+            gv.Columns[ MetadataItemFQN.SCHEMA_FIELDNAME ].Visible = false;
+            gv.Columns[ MetadataItemFQN.OBJECT_FIELDNAME ].Visible = false;
+            gv.Columns[ MetadataItemFQN.NAMEQUOTED_FIELDNAME ].Visible = false;
+            gv.Columns[ MetadataItemFQN.ALTNAME_FIELDNAME ].Visible = false;
+            gv.Columns[ MetadataItemFQN.FIELD_FIELDNAME ].Visible = false;
+            gv.Columns[ MetadataItemFQN.EXPRESSION_FIELDNAME ].Visible = false;
+            gv.Columns[ MetadataItemFQN.FIELD_TYPE_FIELDNAME ].Visible = false;
+            gv.Columns[ MetadataItemFQN.IS_PK_FIELDNAME ].Visible = false;
+            gv.Columns[ MetadataItemFQN.IS_READONLY_FIELDNAME ].Visible = false;
+            gv.Columns[ MetadataItemFQN.DESCRIPTION_FIELDNAME ].Visible = false;
+            gv.Columns[ MetadataItemFQN.TAG_FIELDNAME ].Visible = false;
+            gv.Columns[ MetadataItemFQN.USERDATA_FIELDNAME ].Visible = false;
             //
-            gv.Columns[ ColumnQN.FIELD_FIELDNAME ].Caption = ColumnQN.FIELD_DISPLAYNAME;
+            gv.Columns[ MetadataItemFQN.FIELD_FIELDNAME ].Caption = MetadataItemFQN.FIELD_DISPLAYNAME;
             //
-            gv.Columns[ ColumnQN.CARDINALYTY_FIELDNAME ].Caption = ColumnQN.CARDINALYTY_DISPLAYNAME;
-            gv.Columns[ ColumnQN.FIELDSCOUNT_FIELDNAME ].Caption = ColumnQN.FIELDSCOUNT_DISPLAYNAME;
-            gv.Columns[ ColumnQN.FIELDS_FIELDNAME ].Caption = ColumnQN.FIELDS_DISPLAYNAME;
+            gv.Columns[ MetadataItemFQN.CARDINALYTY_FIELDNAME ].Caption = MetadataItemFQN.CARDINALYTY_DISPLAYNAME;
+            gv.Columns[ MetadataItemFQN.FIELDSCOUNT_FIELDNAME ].Caption = MetadataItemFQN.FIELDSCOUNT_DISPLAYNAME;
+            gv.Columns[ MetadataItemFQN.FIELDS_FIELDNAME ].Caption = MetadataItemFQN.FIELDS_DISPLAYNAME;
             //
-            gv.Columns[ ColumnQN.REFERENCED_CARDINALYTY_NAME_FIELDNAME ].Caption = ColumnQN.REFERENCED_CARDINALYTY_NAME_DISPLAYNAME;
-            gv.Columns[ ColumnQN.REFERENCED_OBJECT_FIELDNAME ].Caption = ColumnQN.REFERENCED_OBJECT_DISPLAYNAME;
-            gv.Columns[ ColumnQN.REFERENCED_OBJECT_NAME_FIELDNAME ].Caption = ColumnQN.REFERENCED_OBJECT_NAME_DISPLAYNAME;
-            gv.Columns[ ColumnQN.REFERENCED_FIELDS_COUNT_FIELDNAME ].Caption = ColumnQN.REFERENCED_FIELDS_COUNT_DISPLAYNAME;
-            gv.Columns[ ColumnQN.REFERENCED_FIELDS_FIELDNAME ].Caption = ColumnQN.REFERENCED_FIELDS_DISPLAYNAME;
+            gv.Columns[ MetadataItemFQN.REFERENCED_CARDINALYTY_NAME_FIELDNAME ].Caption = MetadataItemFQN.REFERENCED_CARDINALYTY_NAME_DISPLAYNAME;
+            gv.Columns[ MetadataItemFQN.REFERENCED_OBJECT_FIELDNAME ].Caption = MetadataItemFQN.REFERENCED_OBJECT_DISPLAYNAME;
+            gv.Columns[ MetadataItemFQN.REFERENCED_OBJECT_NAME_FIELDNAME ].Caption = MetadataItemFQN.REFERENCED_OBJECT_NAME_DISPLAYNAME;
+            gv.Columns[ MetadataItemFQN.REFERENCED_FIELDS_COUNT_FIELDNAME ].Caption = MetadataItemFQN.REFERENCED_FIELDS_COUNT_DISPLAYNAME;
+            gv.Columns[ MetadataItemFQN.REFERENCED_FIELDS_FIELDNAME ].Caption = MetadataItemFQN.REFERENCED_FIELDS_DISPLAYNAME;
             //
             gv.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler( gridView1_RowCellStyle );
             gv.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler( gridView1_CustomDrawCell );
@@ -94,6 +145,11 @@
          // gv.ShowEditForm( );
          // gv.HideEditForm( );
          gv.HideLoadingPanel( );
+         {
+            //DevExpress.XtraPrinting.CsvExportOptions o = new DevExpress.XtraPrinting.CsvExportOptions( ",", System.Text.Encoding.UTF8, DevExpress.XtraPrinting.TextExportMode.Value, true, false );
+            //gc.ExportToCsv( "", o );
+         }
+         //         CustomDrawEmptyForeground( gc, gv );
       }
       private static void gridView1_RowCellStyle( object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e )
       {
@@ -120,6 +176,58 @@
                return;
             }
          }
+         if( e.Column.FieldName == MetadataItemFQN.TYPE_FIELDNAME )
+         {
+            e.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+         }
+         if( e.Column.FieldName == MetadataItemFQN.PARENT_TYPE_FIELDNAME )
+         {
+            e.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+         }
+         if( e.Column.FieldName == MetadataItemFQN.SYNTAX_PROVIDER_FIELDNAME )
+         {
+            e.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+         }
+         if( e.Column.FieldName == MetadataItemFQN.METADATA_PROVIDER_FIELDNAME )
+         {
+            e.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+         }
+         if( e.Column.FieldName == MetadataItemFQN.FIELD_TYPE_FIELDNAME )
+         {
+            e.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+         }
+         if( e.Column.FieldName == MetadataItemFQN.CARDINALYTY_FIELDNAME )
+         {
+            e.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+         }
+         if( e.Column.FieldName == MetadataItemFQN.FIELDSCOUNT_FIELDNAME )
+         {
+            e.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+         }
+         if( e.Column.FieldName == MetadataItemFQN.REFERENCED_CARDINALYTY_NAME_FIELDNAME )
+         {
+            e.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+         }
+         if( e.Column.FieldName == MetadataItemFQN.REFERENCED_FIELDS_COUNT_FIELDNAME )
+         {
+            e.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+         }
+         if( e.Column.FieldName == MetadataItemFQN.REFERENCED_FIELDS_FIELDNAME )
+         {
+            e.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+         }
+         if( e.Column.FieldName == MetadataItemFQN.SERVER_FIELDNAME )
+         {
+            e.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+         }
+         if( e.Column.FieldName == MetadataItemFQN.DATABASE_FIELDNAME )
+         {
+            e.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+         }
+         if( e.Column.FieldName == MetadataItemFQN.SCHEMA_FIELDNAME )
+         {
+            e.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+         }
 
          //if( e.RowHandle != view.FocusedRowHandle &&
          //   ((e.RowHandle % 2 == 0 && e.Column.VisibleIndex % 2 == 1) ||
@@ -138,7 +246,7 @@
                return;
             info.ContextImageAlignment = DevExpress.XtraEditors.ContextImageAlignment.Far;
             //
-            if( e.Column.FieldName == ColumnQN.TYPE_FIELDNAME || e.Column.FieldName == ColumnQN.PARENT_TYPE_FIELDNAME )
+            if( e.Column.FieldName == MetadataItemFQN.TYPE_FIELDNAME || e.Column.FieldName == MetadataItemFQN.PARENT_TYPE_FIELDNAME )
             {
                if( e.CellValue == null )
                {
@@ -147,15 +255,113 @@
                }
                if( e.CellValue.ToString( ) == "Field" )
                {
-                  info.ContextImage = DevExpress.Images.ImageResourceCache.Default.GetImage( "devav/view/sales_16x16.png" );
+                  info.ContextImage = fld_noaction_gray_img;
                   info.CalcViewInfo( );
+                  return;
+               }
+               else if( e.CellValue.ToString( ) == "Table" )
+               {
+                  info.ContextImage = tbl_noaction_red_img;
+                  info.CalcViewInfo( );
+                  return;
+               }
+               else if( e.CellValue.ToString( ) == "View" )
+               {
+                  info.ContextImage = vw_noaction_red_img;
+                  info.CalcViewInfo( );
+                  return;
+               }
+               if( e.CellValue.ToString( ) == "ForeignKey" )
+               {
+                  info.ContextImage = fk_noaction_gray_img;
+                  info.CalcViewInfo( );
+                  return;
+               }
+               if( e.CellValue.ToString( ) == "Procedure" )
+               {
+                  info.ContextImage = proc_noaction_blue_img;
+                  info.CalcViewInfo( );
+                  return;
+               }
+               else if( e.CellValue.ToString( ) == "Synonym" )
+               {
+                  info.ContextImage = syn_noaction_yellow_img;
+                  info.CalcViewInfo( );
+                  return;
+               }
+               else if( e.CellValue.ToString( ) == "Schema" )
+               {
+                  info.ContextImage = sch_noaction_red_img;
+                  info.CalcViewInfo( );
+                  return;
+               }
+               else if( e.CellValue.ToString( ) == "Database" )
+               {
+                  info.ContextImage = db_noaction_red_img;
+                  info.CalcViewInfo( );
+                  return;
                }
                return;
             }
          }
       }
 
-      //
+      private static void CustomDrawEmptyForeground( DevExpress.XtraGrid.GridControl gridControl, DevExpress.XtraGrid.Views.Grid.GridView gridView )
+      {
+         string searchName = string.Empty;
+         //         gridView.ActiveFilterCriteria = new DevExpress.Data.Filtering.BinaryOperator( "Category_Name", searchName );
+
+         // Initialize variables used to paint View's empty space in a custom manner 
+         System.Drawing.Font noMatchesFoundTextFont = new System.Drawing.Font( "Tahoma", 10 );
+         System.Drawing.Font trySearchingAgainTextFont = new System.Drawing.Font( "Tahoma", 15, System.Drawing.FontStyle.Underline );
+         System.Drawing.Font trySearchingAgainTextFontBold = new System.Drawing.Font( trySearchingAgainTextFont, System.Drawing.FontStyle.Underline | System.Drawing.FontStyle.Bold );
+         System.Drawing.SolidBrush linkBrush = new System.Drawing.SolidBrush( DevExpress.Skins.EditorsSkins.GetSkin( DevExpress.LookAndFeel.UserLookAndFeel.Default.ActiveLookAndFeel ).Colors[ "HyperLinkTextColor" ] );
+         string noMatchesFoundText = "No matches found";
+         string trySearchingAgainText = "Try searching again";
+         System.Drawing.Rectangle noMatchesFoundBounds = System.Drawing.Rectangle.Empty;
+         System.Drawing.Rectangle trySearchingAgainBounds = System.Drawing.Rectangle.Empty;
+         bool trySearchingAgainBoundsContainCursor = false;
+         int offset = 10;
+
+         //Handle this event to paint View's empty space in a custom manner 
+         gridView.CustomDrawEmptyForeground += ( s, e ) =>
+         {
+            e.DefaultDraw( );
+            e.Appearance.Options.UseFont = true;
+            e.Appearance.Font = noMatchesFoundTextFont;
+            //Draw the noMatchesFoundText string 
+            System.Drawing.Size size = e.Appearance.CalcTextSize( e.Cache, noMatchesFoundText, e.Bounds.Width ).ToSize( );
+            int x = (e.Bounds.Width - size.Width) / 2;
+            int y = e.Bounds.Y + offset;
+            noMatchesFoundBounds = new System.Drawing.Rectangle( new System.Drawing.Point( x, y ), size );
+            e.Appearance.DrawString( e.Cache, noMatchesFoundText, noMatchesFoundBounds );
+            //Draw the trySearchingAgain link 
+            e.Appearance.Font = trySearchingAgainBoundsContainCursor ? trySearchingAgainTextFontBold : trySearchingAgainTextFont;
+            size = e.Appearance.CalcTextSize( e.Cache, trySearchingAgainText, e.Bounds.Width ).ToSize( );
+            x = noMatchesFoundBounds.X - (size.Width - noMatchesFoundBounds.Width) / 2;
+            y = noMatchesFoundBounds.Bottom + offset;
+            size.Width += offset;
+            trySearchingAgainBounds = new System.Drawing.Rectangle( new System.Drawing.Point( x, y ), size );
+            e.Appearance.DrawString( e.Cache, trySearchingAgainText, trySearchingAgainBounds, linkBrush );
+         };
+
+         gridView.MouseMove += ( s, e ) =>
+         {
+            trySearchingAgainBoundsContainCursor = trySearchingAgainBounds.Contains( e.Location );
+            gridControl.Cursor = trySearchingAgainBoundsContainCursor ? System.Windows.Forms.Cursors.Hand : System.Windows.Forms.Cursors.Default;
+            gridView.InvalidateRect( trySearchingAgainBounds );
+         };
+
+         gridView.MouseDown += ( s, e ) =>
+         {
+            if( trySearchingAgainBoundsContainCursor )
+            {
+               searchName = DevExpress.XtraEditors.XtraInputBox.Show( string.Format( "Enter {0}", "Name" ), string.Format( "Enter {0} dialog", "Name" ), searchName );
+               //               gridView.ActiveFilterCriteria = new DevExpress.Data.Filtering.BinaryOperator( "Category_Name", searchName );
+            }
+         };
+      }
+
       public static void SerializeQueryBuilder(
          ActiveQueryBuilder.View.WinForms.QueryBuilder qb,
          string filename
@@ -226,11 +432,11 @@
       } // createQueryBuilder(...)
       #endregion
 
-      public static System.ComponentModel.BindingList<ColumnQN> BuildBindingList(
+      public static System.ComponentModel.BindingList<MetadataItemFQN> BuildBindingList(
          ActiveQueryBuilder.View.WinForms.QueryBuilder qb
          )
       {
-         System.ComponentModel.BindingList<ColumnQN> list = new System.ComponentModel.BindingList<ColumnQN>( );
+         System.ComponentModel.BindingList<MetadataItemFQN> list = new System.ComponentModel.BindingList<MetadataItemFQN>( );
          using( var sqlContext = new ActiveQueryBuilder.Core.SQLContext( ) )
          {
             sqlContext.Assign( qb.SQLContext );
@@ -276,7 +482,7 @@
       } // buildBindingList(...)
 
       private static void ExtractMetadataItem(
-         System.ComponentModel.BindingList<ColumnQN> list,
+         System.ComponentModel.BindingList<MetadataItemFQN> list,
          ActiveQueryBuilder.Core.MetadataItem mi,
          int parentID
          )
@@ -347,7 +553,7 @@
          } // switch()...
       }
       private static void ExtractProcedure(
-         System.ComponentModel.BindingList<ColumnQN> list,
+         System.ComponentModel.BindingList<MetadataItemFQN> list,
          ActiveQueryBuilder.Core.MetadataItem mi,
          int parentID
          )
@@ -359,7 +565,7 @@
          }
       }
       private static void ExtractSynonym(
-         System.ComponentModel.BindingList<ColumnQN> list,
+         System.ComponentModel.BindingList<MetadataItemFQN> list,
          ActiveQueryBuilder.Core.MetadataItem mi,
          int parentID
          )
@@ -383,7 +589,7 @@
          }
       }
       private static void ExtractNamespace(
-         System.ComponentModel.BindingList<ColumnQN> list,
+         System.ComponentModel.BindingList<MetadataItemFQN> list,
          ActiveQueryBuilder.Core.MetadataItem mi,
          int parentID
          )
@@ -395,7 +601,7 @@
          }
       }
       private static void ExtractTable(
-         System.ComponentModel.BindingList<ColumnQN> list,
+         System.ComponentModel.BindingList<MetadataItemFQN> list,
          ActiveQueryBuilder.Core.MetadataItem mi,
          int parentID
          )
@@ -407,7 +613,7 @@
          }
       }
       private static void ExtractForeignKey(
-         System.ComponentModel.BindingList<ColumnQN> list,
+         System.ComponentModel.BindingList<MetadataItemFQN> list,
          ActiveQueryBuilder.Core.MetadataItem mi,
          int parentID
          )
@@ -450,7 +656,7 @@
          }
       }
       private static void ExtractField(
-         System.ComponentModel.BindingList<ColumnQN> list,
+         System.ComponentModel.BindingList<MetadataItemFQN> list,
          ActiveQueryBuilder.Core.MetadataItem mi,
          int parentID
          )
@@ -470,13 +676,13 @@
             o.IsRO = m.ReadOnly;
          }
       }
-      private static ColumnQN ExtractItem(
-         System.ComponentModel.BindingList<ColumnQN> list,
+      private static MetadataItemFQN ExtractItem(
+         System.ComponentModel.BindingList<MetadataItemFQN> list,
          ActiveQueryBuilder.Core.MetadataItem mi,
          int parentID
          )
       {
-         var o = new ColumnQN( );
+         var o = new MetadataItemFQN( );
          {
             o.MetadataProvider = mi.SQLContext?.MetadataProvider.Description;
             o.SyntaxProvider = mi.SQLContext?.SyntaxProvider.Description;
@@ -514,7 +720,62 @@
 }
 
 /*
-      public static BindingList<ColumnQN> buildBindingListMSSQL( ActiveQueryBuilder.View.WinForms.QueryBuilder qb )
+
+            /*
+      //
+      // Summary:
+      //     Gets an encoding for the UTF-7 format.
+      //
+      // Returns:
+      //     An encoding for the UTF-7 format.
+      public static Encoding UTF7 { get; }
+      //
+      // Summary:
+      //     Gets an encoding for the UTF-16 format that uses the big endian byte order.
+      //
+      // Returns:
+      //     An encoding object for the UTF-16 format that uses the big endian byte order.
+      public static Encoding BigEndianUnicode { get; }
+      //
+      // Summary:
+      //     Gets an encoding for the UTF-16 format using the little endian byte order.
+      //
+      // Returns:
+      //     An encoding for the UTF-16 format using the little endian byte order.
+      public static Encoding Unicode { get; }
+      //
+      // Summary:
+      //     Gets an encoding for the operating system's current ANSI code page.
+      //
+      // Returns:
+      //     An encoding for the operating system's current ANSI code page.
+      public static Encoding Default { get; }
+      //
+      // Summary:
+      //     Gets an encoding for the ASCII (7-bit) character set.
+      //
+      // Returns:
+      //     An encoding for the ASCII (7-bit) character set.
+      public static Encoding ASCII { get; }
+      //
+      // Summary:
+      //     Gets an encoding for the UTF-8 format.
+      //
+      // Returns:
+      //     An encoding for the UTF-8 format.
+      public static Encoding UTF8 { get; }
+      //
+      // Summary:
+      //     Gets an encoding for the UTF-32 format using the little endian byte order.
+      //
+      // Returns:
+      //     An encoding object for the UTF-32 format using the little endian byte order.
+      public static Encoding UTF32 { get; }
+
+
+            ;
+
+public static BindingList<ColumnQN> buildBindingListMSSQL( ActiveQueryBuilder.View.WinForms.QueryBuilder qb )
       {
          BindingList<ColumnQN> listDataSource = new BindingList<ColumnQN>( );
          using( var sqlContext = new SQLContext( ) )
