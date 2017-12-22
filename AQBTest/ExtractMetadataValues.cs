@@ -37,6 +37,40 @@
       public static void ConfigGridControl( DevExpress.XtraGrid.GridControl gc, DevExpress.XtraGrid.Views.Grid.GridView gv )
       {
          {
+            // Create and initialize the tooltip controller. 
+            //DevExpress.Utils.ToolTipController tpCtlr = new DevExpress.Utils.ToolTipController( );
+            //tpCtlr.ToolTipType = DevExpress.Utils.ToolTipType.SuperTip;
+            //tpCtlr.ShowBeak = true;
+            //tpCtlr.ShowShadow = true;
+            //// Bind the created tooltip controller to the Grid Control. 
+            //gc.ToolTipController = tpCtlr;
+
+            //tpCtlr.GetActiveObjectInfo += TpCtlr_GetActiveObjectInfo;
+            //tpCtlr.BeforeShow += TpCtlr_BeforeShow;
+
+            // Create and customize a SuperToolTip: 
+            //DevExpress.Utils.SuperToolTip stp = new DevExpress.Utils.SuperToolTip( );
+            //DevExpress.Utils.SuperToolTipSetupArgs args = new DevExpress.Utils.SuperToolTipSetupArgs( );
+            //args.Title.Text = "Header";
+            //args.Contents.Text = "This tooltip contains a hyperlink. Visit the <href=http://help.devexpress.com>DevExpress Knowledge Center</href> to learn more.";
+            //args.ShowFooterSeparator = true;
+            //args.Footer.Text = "Footer";
+            //stp.Setup( args );
+            //// Enable HTML Text Formatting for the created SuperToolTip: 
+            //stp.AllowHtmlText = DevExpress.Utils.DefaultBoolean.True;
+            ////..or enable this feature for all tooltips: 
+            ////defaultTooltipController.AllowHtmlText = true; 
+            //tpCtlr.AllowHtmlText = true;
+            //// Respond to clicking hyperlinks in tooltips: 
+            ////defaultTooltipController.HyperlinkClick += defaultTooltipController_HyperlinkClick;
+            //tpCtlr.HyperlinkClick += tooltipController_HyperlinkClick;
+            //tpCtlr.SetSuperTip( gc , stp ); // the whole grid!!! BAD!!!
+
+            //DevExpress.Utils.SuperToolTipPreviewControl x = new DevExpress.Utils.SuperToolTipPreviewControl( stp );
+            //x.Show( );
+
+         }
+         {
             db_noaction_red_svg = DevExpress.Utils.Svg.SvgBitmap.FromFile( @"D:\users\user01\source\repos\TreeListControlPOC\AQBTest\images\icons\db_red.svg" );
             db_noaction_red_img = db_noaction_red_svg.Render( null, 0.5 );
             //
@@ -151,6 +185,71 @@
          }
          //         CustomDrawEmptyForeground( gc, gv );
       }
+
+      private static void TpCtlr_BeforeShow( object sender, DevExpress.Utils.ToolTipControllerShowEventArgs e )
+      {
+         // Create and customize a SuperToolTip: 
+         DevExpress.Utils.SuperToolTip stp = new DevExpress.Utils.SuperToolTip( );
+         DevExpress.Utils.SuperToolTipSetupArgs args = new DevExpress.Utils.SuperToolTipSetupArgs( );
+         args.Title.Text = "Header";
+         args.Contents.Text = "This tooltip contains a hyperlink. Visit the <href=http://help.devexpress.com>DevExpress Knowledge Center</href> to learn more.";
+         args.ShowFooterSeparator = true;
+         args.Footer.Text = "Footer";
+         stp.Setup( args );
+         // Enable HTML Text Formatting for the created SuperToolTip: 
+         stp.AllowHtmlText = DevExpress.Utils.DefaultBoolean.True;
+
+         e.SuperTip = stp;
+      }
+
+      private static void TpCtlr_GetActiveObjectInfo( object sender, DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventArgs e )
+      {
+         //DevExpress.Utils.ToolTipControlInfo info = null;
+         ////         // Create and customize a SuperToolTip: 
+         //DevExpress.Utils.SuperToolTip stp = new DevExpress.Utils.SuperToolTip( );
+         //DevExpress.Utils.SuperToolTipSetupArgs args = new DevExpress.Utils.SuperToolTipSetupArgs( );
+         //args.Title.Text = "Header";
+         //args.Contents.Text = "This tooltip contains a hyperlink. Visit the <href=http://help.devexpress.com>DevExpress Knowledge Center</href> to learn more.";
+         //args.ShowFooterSeparator = true;
+         //args.Footer.Text = "Footer";
+         //stp.Setup( args );
+         //// Enable HTML Text Formatting for the created SuperToolTip: 
+         //stp.AllowHtmlText = DevExpress.Utils.DefaultBoolean.True;
+         //info.SuperTip = stp;
+         //////////
+         //         if( e.SelectedControl != gridControl1 ) return;
+         //         DevExpress.Utils.ToolTipControlInfo info = null;
+         //         //Get the view at the current mouse position 
+         //         DevExpress.XtraGrid.Views.Grid.GridView view = gridControl1.GetViewAt( e.ControlMousePosition ) as DevExpress.XtraGrid.Views.Grid.GridView;
+         //         if( view == null ) return;
+         //         //Get the view's element information that resides at the current position 
+         //         DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo hi = view.CalcHitInfo( e.ControlMousePosition );
+         //         //Display a hint for row indicator cells 
+         //         if( hi.HitTest == DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitTest.RowIndicator )
+         //         {
+         //            //An object that uniquely identifies a row indicator cell 
+         //            object o = hi.HitTest.ToString( ) + hi.RowHandle.ToString( );
+         //            string text = "Row " + hi.RowHandle.ToString( );
+         //            info = new DevExpress.Utils.ToolTipControlInfo( o, text );
+         //         }
+         //         //Supply tooltip information if applicable, otherwise preserve default tooltip (if any) 
+         //         if( info != null )
+         //            e.Info = info;
+      }
+
+      private static void tooltipController_HyperlinkClick( object sender, DevExpress.Utils.HyperlinkClickEventArgs e )
+      {
+         //System.Diagnostics.Process process = new System.Diagnostics.Process( );
+         //process.StartInfo.FileName = (e.Link);
+         //process.StartInfo.Verb = "open";
+         //process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
+         //try
+         //{
+         //   process.Start( );
+         //}
+         //catch { }
+      }
+
       private static void gridView1_RowCellStyle( object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e )
       {
          DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
