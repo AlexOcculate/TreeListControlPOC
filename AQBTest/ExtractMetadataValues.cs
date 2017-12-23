@@ -11,89 +11,85 @@
       }
 
       private static DevExpress.Utils.Svg.SvgBitmap db_noaction_red_svg;
-      private static System.Drawing.Image db_noaction_red_img;
+      private static System.Drawing.Image db_noaction_red_img16x16;
+      private static System.Drawing.Image db_noaction_red_img64x64;
       //
       private static DevExpress.Utils.Svg.SvgBitmap sch_noaction_red_svg;
-      private static System.Drawing.Image sch_noaction_red_img;
+      private static System.Drawing.Image sch_noaction_red_img16x16;
+      private static System.Drawing.Image sch_noaction_red_img64x64;
       //
       private static DevExpress.Utils.Svg.SvgBitmap syn_noaction_yellow_svg;
-      private static System.Drawing.Image syn_noaction_yellow_img;
+      private static System.Drawing.Image syn_noaction_yellow_img16x16;
+      private static System.Drawing.Image syn_noaction_yellow_img64x64;
       //
       private static DevExpress.Utils.Svg.SvgBitmap tbl_noaction_red_svg;
-      private static System.Drawing.Image tbl_noaction_red_img;
+      private static System.Drawing.Image tbl_noaction_red_img16x16;
+      private static System.Drawing.Image tbl_noaction_red_img64x64;
       //
       private static DevExpress.Utils.Svg.SvgBitmap vw_noaction_red_svg;
-      private static System.Drawing.Image vw_noaction_red_img;
+      private static System.Drawing.Image vw_noaction_red_img16x16;
+      private static System.Drawing.Image vw_noaction_red_img64x64;
       //
       private static DevExpress.Utils.Svg.SvgBitmap fk_noaction_gray_svg;
-      private static System.Drawing.Image fk_noaction_gray_img;
+      private static System.Drawing.Image fk_noaction_gray_img16x16;
+      private static System.Drawing.Image fk_noaction_gray_img64x64;
       //
       private static DevExpress.Utils.Svg.SvgBitmap proc_noaction_blue_svg;
-      private static System.Drawing.Image proc_noaction_blue_img;
+      private static System.Drawing.Image proc_noaction_blue_img16x16;
+      private static System.Drawing.Image proc_noaction_blue_img64x64;
       //
       private static DevExpress.Utils.Svg.SvgBitmap fld_noaction_gray_svg;
-      private static System.Drawing.Image fld_noaction_gray_img;
+      private static System.Drawing.Image fld_noaction_gray_img16x16;
+      private static System.Drawing.Image fld_noaction_gray_img64x64;
 
       public static void ConfigGridControl( DevExpress.XtraGrid.GridControl gc, DevExpress.XtraGrid.Views.Grid.GridView gv )
       {
-         {
+         gridControl1 = gc;
+         { /// TOOLTIP and SUPERTOOLTIP
             // Create and initialize the tooltip controller. 
-            //DevExpress.Utils.ToolTipController tpCtlr = new DevExpress.Utils.ToolTipController( );
-            //tpCtlr.ToolTipType = DevExpress.Utils.ToolTipType.SuperTip;
-            //tpCtlr.ShowBeak = true;
-            //tpCtlr.ShowShadow = true;
+            tpCtlr = new DevExpress.Utils.ToolTipController( );
+            tpCtlr.ToolTipType = DevExpress.Utils.ToolTipType.SuperTip;
+            tpCtlr.InitialDelay = 1000;
+            tpCtlr.ShowBeak = true;
+            tpCtlr.ShowShadow = true;
             //// Bind the created tooltip controller to the Grid Control. 
-            //gc.ToolTipController = tpCtlr;
+            gc.ToolTipController = tpCtlr;
 
-            //tpCtlr.GetActiveObjectInfo += TpCtlr_GetActiveObjectInfo;
+            tpCtlr.GetActiveObjectInfo += TpCtlr_GetActiveObjectInfo;
             //tpCtlr.BeforeShow += TpCtlr_BeforeShow;
-
-            // Create and customize a SuperToolTip: 
-            //DevExpress.Utils.SuperToolTip stp = new DevExpress.Utils.SuperToolTip( );
-            //DevExpress.Utils.SuperToolTipSetupArgs args = new DevExpress.Utils.SuperToolTipSetupArgs( );
-            //args.Title.Text = "Header";
-            //args.Contents.Text = "This tooltip contains a hyperlink. Visit the <href=http://help.devexpress.com>DevExpress Knowledge Center</href> to learn more.";
-            //args.ShowFooterSeparator = true;
-            //args.Footer.Text = "Footer";
-            //stp.Setup( args );
-            //// Enable HTML Text Formatting for the created SuperToolTip: 
-            //stp.AllowHtmlText = DevExpress.Utils.DefaultBoolean.True;
-            ////..or enable this feature for all tooltips: 
-            ////defaultTooltipController.AllowHtmlText = true; 
-            //tpCtlr.AllowHtmlText = true;
-            //// Respond to clicking hyperlinks in tooltips: 
-            ////defaultTooltipController.HyperlinkClick += defaultTooltipController_HyperlinkClick;
-            //tpCtlr.HyperlinkClick += tooltipController_HyperlinkClick;
-            //tpCtlr.SetSuperTip( gc , stp ); // the whole grid!!! BAD!!!
-
-            //DevExpress.Utils.SuperToolTipPreviewControl x = new DevExpress.Utils.SuperToolTipPreviewControl( stp );
-            //x.Show( );
-
          }
-         {
+         { // IMAGES and SVG
             db_noaction_red_svg = DevExpress.Utils.Svg.SvgBitmap.FromFile( @"D:\users\user01\source\repos\TreeListControlPOC\AQBTest\images\icons\db_red.svg" );
-            db_noaction_red_img = db_noaction_red_svg.Render( null, 0.5 );
+            db_noaction_red_img16x16 = db_noaction_red_svg.Render( null, 0.5 );
+            db_noaction_red_img64x64 = db_noaction_red_svg.Render( null, 2.0 );
             //
             sch_noaction_red_svg = DevExpress.Utils.Svg.SvgBitmap.FromFile( @"D:\users\user01\source\repos\TreeListControlPOC\AQBTest\images\icons\sch_red.svg" );
-            sch_noaction_red_img = sch_noaction_red_svg.Render( null, 0.5 );
+            sch_noaction_red_img16x16 = sch_noaction_red_svg.Render( null, 0.5 );
+            sch_noaction_red_img64x64 = sch_noaction_red_svg.Render( null, 2.0 );
             //
             syn_noaction_yellow_svg = DevExpress.Utils.Svg.SvgBitmap.FromFile( @"D:\users\user01\source\repos\TreeListControlPOC\AQBTest\images\icons\syn_yellow.svg" );
-            syn_noaction_yellow_img = syn_noaction_yellow_svg.Render( null, 0.5 );
+            syn_noaction_yellow_img16x16 = syn_noaction_yellow_svg.Render( null, 0.5 );
+            syn_noaction_yellow_img64x64 = syn_noaction_yellow_svg.Render( null, 2.0 );
             //
             tbl_noaction_red_svg = DevExpress.Utils.Svg.SvgBitmap.FromFile( @"D:\users\user01\source\repos\TreeListControlPOC\AQBTest\images\icons\tbl_red.svg" );
-            tbl_noaction_red_img = tbl_noaction_red_svg.Render( null, 0.5 );
+            tbl_noaction_red_img16x16 = tbl_noaction_red_svg.Render( null, 0.5 );
+            tbl_noaction_red_img64x64 = tbl_noaction_red_svg.Render( null, 2.0 );
             //
             vw_noaction_red_svg = DevExpress.Utils.Svg.SvgBitmap.FromFile( @"D:\users\user01\source\repos\TreeListControlPOC\AQBTest\images\icons\vw_red.svg" );
-            vw_noaction_red_img = vw_noaction_red_svg.Render( null, 0.5 );
+            vw_noaction_red_img16x16 = vw_noaction_red_svg.Render( null, 0.5 );
+            vw_noaction_red_img64x64 = vw_noaction_red_svg.Render( null, 2.0 );
             //
             fk_noaction_gray_svg = DevExpress.Utils.Svg.SvgBitmap.FromFile( @"D:\users\user01\source\repos\TreeListControlPOC\AQBTest\images\icons\fk_gray.svg" );
-            fk_noaction_gray_img = fk_noaction_gray_svg.Render( null, 0.5 );
+            fk_noaction_gray_img16x16 = fk_noaction_gray_svg.Render( null, 0.5 );
+            fk_noaction_gray_img64x64 = fk_noaction_gray_svg.Render( null, 2.0 );
             //
             proc_noaction_blue_svg = DevExpress.Utils.Svg.SvgBitmap.FromFile( @"D:\users\user01\source\repos\TreeListControlPOC\AQBTest\images\icons\proc_blue.svg" );
-            proc_noaction_blue_img = proc_noaction_blue_svg.Render( null, 0.5 );
+            proc_noaction_blue_img16x16 = proc_noaction_blue_svg.Render( null, 0.5 );
+            proc_noaction_blue_img64x64 = proc_noaction_blue_svg.Render( null, 2.0 );
             //
             fld_noaction_gray_svg = DevExpress.Utils.Svg.SvgBitmap.FromFile( @"D:\users\user01\source\repos\TreeListControlPOC\AQBTest\images\icons\fld_gray.svg" );
-            fld_noaction_gray_img = fld_noaction_gray_svg.Render( null, 0.5 );
+            fld_noaction_gray_img16x16 = fld_noaction_gray_svg.Render( null, 0.5 );
+            fld_noaction_gray_img64x64 = fld_noaction_gray_svg.Render( null, 2.0 );
             //fld_noaction_red_img = DevExpress.Images.ImageResourceCache.Default.GetImage( "devav/view/sales_16x16.png" );
          }
          gv.ShowLoadingPanel( );
@@ -160,9 +156,12 @@
             gv.Columns[ MetadataItemFQN.USERDATA_FIELDNAME ].Visible = false;
             //
             gv.Columns[ MetadataItemFQN.FIELD_FIELDNAME ].Caption = MetadataItemFQN.FIELD_DISPLAYNAME;
+            gv.Columns[ MetadataItemFQN.OBJECT_FIELDNAME ].Caption = MetadataItemFQN.OBJECT_DISPLAYNAME;
             //
             gv.Columns[ MetadataItemFQN.CARDINALYTY_FIELDNAME ].Caption = MetadataItemFQN.CARDINALYTY_DISPLAYNAME;
             gv.Columns[ MetadataItemFQN.FIELDSCOUNT_FIELDNAME ].Caption = MetadataItemFQN.FIELDSCOUNT_DISPLAYNAME;
+            gv.Columns[ MetadataItemFQN.FIELD_TYPE_NAME_FIELDNAME ].Caption = MetadataItemFQN.FIELD_TYPE_NAME_DISPLAYNAME;
+            gv.Columns[ MetadataItemFQN.FIELD_TYPE_FIELDNAME ].Caption = MetadataItemFQN.FIELD_TYPE_DISPLAYNAME;
             gv.Columns[ MetadataItemFQN.FIELDS_FIELDNAME ].Caption = MetadataItemFQN.FIELDS_DISPLAYNAME;
             //
             gv.Columns[ MetadataItemFQN.REFERENCED_CARDINALYTY_NAME_FIELDNAME ].Caption = MetadataItemFQN.REFERENCED_CARDINALYTY_NAME_DISPLAYNAME;
@@ -173,6 +172,7 @@
             //
             gv.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler( gridView1_RowCellStyle );
             gv.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler( gridView1_CustomDrawCell );
+            //
          }
          ((System.ComponentModel.ISupportInitialize) (gc)).EndInit( );
          ((System.ComponentModel.ISupportInitialize) (gv)).EndInit( );
@@ -184,6 +184,10 @@
             //gc.ExportToCsv( "", o );
          }
          //         CustomDrawEmptyForeground( gc, gv );
+         foreach( DevExpress.XtraGrid.Columns.GridColumn gvc in gv.Columns )
+         {
+            gvc.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+         }
       }
 
       private static void TpCtlr_BeforeShow( object sender, DevExpress.Utils.ToolTipControllerShowEventArgs e )
@@ -202,39 +206,95 @@
          e.SuperTip = stp;
       }
 
+      private static DevExpress.Utils.ToolTipController tpCtlr;
+      private static DevExpress.XtraGrid.GridControl gridControl1;
       private static void TpCtlr_GetActiveObjectInfo( object sender, DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventArgs e )
       {
-         //DevExpress.Utils.ToolTipControlInfo info = null;
-         ////         // Create and customize a SuperToolTip: 
-         //DevExpress.Utils.SuperToolTip stp = new DevExpress.Utils.SuperToolTip( );
-         //DevExpress.Utils.SuperToolTipSetupArgs args = new DevExpress.Utils.SuperToolTipSetupArgs( );
-         //args.Title.Text = "Header";
-         //args.Contents.Text = "This tooltip contains a hyperlink. Visit the <href=http://help.devexpress.com>DevExpress Knowledge Center</href> to learn more.";
-         //args.ShowFooterSeparator = true;
-         //args.Footer.Text = "Footer";
-         //stp.Setup( args );
-         //// Enable HTML Text Formatting for the created SuperToolTip: 
-         //stp.AllowHtmlText = DevExpress.Utils.DefaultBoolean.True;
-         //info.SuperTip = stp;
-         //////////
-         //         if( e.SelectedControl != gridControl1 ) return;
-         //         DevExpress.Utils.ToolTipControlInfo info = null;
-         //         //Get the view at the current mouse position 
-         //         DevExpress.XtraGrid.Views.Grid.GridView view = gridControl1.GetViewAt( e.ControlMousePosition ) as DevExpress.XtraGrid.Views.Grid.GridView;
-         //         if( view == null ) return;
-         //         //Get the view's element information that resides at the current position 
-         //         DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo hi = view.CalcHitInfo( e.ControlMousePosition );
-         //         //Display a hint for row indicator cells 
-         //         if( hi.HitTest == DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitTest.RowIndicator )
-         //         {
-         //            //An object that uniquely identifies a row indicator cell 
-         //            object o = hi.HitTest.ToString( ) + hi.RowHandle.ToString( );
-         //            string text = "Row " + hi.RowHandle.ToString( );
-         //            info = new DevExpress.Utils.ToolTipControlInfo( o, text );
-         //         }
-         //         //Supply tooltip information if applicable, otherwise preserve default tooltip (if any) 
-         //         if( info != null )
-         //            e.Info = info;
+         if( e.SelectedControl != gridControl1 ) return;
+         DevExpress.Utils.ToolTipControlInfo info = null;
+         DevExpress.XtraGrid.Views.Grid.GridView view = gridControl1.GetViewAt( e.ControlMousePosition ) as DevExpress.XtraGrid.Views.Grid.GridView;
+         if( view == null ) return;
+         DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo hi = view.CalcHitInfo( e.ControlMousePosition );
+         //if( hi.HitTest == DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitTest.RowIndicator )
+         if( hi.HitTest == DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitTest.RowCell )
+         {
+            object o = hi.HitTest.ToString( ) + hi.RowHandle.ToString( );
+            string text = "Row " + hi.RowHandle.ToString( );
+            DevExpress.Utils.SuperToolTip stt = new DevExpress.Utils.SuperToolTip( );
+            stt.AllowHtmlText = DevExpress.Utils.DefaultBoolean.Default;
+            stt.FixedTooltipWidth = false;
+            stt.MaxWidth = 400;
+            stt.DistanceBetweenItems = 10;
+            DevExpress.Utils.SuperToolTipSetupArgs args = new DevExpress.Utils.SuperToolTipSetupArgs( );
+            args.AllowHtmlText = DevExpress.Utils.DefaultBoolean.Default;
+            args.ShowFooterSeparator = true;
+            {
+               var pnCellValue = view.GetRowCellValue( hi.RowHandle, MetadataItemFQN.OBJECT_FIELDNAME );
+               var ptypeCellValue = view.GetRowCellValue( hi.RowHandle, MetadataItemFQN.PARENT_TYPE_FIELDNAME );
+               var fqnCellValue = view.GetRowCellValue( hi.RowHandle, MetadataItemFQN.NAMEFULLQUALIFIED_FIELDNAME );
+               var nCellValue = view.GetRowCellValue( hi.RowHandle, MetadataItemFQN.FIELD_FIELDNAME );
+               var typeCellValue = view.GetRowCellValue( hi.RowHandle, MetadataItemFQN.TYPE_FIELDNAME );
+               //
+               args.Title.Text = typeCellValue.ToString( ) +": "+ nCellValue?.ToString( );
+               args.Contents.ImageOptions.Alignment = DevExpress.Utils.ToolTipImageAlignment.Default;
+               args.Contents.Text = fqnCellValue?.ToString();
+               args.Footer.Text = ptypeCellValue.ToString( ) + ": " + pnCellValue?.ToString( );
+               if( typeCellValue.ToString( ) == "Field" )
+               {
+                  args.Title.ImageOptions.Image = fld_noaction_gray_img16x16;
+                  args.Contents.ImageOptions.Image = fld_noaction_gray_img64x64;
+                  args.Footer.ImageOptions.Image = tbl_noaction_red_img16x16;
+               }
+               else if( typeCellValue.ToString( ) == "Table" )
+               {
+                  args.Title.ImageOptions.Image = tbl_noaction_red_img16x16;
+                  args.Contents.ImageOptions.Image = tbl_noaction_red_img64x64;
+                  args.Footer.ImageOptions.Image = sch_noaction_red_img16x16;
+               }
+               else if( typeCellValue.ToString( ) == "View" )
+               {
+                  args.Title.ImageOptions.Image = vw_noaction_red_img16x16;
+                  args.Contents.ImageOptions.Image = vw_noaction_red_img64x64;
+                  args.Footer.ImageOptions.Image = sch_noaction_red_img16x16;
+               }
+               else if( typeCellValue.ToString( ) == "ForeignKey" )
+               {
+                  args.Title.ImageOptions.Image = fk_noaction_gray_img16x16;
+                  args.Contents.ImageOptions.Image = fk_noaction_gray_img64x64;
+                  args.Footer.ImageOptions.Image = tbl_noaction_red_img16x16;
+               }
+               else if( typeCellValue.ToString( ) == "Procedure" )
+               {
+                  args.Title.ImageOptions.Image = proc_noaction_blue_img16x16;
+                  args.Contents.ImageOptions.Image = proc_noaction_blue_img64x64;
+                  args.Footer.ImageOptions.Image = sch_noaction_red_img16x16;
+               }
+               else if( typeCellValue.ToString( ) == "Synonym" )
+               {
+                  args.Title.ImageOptions.Image = syn_noaction_yellow_img16x16;
+                  args.Contents.ImageOptions.Image = syn_noaction_yellow_img64x64;
+                  args.Footer.ImageOptions.Image = sch_noaction_red_img16x16;
+               }
+               else if( typeCellValue.ToString( ) == "Schema" )
+               {
+                  args.Title.ImageOptions.Image = sch_noaction_red_img16x16;
+                  args.Contents.ImageOptions.Image = sch_noaction_red_img64x64;
+                  args.Footer.ImageOptions.Image = db_noaction_red_img16x16;
+               }
+               else if( typeCellValue.ToString( ) == "Database" )
+               {
+                  args.Title.ImageOptions.Image = db_noaction_red_img16x16;
+                  args.Contents.ImageOptions.Image = db_noaction_red_img64x64;
+                  args.Footer.ImageOptions.Image = db_noaction_red_img16x16;
+               }
+            }
+            stt.Setup( args );
+            info = new DevExpress.Utils.ToolTipControlInfo( o, text );
+            info.ToolTipType = DevExpress.Utils.ToolTipType.SuperTip;
+            info.SuperTip = stt;
+         }
+         if( info != null )
+            e.Info = info;
       }
 
       private static void tooltipController_HyperlinkClick( object sender, DevExpress.Utils.HyperlinkClickEventArgs e )
@@ -354,49 +414,49 @@
                }
                if( e.CellValue.ToString( ) == "Field" )
                {
-                  info.ContextImage = fld_noaction_gray_img;
+                  info.ContextImage = fld_noaction_gray_img16x16;
                   info.CalcViewInfo( );
                   return;
                }
                else if( e.CellValue.ToString( ) == "Table" )
                {
-                  info.ContextImage = tbl_noaction_red_img;
+                  info.ContextImage = tbl_noaction_red_img16x16;
                   info.CalcViewInfo( );
                   return;
                }
                else if( e.CellValue.ToString( ) == "View" )
                {
-                  info.ContextImage = vw_noaction_red_img;
+                  info.ContextImage = vw_noaction_red_img16x16;
                   info.CalcViewInfo( );
                   return;
                }
                if( e.CellValue.ToString( ) == "ForeignKey" )
                {
-                  info.ContextImage = fk_noaction_gray_img;
+                  info.ContextImage = fk_noaction_gray_img16x16;
                   info.CalcViewInfo( );
                   return;
                }
                if( e.CellValue.ToString( ) == "Procedure" )
                {
-                  info.ContextImage = proc_noaction_blue_img;
+                  info.ContextImage = proc_noaction_blue_img16x16;
                   info.CalcViewInfo( );
                   return;
                }
                else if( e.CellValue.ToString( ) == "Synonym" )
                {
-                  info.ContextImage = syn_noaction_yellow_img;
+                  info.ContextImage = syn_noaction_yellow_img16x16;
                   info.CalcViewInfo( );
                   return;
                }
                else if( e.CellValue.ToString( ) == "Schema" )
                {
-                  info.ContextImage = sch_noaction_red_img;
+                  info.ContextImage = sch_noaction_red_img16x16;
                   info.CalcViewInfo( );
                   return;
                }
                else if( e.CellValue.ToString( ) == "Database" )
                {
-                  info.ContextImage = db_noaction_red_img;
+                  info.ContextImage = db_noaction_red_img16x16;
                   info.CalcViewInfo( );
                   return;
                }
@@ -819,6 +879,67 @@
 }
 
 /*
+
+               // Create and customize a SuperToolTip: 
+            //DevExpress.Utils.SuperToolTip stp = new DevExpress.Utils.SuperToolTip( );
+            //DevExpress.Utils.SuperToolTipSetupArgs args = new DevExpress.Utils.SuperToolTipSetupArgs( );
+            //args.Title.Text = "Header";
+            //args.Contents.Text = "This tooltip contains a hyperlink. Visit the <href=http://help.devexpress.com>DevExpress Knowledge Center</href> to learn more.";
+            //args.ShowFooterSeparator = true;
+            //args.Footer.Text = "Footer";
+            //stp.Setup( args );
+            //// Enable HTML Text Formatting for the created SuperToolTip: 
+            //stp.AllowHtmlText = DevExpress.Utils.DefaultBoolean.True;
+            ////..or enable this feature for all tooltips: 
+            ////defaultTooltipController.AllowHtmlText = true; 
+            //tpCtlr.AllowHtmlText = true;
+            //// Respond to clicking hyperlinks in tooltips: 
+            ////defaultTooltipController.HyperlinkClick += defaultTooltipController_HyperlinkClick;
+            //tpCtlr.HyperlinkClick += tooltipController_HyperlinkClick;
+            //tpCtlr.SetSuperTip( gc , stp ); // the whole grid!!! BAD!!!
+
+            //DevExpress.Utils.SuperToolTipPreviewControl x = new DevExpress.Utils.SuperToolTipPreviewControl( stp );
+            //x.Show( );
+
+
+
+
+
+         //DevExpress.Utils.ToolTipControlInfo info = null;
+         ////         // Create and customize a SuperToolTip: 
+         //DevExpress.Utils.SuperToolTip stp = new DevExpress.Utils.SuperToolTip( );
+         //DevExpress.Utils.SuperToolTipSetupArgs args = new DevExpress.Utils.SuperToolTipSetupArgs( );
+         //args.Title.Text = "Header";
+         //args.Contents.Text = "This tooltip contains a hyperlink. Visit the <href=http://help.devexpress.com>DevExpress Knowledge Center</href> to learn more.";
+         //args.ShowFooterSeparator = true;
+         //args.Footer.Text = "Footer";
+         //stp.Setup( args );
+         //// Enable HTML Text Formatting for the created SuperToolTip: 
+         //stp.AllowHtmlText = DevExpress.Utils.DefaultBoolean.True;
+         //info.SuperTip = stp;
+         //////////
+         //         if( e.SelectedControl != gridControl1 ) return;
+         //         DevExpress.Utils.ToolTipControlInfo info = null;
+         //         //Get the view at the current mouse position 
+         //         DevExpress.XtraGrid.Views.Grid.GridView view = gridControl1.GetViewAt( e.ControlMousePosition ) as DevExpress.XtraGrid.Views.Grid.GridView;
+         //         if( view == null ) return;
+         //         //Get the view's element information that resides at the current position 
+         //         DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo hi = view.CalcHitInfo( e.ControlMousePosition );
+         //         //Display a hint for row indicator cells 
+         //         if( hi.HitTest == DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitTest.RowIndicator )
+         //         {
+         //            //An object that uniquely identifies a row indicator cell 
+         //            object o = hi.HitTest.ToString( ) + hi.RowHandle.ToString( );
+         //            string text = "Row " + hi.RowHandle.ToString( );
+         //            info = new DevExpress.Utils.ToolTipControlInfo( o, text );
+         //         }
+         //         //Supply tooltip information if applicable, otherwise preserve default tooltip (if any) 
+         //         if( info != null )
+         //            e.Info = info;
+
+
+
+
 
             /*
       //

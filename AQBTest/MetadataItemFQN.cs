@@ -94,9 +94,11 @@
       public string Schema { get; set; }
 
       public const string OBJECT_FIELDNAME = "ObjectName";
+      public const string OBJECT_DISPLAYNAME = "Parent Name";
       public string ObjectName { get; set; }
       //
       public const string NAMEFULLQUALIFIED_FIELDNAME = "NameFullQualified";
+      public const string NAMEFULLQUALIFIED_DISPLAYNAME = "Name Full Qualified";
       public string NameFullQualified { get; set; }
 
       public const string NAMEQUOTED_FIELDNAME = "NameQuoted";
@@ -114,11 +116,11 @@
       public string Expression { get; set; }
 
       public const string FIELD_TYPE_FIELDNAME = "FieldType";
-      public const string FIELD_TYPE_DISPLAYNAME = "Field Type";
+      public const string FIELD_TYPE_DISPLAYNAME = ".Net Type Name";
       public string FieldType { get; set; }
 
       public const string FIELD_TYPE_NAME_FIELDNAME = "FieldTypeName";
-      public const string FIELD_TYPE_NAME_DISPLAYNAME = "Field Type Name";
+      public const string FIELD_TYPE_NAME_DISPLAYNAME = "Database Type Name";
       public string FieldTypeName { get; set; }
 
       public bool IsNullable { get; set; }
