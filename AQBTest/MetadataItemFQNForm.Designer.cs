@@ -1,6 +1,6 @@
 ﻿namespace AQBTest
 {
-   partial class Form1
+   partial class MetadataItemFQNForm
    {
       /// <summary>
       /// Required designer variable.

@@ -183,7 +183,7 @@
             //DevExpress.XtraPrinting.CsvExportOptions o = new DevExpress.XtraPrinting.CsvExportOptions( ",", System.Text.Encoding.UTF8, DevExpress.XtraPrinting.TextExportMode.Value, true, false );
             //gc.ExportToCsv( "", o );
          }
-         //         CustomDrawEmptyForeground( gc, gv );
+         CustomDrawEmptyForeground( gc, gv );
          foreach( DevExpress.XtraGrid.Columns.GridColumn gvc in gv.Columns )
          {
             gvc.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -218,6 +218,10 @@
          //if( hi.HitTest == DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitTest.RowIndicator )
          if( hi.HitTest == DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitTest.RowCell )
          {
+            if(hi.RowHandle == -2147483646 )
+            {
+               return;
+            }
             object o = hi.HitTest.ToString( ) + hi.RowHandle.ToString( );
             string text = "Row " + hi.RowHandle.ToString( );
             DevExpress.Utils.SuperToolTip stt = new DevExpress.Utils.SuperToolTip( );
@@ -235,10 +239,10 @@
                var nCellValue = view.GetRowCellValue( hi.RowHandle, MetadataItemFQN.FIELD_FIELDNAME );
                var typeCellValue = view.GetRowCellValue( hi.RowHandle, MetadataItemFQN.TYPE_FIELDNAME );
                //
-               args.Title.Text = typeCellValue.ToString( ) +": "+ nCellValue?.ToString( );
+               args.Title.Text = typeCellValue?.ToString( ) +": "+ nCellValue?.ToString( );
                args.Contents.ImageOptions.Alignment = DevExpress.Utils.ToolTipImageAlignment.Default;
                args.Contents.Text = fqnCellValue?.ToString();
-               args.Footer.Text = ptypeCellValue.ToString( ) + ": " + pnCellValue?.ToString( );
+               args.Footer.Text = ptypeCellValue?.ToString( ) + ": " + pnCellValue?.ToString( );
                if( typeCellValue.ToString( ) == "Field" )
                {
                   args.Title.ImageOptions.Image = fld_noaction_gray_img16x16;
@@ -536,60 +540,6 @@
          //   qb.MetadataContainer.ImportFromXML( filename );
          //}
       }
-
-      #region --- MSSQL... ---
-      public static ActiveQueryBuilder.View.WinForms.QueryBuilder CreateQueryBuilderMSSQL(
-         string connectionString,
-         bool loadDefaultDatabaseOnly,
-         bool loadSystemObjects,
-         bool withFields
-      )
-      {
-         ActiveQueryBuilder.View.WinForms.QueryBuilder qb = new ActiveQueryBuilder.View.WinForms.QueryBuilder( )
-         {
-            SyntaxProvider = new ActiveQueryBuilder.Core.MSSQLSyntaxProvider( ),
-            MetadataProvider = new ActiveQueryBuilder.Core.MSSQLMetadataProvider( )
-         };
-         qb.MetadataProvider.Connection = new System.Data.SqlClient.SqlConnection( connectionString );
-         {
-            ActiveQueryBuilder.Core.MetadataLoadingOptions loadingOptions = qb.SQLContext.MetadataContainer.LoadingOptions;
-            loadingOptions.LoadDefaultDatabaseOnly = loadDefaultDatabaseOnly;
-            loadingOptions.LoadSystemObjects = loadSystemObjects;
-            //loadingOptions.IncludeFilter.Types = MetadataType.Field;
-            //loadingOptions.ExcludeFilter.Schemas.Add("dbo");
-         }
-         //qb.InitializeDatabaseSchemaTree();
-         //qb.MetadataContainer.LoadAll(withFields);
-         return qb;
-      } // createQueryBuilder(...)
-      #endregion
-
-      #region --- SQLite... ---
-      public static ActiveQueryBuilder.View.WinForms.QueryBuilder CreateQueryBuilderSQLite(
-         string connectionString,
-         bool loadDefaultDatabaseOnly,
-         bool loadSystemObjects,
-         bool withFields
-      )
-      {
-         ActiveQueryBuilder.View.WinForms.QueryBuilder qb = new ActiveQueryBuilder.View.WinForms.QueryBuilder( )
-         {
-            SyntaxProvider = new ActiveQueryBuilder.Core.SQLiteSyntaxProvider( ),
-            MetadataProvider = new ActiveQueryBuilder.Core.SQLiteMetadataProvider( )
-         };
-         qb.MetadataProvider.Connection = new System.Data.SQLite.SQLiteConnection( connectionString );
-         {
-            ActiveQueryBuilder.Core.MetadataLoadingOptions loadingOptions = qb.SQLContext.MetadataContainer.LoadingOptions;
-            loadingOptions.LoadDefaultDatabaseOnly = loadDefaultDatabaseOnly;
-            loadingOptions.LoadSystemObjects = loadSystemObjects;
-            //loadingOptions.IncludeFilter.Types = MetadataType.Field;
-            //loadingOptions.ExcludeFilter.Schemas.Add("dbo");
-         }
-         qb.InitializeDatabaseSchemaTree( );
-         qb.MetadataContainer.LoadAll( withFields );
-         return qb;
-      } // createQueryBuilder(...)
-      #endregion
 
       public static System.ComponentModel.BindingList<MetadataItemFQN> BuildBindingList(
          ActiveQueryBuilder.View.WinForms.QueryBuilder qb
